@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Law.Models
 {
-    public class AffiliateID:NameBase
+    public class Affiliate:NameBase
     {
     }
 }
