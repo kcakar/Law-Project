@@ -32,5 +32,8 @@
     <Folder Include="wwwroot\img\" />
     <Folder Include="wwwroot\fonts\" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Law.Test\Law.Test.csproj" />
+  </ItemGroup>
 
 </Project>

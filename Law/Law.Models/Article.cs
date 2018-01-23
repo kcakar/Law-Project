@@ -16,5 +16,26 @@ namespace Law.Models
         public string Tags { get; set; }
         public DateTime CreationDate { get; set; }
         public int ViewCount { get; set; }
+
+        public Article()
+        {
+
+        }
+
+        public Article(string ID,string Title,string Body,string ContributorID,string LanguageID,string CountryID,string CityID,string AffiliateID,string PracticeAreaID)
+        {
+            this.ID = ID;
+            this.Title = Title;
+            this.Body = Body;
+            this.ContributorID = ContributorID;
+            this.LanguageID = LanguageID;
+            this.CountryID = CountryID;
+            this.CityID = CityID;
+            this.AffiliateID = AffiliateID;
+            this.PracticeAreaID = PracticeAreaID;
+            this.Tags = "";
+            CreationDate = DateTime.Now;
+            this.ViewCount = 0;
+        }
     }
 }

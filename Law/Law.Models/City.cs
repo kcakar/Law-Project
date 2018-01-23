@@ -6,6 +6,9 @@ namespace Law.Models
 {
     public class City: NameBase
     {
+        public City(string ID,string Name):base(ID,Name)
+        {
 
+        }
     }
 }

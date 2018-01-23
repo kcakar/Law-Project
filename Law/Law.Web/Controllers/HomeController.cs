@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Law.Test;
+using Law.Models;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Web.Controllers
@@ -10,6 +12,8 @@ namespace Web.Controllers
     {
         public IActionResult Index()
         {
+            Tester.GenerateTestData();
+            List<Article> testArticles = Tester.TestArticles;
             return View();
         }
 
