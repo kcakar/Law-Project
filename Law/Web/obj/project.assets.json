@@ -21461,11 +21461,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/Users/osmanpolat/Desktop/Law-Project/Law/Web/Web.csproj",
+      "projectUniqueName": "/Users/osmanpolat/Law-Project/Law/Web/Web.csproj",
       "projectName": "Web",
-      "projectPath": "/Users/osmanpolat/Desktop/Law-Project/Law/Web/Web.csproj",
+      "projectPath": "/Users/osmanpolat/Law-Project/Law/Web/Web.csproj",
       "packagesPath": "/Users/osmanpolat/.nuget/packages/",
-      "outputPath": "/Users/osmanpolat/Desktop/Law-Project/Law/Web/obj",
+      "outputPath": "/Users/osmanpolat/Law-Project/Law/Web/obj",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "/Users/osmanpolat/.config/NuGet/NuGet.Config"
