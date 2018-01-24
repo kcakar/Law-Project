@@ -1,0 +1,89 @@
+﻿@{
+    ViewData["Title"] = "Turkish Law Blog - Articles";
+}
+
+<div class="Page PracticePage">
+    <section class="search">
+        <div class="container">
+            <div class="search-form">
+                <form action="/search">
+                    <div class="pull-left">
+                        <select name="practice" id="practice" style="width: 200px">
+                            <option value="">Practice Area</option>
+                            <option value='32'>Civil Law</option>
+                            <option value='4'>Constitutional Law</option>
+                            <option value='1'>UE Law</option>
+                        </select>
+                        <i class="fa fa-caret-down"></i>
+                    </div>
+                    <div class="pull-left">
+                        <select name="contributor" id="contributor" style="width: 200px">
+                            <option value="">Contributor</option>
+                            <br />
+                            <b>Notice</b>:  Undefined index: name in
+                            <b>/home/turkishlawblog/public_html/application/view/_templates/search-form.php</b> on line
+                            <b>21</b>
+                            <br />
+                            <option value='1'></option>
+                        </select>
+                        <i class="fa fa-caret-down"></i>
+                    </div>
+                    <div class="pull-left">
+                        <select name="country" id="country" onchange="$.a.load_city( this.value, 'city' );" style="min-width: 170px; width: 170px">
+                            <option value="">Country</option>
+                            <option value='34'>Burundi</option>
+                            <option value='56'>Dominica</option>
+                            <option value='67'>Falkland Islands</option>
+                            <option value='123'>Madagascar</option>
+                            <option value='213'>Turkey</option>
+                        </select>
+                        <i class="fa fa-caret-down"></i>
+                    </div>
+                    <div class="pull-left">
+                        <select name="city" id="city" style="min-width: 170px; width: 170px">
+                            <option value="">City</option>
+                        </select>
+                        <i class="fa fa-caret-down"></i>
+                    </div>
+                    <div class="pull-right">
+                        <div class="pull-left"><input type="text" name="q" id="q" placeholder="Keywords..."></div>
+                        <div class="pull-right"><button title="Search Now"><i class="fa fa-search"></i></button></div>
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="clearfix"></div>
+                </form>
+            </div>
+        </div>
+    </section>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="PageView posts">
+
+                    <h1>Civil Law Articles</h1>
+                    <div class='row'>
+                        <div class='col-md-4 col-sm-6'>
+                            <div class='post'>
+                                <div class='title'>The Role of Expert Opinions in Turkish Intellectual Property Law</div>
+                                <div class='text'>
+                                    Expert opinions play
+                                    an important role in resolving disputes handled by first instance courts in
+                                    Turkey.If solving a dispute
+                                    requires technical or specialist knowledge and cannot be resolved via the
+                                    judge’s legal knowledge and professional experience, the Civil Procedural Law
+                                    empowers judges to appoint an expert or panel of experts. However, a recent
+                                    court decision has raised questions about
+                                </div>
+                                <div class='author'>
+                                    <div class='pull-left'><img src='./img/isik-ozdogan.jpg' alt=''></div>
+                                    <div class='pull-left'><b>Işık Özdoğan</b><span>LL.M.</span></div>
+                                    <div class='clearfix'></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

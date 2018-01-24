@@ -1,0 +1,756 @@
+/* Global Styles Begin */
+
+hr {
+    border-color: #e0d2d0;
+}
+
+/* Global Styles End */
+
+body {
+
+    font-family: 'Rubik', sans-serif;
+    padding-top: 130px;
+}
+
+header {
+    width: 100%;
+    position: fixed;
+    z-index: 100;
+    top:0;
+}
+
+.top-line {
+    background-color: #71392f;
+    height: 10px;
+}
+
+.top {
+    background-color: #602e25;
+    height: 120px;
+    border-bottom: 2px solid #502018
+}
+
+.top .logo {
+    margin-top: 33px
+}
+
+.top .menu {
+    margin-top: 35px
+}
+
+.top .menu a {
+    position: relative;
+    display: inline-block;
+    padding: 8px 12px 10px 12px;
+    font-family: 'Playfair Display', serif;
+    font-size: 17px;
+    font-weight: 300;
+    border-radius: 4px 4px 0 0;
+    color: #fff;
+    text-decoration: none
+}
+
+.top .menu a.active {
+    background-color: #884a3e;
+}
+
+.top .newsletter-form {
+    margin-top: 40px
+}
+
+.top .newsletter-form input[type="text"] {
+    display: inline-block;
+    border: none;
+    border-radius: 3px 0 0 3px;
+    padding: 8px 12px;
+    margin: 0;
+    outline: none;
+    width: 170px;
+    font-size: 13px;
+    font-weight: 200
+}
+
+.top .newsletter-form button {
+    border: none;
+    border-radius: 0 3px 3px 0;
+    padding: 8px 12px;
+    margin: 0;
+    display: inline-block;
+    outline: none;
+    font-size: 13px;
+    font-weight: 200;
+    background-color: #95574b;
+    color: #fff;
+}
+
+.top .social {
+    margin-top: 45px;
+    margin-right: 10px
+}
+
+.top .social a {
+    display: inline-block;
+    font-size: 18px;
+    margin: 0 4px;
+    color: #fff
+}
+
+
+
+
+.drop-down-overlay {
+    position: fixed;
+    z-index: 1000;
+    top:0;
+    right:0;
+    bottom:0;
+    left:0;
+}
+
+.countries-drop,
+.practice-drop,
+.contributors-drop {
+    position: absolute;
+    z-index: 1001;
+    top: 77px;
+    width: 280px;
+    height: 400px;
+    overflow: hidden;
+    background-color: #884a3e;
+    border-radius: 0 4px 4px 4px;
+    padding: 15px;
+}
+
+.practice-drop {
+    left: 72px;
+}
+
+.contributors-drop {
+    left: 214px;
+}
+
+.countries-drop {
+    left: 355px;
+}
+
+.countries-drop input[type="text"],
+.practice-drop input[type="text"],
+.contributors-drop input[type="text"] {
+    display: inline-block;
+    width: 100%;
+    border:none;
+    border-radius: 3px;
+    padding: 8px 10px;
+    outline: none;
+}
+
+.countries-list,
+.practice-list,
+.contributors-list {
+    width: 250px;
+    height: 320px;
+    overflow: auto;
+    margin-top: 15px
+}
+
+.countries-list a,
+.practice-list a,
+.contributors-list a {
+    display: block;
+    color: #fff;
+    margin-bottom:5px;
+}
+
+.mCS-inset-2-dark.mCSB_scrollTools .mCSB_dragger .mCSB_dragger_bar, .mCS-inset-3-dark.mCSB_scrollTools .mCSB_dragger .mCSB_dragger_bar, .mCS-inset-dark.mCSB_scrollTools .mCSB_dragger .mCSB_dragger_bar {
+    background-color: #602e26;
+}
+
+section.about-us,
+section.latest-authors {
+    background-color: #fff;
+    padding: 35px 0 45px
+}
+
+section.latest-posts {
+    background-color: #f5f6f6;
+    padding: 30px 0 50px
+}
+
+section.about-us p {
+    color: #888;
+    font-weight: 200;
+    text-align: justify;
+    line-height: 2
+}
+
+section h2 {
+    font-size: 22px;
+    font-weight: 200;
+    letter-spacing: -1px;
+    color: #95574b
+}
+
+section h2 b {
+    font-weight: 500;
+}
+
+/* Section: Slider */
+
+section.slider {
+    padding-top: 30px;
+    padding-bottom: 30px;
+    background-color: #f5f6f6
+}
+
+#slider .item {
+    margin:0 10px;
+}
+
+#slider .item .image {
+    display: block;
+    width: 100%;
+    height: 300px;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    border-radius: 3px 3px 0 0
+}
+
+#slider .item .title {
+    background-color: #602e25;
+    color: #fff;
+    padding: 25px 30px;
+    border-radius: 0 0 3px 3px;
+    height: 120px;
+    box-sizing: border-box;
+}
+
+#slider .item .title .caption a {
+    font-family: "Playfair Display", serif;
+    font-size: 18px;
+    color: #fff !important;
+}
+
+#slider .item .title .tools,
+#slider .item .title .tools a {
+    margin-top: 5px;
+    font-size: 13px;
+    font-weight: 300;
+    color: #ce9a90;
+}
+
+#slider .item .title .tools .pull-left {
+    margin-right: 20px
+}
+
+#slider .owl-prev {
+    position: absolute;
+    left: -35px;
+    top: calc( 50% - 50px );
+    font-size: 50px;
+    color: #bf877b;
+}
+
+#slider .owl-next {
+    position: absolute;
+    right: -35px;
+    top: calc( 50% - 50px );
+    font-size: 50px;
+    color: #bf877b;
+}
+
+.owl-controls {
+    height:0;
+    margin:0;
+    padding:0;
+}
+
+.owl-controls .owl-pagination {
+    display: none !important
+}
+
+/* Section: Search */
+
+section.search {
+    margin-top: 20px
+}
+
+.search-form .pull-left {
+    position: relative;
+}
+
+.search-form {
+    background-color: #efe3e1;
+    padding: 18px;
+    border-radius: 4px;
+}
+
+.search-form .pull-left i {
+    position: absolute;
+    top: 13px;
+    right: 20px
+}
+
+.search-form select {
+    -webkit-appearance: none;
+    -webkit-border-radius: 3px;
+
+    border:none;
+    background-color: #fff;
+    border-radius: 3px;
+    padding: 10px 14px;
+    height: 38px;
+    width: 100%;
+    position: relative;
+    font-size: 13px;
+    outline: none;
+    min-width: 200px;
+    margin-right: 10px
+}
+
+.search-form .pull-left button i {
+    position: relative;
+    top:auto;
+    right: auto;
+}
+
+.search-form input[type="text"] {
+    display: inline-block;
+    border: none;
+    border-radius: 3px;
+    padding: 10px 12px;
+    margin-right: 10px;
+    outline: none;
+    width: 265px;
+    font-size: 13px;
+    font-weight: 200
+}
+
+.search-form button {
+    border: none;
+    border-radius: 3px;
+    padding: 10px 18px;
+    margin: 0;
+    display: inline-block;
+    outline: none;
+    font-size: 13px;
+    font-weight: 200;
+    background-color: #95574b;
+    color: #fff;
+}
+
+/* Posts */
+
+.posts {
+    margin-top: 25px
+}
+
+.posts .post {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 3px
+}
+
+.posts .post .title {
+    font-size: 16px;
+    font-weight: 500;
+    color: #95574b;
+    margin-bottom: 15px;
+    height: 40px
+}
+
+.posts .post .text {
+    font-size: 14px;
+    font-weight: 300;
+    color: #888;
+    margin-bottom: 15px;
+    text-align: justify;
+}
+
+.posts .post .author {
+    border-top: 1px solid #eee;
+    padding-top: 15px;
+    color: #666;
+}
+
+.posts .post .author img {
+    width: 35px;
+    height: 35px;
+    margin-right: 10px;
+    border-radius: 2px
+}
+
+.posts .post .author span {
+    display: block;
+    font-size: 13px
+}
+
+/* Author */
+
+#authors {
+    margin-top: 20px
+}
+
+.author .image {
+    width: 100%;
+    height: 300px;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    border-radius: 3px 3px 0 0
+}
+
+.author .title {
+    background-color: #602e25;
+    color: #fff;
+    padding: 20px;
+    font-family: "Playfair Display", serif;
+    font-size: 15px
+}
+
+.author .title span {
+    display: block;
+}
+
+#authors .owl-nav.disabled {
+    display: block
+}
+
+#authors .owl-prev {
+    position: absolute;
+    left: -35px;
+    top: calc( 50% - 50px );
+    font-size: 50px;
+    color: #bf877b;
+}
+
+#authors .owl-next {
+    position: absolute;
+    right: -35px;
+    top: calc( 50% - 50px );
+    font-size: 50px;
+    color: #bf877b;
+}
+
+/* Pages : Blog View */
+
+.BlogView {
+    margin-bottom: 40px;
+    background-color: #fff;
+    border-radius: 3px;
+}
+
+.BlogViewLeft {
+    border-radius: 3px 0 0 3px;
+    padding: 25px 0 25px 25px
+}
+
+.BlogViewRight {
+    background-color: #efe3e1;
+    border-radius: 0 3px 3px 0;
+    padding: 25px;
+    overflow: hidden;
+}
+
+.share-block {
+    margin-top: 15px;
+    border-radius: 3px;
+    background-color: #f5f5f5;
+    height: 40px;
+    padding: 10px 15px;
+    font-size: 13px;
+    color: #999
+}
+
+.share-block i {
+    font-size: 20px
+}
+
+.share-block .fa-facebook-square {
+    color: #3b5898
+}
+
+.share-block .fa-twitter-square {
+    color: #1ea1f2
+}
+
+.share-block .fa-linkedin-square {
+    color: #225981
+}
+
+.share-block .fa-file-pdf-o {
+    color: #df0100
+}
+
+.share-block .fa-print {
+    color: #666
+}
+
+.share-block .fa-stack {
+    width: auto;
+    height: auto;
+}
+
+.share-block .fa-at {
+    color: #fff;
+    position: absolute;
+    top: 3px;
+    left: 3px;
+    font-size: 13px
+}
+
+.share-block .whatsapp .fa-square {
+    color: #179c0f
+}
+
+.share-block .whatsapp .fa-whatsapp {
+    color: #fff;
+    position: absolute;
+    top: 3px;
+    left: 3px;
+    font-size: 13px
+}
+
+.post-content {
+    text-align: justify;
+    font-size: 14px;
+    line-height: 1.7
+}
+
+.post-content h1 {
+    margin: 0 0 15px 0;
+    padding:0;
+    font-family: "Playfair Display", serif;
+    font-size: 24px;
+    color: #95574a
+}
+
+.post-content .post-tools {
+    margin-bottom: 15px;
+    font-size: 15px;
+    font-weight: 300;
+    color: #ce9a90;
+}
+
+.post-content .post-tools .avatar {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+}
+
+.search-box h3 {
+    padding:0;
+    margin: 0 0 15px 0;
+    font-family: "Playfair Display", serif;
+    font-size: 24px;
+    color: #95574a;
+}
+
+.search-box .form-control {
+    margin-bottom: 8px;
+    font-size: 14px;
+    padding: 8px 13px !important;
+    height: 35px;
+    border: none;
+    border-radius: 3px !important;
+    outline: none;
+    box-shadow: none;
+}
+
+.search-box button {
+    background-color: #95574a;
+    color: #fff;
+}
+
+.search-box .latest-post-item {
+    margin-bottom: 20px;
+}
+
+.search-box .latest-post-item a {
+
+    color: #0e5ea2
+}
+
+.search-box .latest-post-item .ago {
+    font-size: 11px;
+    color: #777
+}
+
+    .latest-author-item {
+        margin-bottom: 15px;
+    }
+
+    .latest-author-item img {
+        border-radius: 50%;
+    }
+
+    .latest-author-item .title {
+        padding: 4px;
+    }
+
+/* Page */
+
+.Page {
+    padding-top: 30px;
+    background-color: #f5f6f6;
+}
+
+.PageView {
+    background-color: #fff;
+    padding: 30px;
+    border-radius: 4px;
+    margin-bottom: 40px;
+}
+
+.PageView h1 {
+    margin: 0 0 25px 0;
+    padding:0;
+    font-family: "Playfair Display", serif;
+    font-size: 24px;
+    color: #95574a
+}
+
+/* Practice Page */
+
+.SearchPage .post,
+.PracticePage .post {
+    background-color: #f6f6f6
+}
+
+.SearchPage .search,
+.PracticePage .search {
+    margin-top: 0;
+}
+
+.agreement li {
+    margin-bottom: 20px;
+}
+
+/* Contributor Page */
+
+.ProfilePage .tabs a {
+    display: inline-block;
+    float:left;
+    width: 50%;
+    background-color: #a0817b;
+    margin:0;
+    box-sizing: border-box;
+    text-align: center;
+    padding: 15px 0 20px 0;
+    font-family: "Playfair Display", serif;
+    font-size: 20px;
+    color: #fff;
+}
+
+.ProfilePage .tabs a.active {
+    background-color: #95574a;
+}
+
+.contributor-profile .contributor-data {
+    padding: 20px
+}
+
+.contributor-profile h1 {
+    margin-bottom: 20px
+}
+
+.contributor-biography {
+    margin-top: 45px;
+    margin-right: 20px;
+    line-height: 1.6;
+    text-align: justify;
+    color: #999;
+    height: 125px;
+}
+
+.tabs a {
+    position: relative;
+}
+
+.tabs a.active::after {
+    content: "\f0d7";
+    font-family: "FontAwesome";
+    font-size: 30px;
+    color: #95574a;
+    position: absolute;
+    left: calc( 50% - 15px );
+    bottom: -23px;
+}
+
+.tabs-contents {
+    padding: 20px
+}
+
+.tab-content {
+    display: none
+}
+
+.tab-content.active {
+    display: block
+}
+
+.articles-title {
+    font-family: "Playfair Display", serif;
+    font-size: 24px;
+    color: #95574a;
+    margin-bottom: 20px;
+}
+
+.ProfilePage .articles h3 {
+    margin:0 0 10px 0;
+    font-size: 18px;
+    font-weight: 400
+}
+
+.ProfilePage .articles .article {
+    padding-bottom: 20px;
+    margin-bottom: 20px;
+    border-bottom: 1px dotted #ddd
+}
+
+.ProfilePage .articles .article:last-child {
+    border-bottom: 0;
+    margin-bottom: 0;
+}
+
+.ProfilePage .articles .tools {
+    font-size: 12px;
+    margin-top: 10px;
+    color: #999
+}
+
+.ProfilePage .articles .tools .pull-left:first-child {
+    margin-right: 10px
+}
+
+/* Slider */
+
+footer {
+    background: #fff;
+    border-top: 1px solid #cdc6c4;
+    padding-top: 40px;
+    padding-bottom: 40px;
+
+    font-family: 'Playfair Display', serif;
+    font-size: 17px;
+    font-weight: 300;
+
+}
+
+.footer-logo {
+    background: #602e25;
+    text-align: center;
+    padding: 40px;
+    box-sizing: border-box;
+}
+
+footer b {
+    display: inline-block;
+    margin-bottom: 10px;
+    color: #bf877a
+}
+
+footer a {
+    color: #999;
+    font-size: 15px
+}
