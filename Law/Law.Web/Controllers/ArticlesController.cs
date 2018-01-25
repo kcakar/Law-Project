@@ -11,9 +11,11 @@ namespace Web.Controllers
     public class ArticlesController : Controller
     {
         // GET: /<controller>/
-        public IActionResult Index()
+        public IActionResult Index(string id)
         {
             return View();
         }
+
+                
     }
 }

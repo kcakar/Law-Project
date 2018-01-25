@@ -13,6 +13,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Law.Core\Law.Core.csproj" />
     <ProjectReference Include="..\Law.Models\Law.Models.csproj" />
     <ProjectReference Include="..\Law.Test\Law.Test.csproj" />
   </ItemGroup>

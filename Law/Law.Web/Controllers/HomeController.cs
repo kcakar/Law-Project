@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Law.Test;
 using Law.Models;
 using Microsoft.AspNetCore.Mvc;
+using Law.Web.Models;
 
 namespace Web.Controllers
 {
@@ -13,8 +14,7 @@ namespace Web.Controllers
         public IActionResult Index()
         {
             Tester.GenerateTestData();
-            List<Article> testArticles = Tester.TestArticles;
-            return View();
+            return View(new IndexViewModel());
         }
 
         public IActionResult Articles()
@@ -23,6 +23,7 @@ namespace Web.Controllers
 
             return View();
         }
+
 
 
         public IActionResult Error()

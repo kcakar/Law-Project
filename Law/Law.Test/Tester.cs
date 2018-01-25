@@ -16,6 +16,10 @@ namespace Law.Test
 
         public static void GenerateTestData()
         {
+            if(TestCities.Count>0)
+            {
+                return;
+            }
             GenerateCities();
             GenerateCountries();
             GeneratePracticeAreas();
@@ -26,13 +30,11 @@ namespace Law.Test
 
         private static void GenerateArticles(int amount)
         {
-            string body = "Aenean mi lacus, pellentesque sed bibendum at, vestibulum nec augue. Nam pellentesque ornare bibendum. Cras bibendum neque a nunc condimentum, ac laoreet ex porttitor. Pellentesque vitae semper lorem, vitae posuere neque. Vivamus laoreet erat ligula, quis accumsan lectus mattis vitae. Morbi eget purus laoreet, venenatis elit quis, varius enim. Vestibulum erat ante, vestibulum et congue aliquam, tincidunt nec sem. Nullam vel ligula sodales, varius neque a, lacinia diam.Vestibulum aliquam dui leo, nec vestibulum enim laoreet sed. Integer sed maximus arcu, sed consectetur quam. Maecenas lacinia ultricies mauris, quis tincidunt lacus mattis pharetra. Vivamus ullamcorper ipsum dui, vel egestas risus convallis ut. Etiam vulputate purus erat, eu imperdiet urna placerat ac. Mauris dignissim facilisis dapibus. Donec quis metus condimentum felis ornare auctor. Donec fermentum, massa a facilisis aliquet, arcu libero accumsan sem, ac mattis erat massa eu ligula.";
-
             for (int i = 0; i < amount; i++)
             {
                 Article testArticle = new Article(i.ToString(),
-                        "",
-                        body,
+                        MockData.Titles.PickRandomItem(),
+                        MockData.Content.PickRandomItem(),
                         TestContributors.PickRandomItem().ID,
                         "tr-TR",
                         TestCountries.PickRandomItem().ID,
@@ -58,8 +60,10 @@ namespace Law.Test
                         name,
                         TestCountries.PickRandomItem().ID,
                         TestCities.PickRandomItem().ID,
-                        TestAffiliates.PickRandomItem().ID)
-                        );
+                        TestAffiliates.PickRandomItem().ID,
+                        MockData.ImageURLs.PickRandomItem()
+                        )
+                    );
             }
 
         }

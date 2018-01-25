@@ -1,4 +1,9 @@
-﻿@{
+﻿@using Law.Web.Models;
+@using Law.Core;
+@using Law.Models;
+
+@model IndexViewModel
+@{
     ViewData["Title"] = "Turkish Law Blog";
 }
 
@@ -7,79 +12,31 @@
 
     <div class="container">
         <div class="row" style="padding: 0 5px">
-
             <div id="slider" class="owl-carousel">
 
-                <div class='item'>
-                    <a href='/article/1/limitations-on-doctors-advertising-in-turkey-an-inconsistent-framework-ripe-for-reform' class='image' style='background-image: url(./img/orcun-cetinkaya.jpg);'></a>
-                    <div class='title'>
-                        <div class='caption'><a href='/article/1/limitations-on-doctors-advertising-in-turkey-an-inconsistent-framework-ripe-for-reform'>Limitations on Doctors’ Advertising in Turkey: An Inconsistent Fr...</a></div>
-                        <div class='tools'>
-                            <div class='pull-left'><i class='fa fa-user-circle-o'></i> <a href='/contributor/1/orcun-cetinkaya'>Orçun Çetinkaya</a></div>
-                            <div class='pull-left'><i class='fa fa-calendar'></i> 31 Aug, 2017</div>
-                            <div class='pull-left'><i class='fa fa-eye'></i>  301</div>
-                            <div class='clearfix'></div>
+                @foreach (Article article in Model.PopularArticles)
+                {
+                    Contributor contributor = Model.RecentContributors.FirstOrDefault(x => x.ID == article.ContributorID);
+                    if (contributor != null)
+                    {
+                        <div class='item'>
+                            <a href='@Url.Action("Index", "Contributors", new { id = contributor.ID })' class='image' style='background-image: url(@contributor.ImageURL);'></a>
+                            <div class='title'>
+                                <div class='caption'><a href='@Url.Action("Index", "Articles", new { id = article.ID })'>@article.Title</a></div>
+                                <div class='tools'>
+                                    <div class='pull-left'><i class='fa fa-user-circle-o'></i> <a href='@Url.Action("Index", "Contributors", new { id = contributor.ID })'>@contributor.Name</a></div>
+                                    <div class='pull-left'><i class='fa fa-calendar'></i> @article.CreationDate.ToLongDateString()</div>
+                                    <div class='pull-left'><i class='fa fa-eye'></i>  @article.ViewCount</div>
+                                    <div class='clearfix'></div>
+                                </div>
+                            </div>
                         </div>
-                    </div>
-                </div>
+                    }
+                }
 
-                <div class='item'>
-                    <a href='/article/19/turkey-adopts-data-protection-law-taking-a-big-step-towards-harmonization-with-relevant-elements-of-acquis-communautaire' class='image' style='background-image: url(./img/burcu-tuzcu-ersin.jpg);'></a>
-                    <div class='title'>
-                        <div class='caption'><a href='/article/19/turkey-adopts-data-protection-law-taking-a-big-step-towards-harmonization-with-relevant-elements-of-acquis-communautaire'>Turkey Adopts Data Protection Law, Taking a Big Step Towards Harm...</a></div>
-                        <div class='tools'>
-                            <div class='pull-left'><i class='fa fa-user-circle-o'></i> <a href='/contributor/10/burcu-tuzcu-ersin'>Burcu Tuzcu Ersin</a></div>
-                            <div class='pull-left'><i class='fa fa-calendar'></i> 05 Jan, 2018</div>
-                            <div class='pull-left'><i class='fa fa-eye'></i>  13</div>
-                            <div class='clearfix'></div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class='item'>
-                    <a href='/article/18/russian-sanctions-against-turkey' class='image' style='background-image: url(./img/orcun-cetinkaya.jpg);'></a>
-                    <div class='title'>
-                        <div class='caption'><a href='/article/18/russian-sanctions-against-turkey'>Russian Sanctions Against Turkey</a></div>
-                        <div class='tools'>
-                            <div class='pull-left'><i class='fa fa-user-circle-o'></i> <a href='/contributor/1/orcun-cetinkaya'>Orçun Çetinkaya</a></div>
-                            <div class='pull-left'><i class='fa fa-calendar'></i> 05 Jan, 2018</div>
-                            <div class='pull-left'><i class='fa fa-eye'></i>  20</div>
-                            <div class='clearfix'></div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class='item'>
-                    <a href='/article/20/turkey-completes-final-step-in-approving-data-protection-legislation' class='image' style='background-image: url(./img/burcu-tuzcu-ersin.jpg);'></a>
-                    <div class='title'>
-                        <div class='caption'><a href='/article/20/turkey-completes-final-step-in-approving-data-protection-legislation'>Turkey Completes Final Step in Approving Data Protection Legislat...</a></div>
-                        <div class='tools'>
-                            <div class='pull-left'><i class='fa fa-user-circle-o'></i> <a href='/contributor/10/burcu-tuzcu-ersin'>Burcu Tuzcu Ersin</a></div>
-                            <div class='pull-left'><i class='fa fa-calendar'></i> 22 Jan, 2018</div>
-                            <div class='pull-left'><i class='fa fa-eye'></i>  4</div>
-                            <div class='clearfix'></div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class='item'>
-                    <a href='/article/21/the-role-of-expert-opinions-in-turkish-intellectual-property-law' class='image' style='background-image: url(./img/isik-ozdogan.jpg);'></a>
-                    <div class='title'>
-                        <div class='caption'><a href='/article/21/the-role-of-expert-opinions-in-turkish-intellectual-property-law'>The Role of Expert Opinions in Turkish Intellectual Property Law</a></div>
-                        <div class='tools'>
-                            <div class='pull-left'><i class='fa fa-user-circle-o'></i> <a href='/contributor/11/isik-ozdogan'>Işık Özdoğan</a></div>
-                            <div class='pull-left'><i class='fa fa-calendar'></i> 22 Jan, 2018</div>
-                            <div class='pull-left'><i class='fa fa-eye'></i>  2</div>
-                            <div class='clearfix'></div>
-                        </div>
-                    </div>
-                </div>
             </div>
         </div>
-
     </div>
-    </div>
-
     <section class="search">
         <div class="container">
             <div class="search-form">
@@ -132,7 +89,6 @@
             </div>
         </div>
     </section>
-
 </section>
 
 <section class="about-us">
@@ -161,104 +117,50 @@
                 <h2>LATEST <b>ARTICLES</b></h2>
                 <div class="posts">
                     <div class="item">
-                        <div class='row'>
-                            <div class='col-md-3'>
-                                <div class='post'>
-                                    <div class='title'><a href='/article/21/the-role-of-expert-opinions-in-turkish-intellectual-property-law'>The Role of Expert Opinions in Turkish Intell...</a></div>
-                                    <div class='text'>
-                                        Expert opinions play
-                                        an important role in resolving disputes handled by first instance courts in
-                                        Turkey.If solving a dispute
-                                        requires technical or specialist knowledge and cannot be resolved via the
-                                        judge’s legal knowledge and professional experience, the Civil Procedural Law
-                                        empowers judges to appoint an expert or panel of experts. However, a
-                                    </div>
-                                    <div class='author'>
-                                        <div class='pull-left'><img src='./img/isik-ozdogan.jpg' alt=''></div>
-                                        <div class='pull-left'><b><a href='/contributor/11/isik-ozdogan'>Işık Özdoğan</a></b><span>LL.M.</span></div>
-                                        <div class='clearfix'></div>
-                                    </div>
-                                </div>
-                            </div>
+                        @foreach (List<Article> articleRow in Model.RecentArticles.ChunkBy(4))
+                        {
+                            <div class='row'>
+                                @foreach (Article article in articleRow)
+                                {
+                                    Contributor contributor = Model.RecentContributors.FirstOrDefault(x => x.ID == article.ContributorID);
+                                    Affiliate affiliate = Model.Affiliates.FirstOrDefault(x => x.ID == contributor.AffiliateID);
 
-                            <div class='col-md-3'>
-                                <div class='post'>
-                                    <div class='title'><a href='/article/20/turkey-completes-final-step-in-approving-data-protection-legislation'>Turkey Completes Final Step in Approving Data...</a></div>
-                                    <div class='text'>
-                                        Turkey has completed
-                                        the final step in a long running process to enact the Data Protection Law
-                                        number 6698 (“Law“). The Law referred to in our&nbsp;recent article&nbsp;has now received
-                                        Presidential approval and its final text was published in Official Gazette
-                                        number 29677 on 7 April 2016.From 7 April 2016
-                                        onward, a general prohibition now appl
-                                    </div>
-                                    <div class='author'>
-                                        <div class='pull-left'><img src='./img/burcu-tuzcu-ersin.jpg' alt=''></div>
-                                        <div class='pull-left'><b><a href='/contributor/10/burcu-tuzcu-ersin'>Burcu Tuzcu Ersin</a></b><span>LL.M.</span></div>
-                                        <div class='clearfix'></div>
-                                    </div>
-                                </div>
-                            </div>
+                                    if (article.Title.Length > 45)
+                                    {
+                                        article.Title = article.Title.Substring(0, 45) + "...";
+                                    }
 
-                            <div class='col-md-3'>
-                                <div class='post'>
-                                    <div class='title'><a href='/article/19/turkey-adopts-data-protection-law-taking-a-big-step-towards-harmonization-with-relevant-elements-of-acquis-communautaire'>Turkey Adopts Data Protection Law, Taking a B...</a></div>
-                                    <div class='text'>
-                                        After more than a
-                                        decade of legislative proposals, the Grand National Assembly of Turkey has
-                                        approved the Data Protection Law (“Law“). The next step is for the new
-                                        law to receive approval or comments from Turkey’s President, then eventually be
-                                        published in the Official Gazette with the official text and an enforcement
-                                        date. The Law addresses r
-                                    </div>
-                                    <div class='author'>
-                                        <div class='pull-left'><img src='./img/burcu-tuzcu-ersin.jpg' alt=''></div>
-                                        <div class='pull-left'><b><a href='/contributor/10/burcu-tuzcu-ersin'>Burcu Tuzcu Ersin</a></b><span>LL.M.</span></div>
-                                        <div class='clearfix'></div>
-                                    </div>
-                                </div>
-                            </div>
+                                    if (article.Body.Length > 200)
+                                    {
+                                        article.Body = article.Body.Substring(0, 200) + "...";
+                                    }
 
-                            <div class='col-md-3'>
-                                <div class='post'>
-                                    <div class='title'><a href='/article/18/russian-sanctions-against-turkey'>Russian Sanctions Against Turkey</a></div>
-                                    <div class='text'>
-                                        Following the incident
-                                        of a Russian Su-24 jet being downed by Turkish F-16 fighters on 24 November
-                                        2015 causing the Russian aircraft crash in the Bayirbucak region of northern
-                                        Syria, Russia imposed a series of economic measures and sanctions against
-                                        Turkey. The first step in this direction was a decree prohibiting Turkish
-                                        products along with o
-                                    </div>
-                                    <div class='author'>
-                                        <div class='pull-left'><img src='./img/orcun-cetinkaya.jpg' alt=''></div>
-                                        <div class='pull-left'><b><a href='/contributor/1/orcun-cetinkaya'>Orçun Çetinkaya</a></b><span>LL.M.</span></div>
-                                        <div class='clearfix'></div>
-                                    </div>
-                                </div>
+                                    if (contributor != null)
+                                    {
+                                        <div class='col-md-3'>
+                                            <div class='post'>
+                                                <div class='title'><a href='@Url.Action("Index", "Articles", new { id = article.ID })'>@article.Title</a></div>
+                                                <div class='text'>
+                                                    @article.Body
+                                                </div>
+                                                <div class='author'>
+                                                    <div class='pull-left'><img src='@contributor.ImageURL' alt=''></div>
+                                                    <div class='pull-left'>
+                                                        <b><a href='@Url.Action("Index", "Contributors", new { id = contributor.ID })'>@contributor.Name</a></b>
+                                                        @if (affiliate != null)
+                                                        {
+                                                            <span>@affiliate.Name</span>
+                                                        }
+                                                    </div>
+                                                    <div class='clearfix'></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    }
+                                }
                             </div>
-                        </div><br /><div class='row'>
-                            <div class='col-md-3'>
-                                <div class='post'>
-                                    <div class='title'><a href='/article/1/limitations-on-doctors-advertising-in-turkey-an-inconsistent-framework-ripe-for-reform'>Limitations on Doctors’ Advertising in Turk...</a></div>
-                                    <div class='text'>
-                                        The
-                                        Turkish legislative regime for doctors’ advertising involves
-                                        contradictions between provisions in primary and secondary
-                                        legislation. The uncertainty and legislative gaps mean that in
-                                        practice, government enforcement and interpretation of advertising
-                                        limitations are inconsistent.
-                                        The
-                                        legislative regime should be updated, to ensure predi
-                                    </div>
-                                    <div class='author'>
-                                        <div class='pull-left'><img src='./img/orcun-cetinkaya.jpg' alt=''></div>
-                                        <div class='pull-left'><b><a href='/contributor/1/orcun-cetinkaya'>Orçun Çetinkaya</a></b><span>LL.M.</span></div>
-                                        <div class='clearfix'></div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div><br />
+                            <br>
+                        }
                     </div>
                 </div>
             </div>
@@ -271,39 +173,21 @@
         <div class="row">
             <div class="col-md-12">
                 <h2>LATEST <b>CONTRIBUTORS</b></h2>
-
                 <div class="row">
                     <div id="authors" class="owl-carousel">
-
-                        <a href='/contributor/1/orcun-cetinkaya'>
-                            <div class='col-md-12 author'>
-                                <div class='image' style='background-image: url(./img/orcun-cetinkaya.jpg)'></div>
-                                <div class='title'>
-                                    <b>Orçun Çetinkaya</b>
-                                    <span>LL.M.</span>
+                        @foreach (Contributor contributor in Model.RecentContributors.OrderByDescending(x=>x.CreationDate).Take(5).ToList())
+                        {
+                            Affiliate affiliate = Model.Affiliates.FirstOrDefault(x => x.ID == contributor.AffiliateID);
+                            <a href='@Url.Action("Index", "Contributors", new { id = contributor.ID })'>
+                                <div class='col-md-12 author'>
+                                    <div class='image' style='background-image: url(@contributor.ImageURL)'></div>
+                                    <div class='title'>
+                                        <b>@contributor.Name</b>
+                                        <span>@affiliate.Name</span>
+                                    </div>
                                 </div>
-                            </div>
-                        </a>
-
-                        <a href='/contributor/10/burcu-tuzcu-ersin'>
-                            <div class='col-md-12 author'>
-                                <div class='image' style='background-image: url(./img/burcu-tuzcu-ersin.jpg)'></div>
-                                <div class='title'>
-                                    <b>Burcu Tuzcu Ersin</b>
-                                    <span>LL.M.</span>
-                                </div>
-                            </div>
-                        </a>
-
-                        <a href='/contributor/11/isik-ozdogan'>
-                            <div class='col-md-12 author'>
-                                <div class='image' style='background-image: url(./img/isik-ozdogan.jpg)'></div>
-                                <div class='title'>
-                                    <b>Işık Özdoğan</b>
-                                    <span>LL.M.</span>
-                                </div>
-                            </div>
-                        </a>
+                            </a>
+                        }
                     </div>
                 </div>
             </div>
