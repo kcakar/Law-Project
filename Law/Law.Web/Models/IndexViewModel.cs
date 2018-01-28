@@ -13,9 +13,11 @@ namespace Law.Web.Models
         public List<Article> RecentArticles { get; set; }
         public List<Contributor> RecentContributors { get; set; }
         public List<Affiliate> Affiliates { get; set; }
-
-        public IndexViewModel()
+        public FilterModel FilterModel { get; set; }
+        public IndexViewModel(FilterModel FilterModel)
         {
+            this.FilterModel = FilterModel;
+
             Article article = new Article();
             //ArticleCore.GetMostPopularArticles()
             PopularArticles = ArticleCore.GetMostPopularArticles(5);
@@ -29,8 +31,6 @@ namespace Law.Web.Models
 
             //Referans edilmiş şiretleri ekliyorum
             Affiliates=AffiliateCore.GetAffiliatesById(RecentContributors.Select(x => x.AffiliateID).ToList());
-
         }
-
     }
 }

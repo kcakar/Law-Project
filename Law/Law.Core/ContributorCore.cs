@@ -26,5 +26,14 @@ namespace Law.Core
         {
             return Tester.TestContributors.FirstOrDefault(x => x.ID==id);
         }
+
+        public static List<Contributor> GetContributorsByName(string name)
+        {
+            if(string.IsNullOrEmpty(name))
+            {
+                name = "";
+            }
+            return Tester.TestContributors.Where(x => x.Name.ToLower().Contains(name.ToLower())).ToList();
+        }
     }
 }

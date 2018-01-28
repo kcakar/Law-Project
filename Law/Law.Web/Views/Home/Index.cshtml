@@ -37,58 +37,8 @@
             </div>
         </div>
     </div>
-    <section class="search">
-        <div class="container">
-            <div class="search-form">
-                <form action="/search">
-                    <div class="pull-left">
-                        <select name="practice" id="practice" style="width: 200px">
-                            <option value="">Practice Area</option>
-                            <option value='32'>Civil Law</option>
-                            <option value='4'>Constitutional Law</option>
-                            <option value='1'>UE Law</option>
-                        </select>
-                        <i class="fa fa-caret-down"></i>
-                    </div>
-                    <div class="pull-left">
-                        <select name="contributor" id="contributor" style="width: 200px">
-                            <option value="">Contributor</option>
-                            <br />
-                            <b>Notice</b>:  Undefined index: name in
-                            <b>/home/turkishlawblog/public_html/application/view/_templates/search-form.php</b> on line
-                            <b>21</b>
-                            <br />
-                            <option value='1'></option>
-                        </select>
-                        <i class="fa fa-caret-down"></i>
-                    </div>
-                    <div class="pull-left">
-                        <select name="country" id="country" onchange="$.a.load_city( this.value, 'city' );" style="min-width: 170px; width: 170px">
-                            <option value="">Country</option>
-                            <option value='34'>Burundi</option>
-                            <option value='56'>Dominica</option>
-                            <option value='67'>Falkland Islands</option>
-                            <option value='123'>Madagascar</option>
-                            <option value='213'>Turkey</option>
-                        </select>
-                        <i class="fa fa-caret-down"></i>
-                    </div>
-                    <div class="pull-left">
-                        <select name="city" id="city" style="min-width: 170px; width: 170px">
-                            <option value="">City</option>
-                        </select>
-                        <i class="fa fa-caret-down"></i>
-                    </div>
-                    <div class="pull-right">
-                        <div class="pull-left"><input type="text" name="q" id="q" placeholder="Keywords..."></div>
-                        <div class="pull-right"><button title="Search Now"><i class="fa fa-search"></i></button></div>
-                        <div class="clearfix"></div>
-                    </div>
-                    <div class="clearfix"></div>
-                </form>
-            </div>
-        </div>
-    </section>
+
+    @Html.Partial("~/Views/Shared/_SearchComponent.cshtml", Model.FilterModel)
 </section>
 
 <section class="about-us">
@@ -141,7 +91,7 @@
                                             <div class='post'>
                                                 <div class='title'><a href='@Url.Action("Article", "Articles", new { id = article.ID })'>@article.Title</a></div>
                                                 <div class='text'>
-                                                    @article.Body
+                                                    @article.BodyPreview
                                                 </div>
                                                 <div class='author'>
                                                     <div class='pull-left'><img src='@contributor.ImageURL' alt=''></div>
@@ -175,7 +125,7 @@
                 <h2>LATEST <b>CONTRIBUTORS</b></h2>
                 <div class="row">
                     <div id="authors" class="owl-carousel">
-                        @foreach (Contributor contributor in Model.RecentContributors.OrderByDescending(x=>x.CreationDate).Take(5).ToList())
+                        @foreach (Contributor contributor in Model.RecentContributors.OrderByDescending(x => x.CreationDate).Take(5).ToList())
                         {
                             Affiliate affiliate = Model.Affiliates.FirstOrDefault(x => x.ID == contributor.AffiliateID);
                             <a href='@Url.Action("Contributor", "Contributors", new { id = contributor.ID })'>

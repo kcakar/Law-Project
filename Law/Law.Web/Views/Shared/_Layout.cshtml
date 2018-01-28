@@ -22,8 +22,8 @@
     <link href="~/css/owl.carousel.min.css" rel="stylesheet" />
     <link href="~/css/owl.theme.default.min.css" rel="stylesheet" />
     <link href="~/css/jquery.mCustomScrollbar.min.css" rel="stylesheet" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel="stylesheet" />
     <link href="~/css/style.css" rel="stylesheet" />
-
 </head>
 <body>
 
@@ -37,13 +37,12 @@
                             <a href="/"><img src="~/img/logo.png" alt=""></a>
                         </div>
                     </div>
-                    <div class="col-md-6 text-center" style="position: relative">
+                    <div class="col-md-6 " style="position: relative">
 
                         <div class="menu">
                             <a href="/"><i class="fa fa-home"></i></a>
-                            <a href="javascript:;" onclick="$.a.practiceDropDown(this);">Practice Area <i class="fa fa-caret-down"></i></a>
-                            <a href="javascript:;" onclick="$.a.contributorsDropDown(this);">Contributors <i class="fa fa-caret-down"></i></a>
-                            <a href="javascript:;" onclick="$.a.countriesDropDown(this);">Countries <i class="fa fa-caret-down"></i></a>
+                            <a href="@Url.Action("Index","Articles")">Articles</a>
+                            <a href="@Url.Action("Index","Contributors")">Contributors</a>
                             <a href="/contact">Contact</a>
                         </div>
 
@@ -128,7 +127,8 @@
     <script src="~/js/jquery.sticky.js"></script>
     <script src="~/js/jquery.cookie.js"></script>
     <script>var URL = "//www.turkishlawblog.tk/";</script>
-    <script src="~/js/application.js?r=1516636018"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/js/select2.min.js"></script>
+    <script src="~/js/application.js"></script>
 
     @RenderSection("Scripts", required: false)
 </body>

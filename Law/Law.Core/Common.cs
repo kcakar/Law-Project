@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Law.Models;
+using Law.Test;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -14,6 +16,26 @@ namespace Law.Core
                 .GroupBy(x => x.Index / chunkSize)
                 .Select(x => x.Select(v => v.Value).ToList())
                 .ToList();
+        }
+
+        public static List<Country> GetCountries()
+        {
+            return Tester.TestCountries;
+        }
+
+        public static List<City> GetCities()
+        {
+            return Tester.TestCities;
+        }
+
+        public static List<Contributor> GetContributors()
+        {
+            return Tester.TestContributors;
+        }
+
+        public static List<PracticeArea> GetPractices()
+        {
+            return Tester.TestPracticeAreas;
         }
     }
 }

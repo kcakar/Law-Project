@@ -40,7 +40,8 @@ namespace Law.Test
                         TestCountries.PickRandomItem().ID,
                         TestCities.PickRandomItem().ID,
                         TestAffiliates.PickRandomItem().ID,
-                        TestPracticeAreas.PickRandomItem().ID
+                        TestPracticeAreas.PickRandomItem().ID,
+                        MockData.Bios.PickRandomItem().Substring(0, 200)+"..."
                      );
                 testArticle.ViewCount = random.Next(10000);
                 testArticle.CreationDate = DateTime.Now.AddDays(-random.Next(100)).AddHours(-random.Next(100));
@@ -75,7 +76,7 @@ namespace Law.Test
 
             foreach (string city in cities)
             {
-                TestCities.Add(new City(cities.IndexOf(city).ToString(), city));
+                TestCities.Add(new City(cities.IndexOf(city).ToString(), city, "182"));
             }
         }
 

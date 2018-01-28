@@ -1,27 +1,84 @@
-$(function(){
+$(function () {
+    $(".select2.contributors").select2({
+        placeholder:'Select a contributor',
+        allowClear: true,
+        ajax: {
+            url: '/Data/Contributors',
+            dataType: 'json',
+            // Additional AJAX parameters go here; see the end of this chapter for the full code of this example
+            cache: true
+        }
+    });
+
+    $(".select2.countries").select2({
+        placeholder:'Select a country',
+        allowClear: true
+    });
+
+    $(".select2.countries").on("change", function () {
+        if ($(this).val() == "") {
+            $(".select2.cities").attr("disabled", true);
+        }
+        else {
+            $(".select2.cities").attr("disabled", false);
+            $(".select2.cities").val("");
+        }
+    });
+
+    let citySelect=$(".select2.cities").select2({
+        placeholder:'Select a city',
+        allowClear: true,
+        ajax: {
+            url: '/Data/Cities',
+            dataType: 'json',
+            // Additional AJAX parameters go here; see the end of this chapter for the full code of this example
+            cache: true,
+            data: function (params) {
+                var query = {
+                    search: params.term,
+                    country: $(".select2.countries").val()
+                }
+
+                // Query parameters will be ?search=[term]&type=public
+                return query;
+            }
+        },
+        
+    });
+
+    $(".select2.practices").select2({
+        placeholder:'Select a practice',
+        allowClear: true
+    });
+
+    console.log("kerem")
+});
+
+
+$(function () {
 
     $("a.cbox").colorbox();
 
     $('#slider').owlCarousel({
-        loop:true,
-        items:3,
+        loop: true,
+        items: 3,
         dots: false,
         nav: true,
-        navText: ['<i class="fa fa-angle-left"></i>','<i class="fa fa-angle-right"></i>'],
-        autoplay:true,
+        navText: ['<i class="fa fa-angle-left"></i>', '<i class="fa fa-angle-right"></i>'],
+        autoplay: true,
     });
 
     $('#authors').owlCarousel({
-        loop:true,
-        items:4,
+        loop: true,
+        items: 4,
         dots: false,
-        autoplay:true,
+        autoplay: true,
         nav: true,
-        navText: ['<i class="fa fa-angle-left"></i>','<i class="fa fa-angle-right"></i>'],
+        navText: ['<i class="fa fa-angle-left"></i>', '<i class="fa fa-angle-right"></i>'],
     });
 
-    $(".drop-down-overlay").on("click", function(){
-        $.a.closeDropDowns( event );
+    $(".drop-down-overlay").on("click", function () {
+        $.a.closeDropDowns(event);
     });
 
     $(".content").mCustomScrollbar({
@@ -31,13 +88,13 @@ $(function(){
 
     var LH = $(".BlogViewLeft").height();
     var RH = $(".BlogViewRight").height();
-    if( RH < LH ){
+    if (RH < LH) {
         $(".BlogViewRight").height(LH);
     }
 
-    $(".BlogViewRight-Wrapper").sticky({ topSpacing:150, bottomSpacing: 300 });
+    $(".BlogViewRight-Wrapper").sticky({ topSpacing: 150, bottomSpacing: 300 });
 
-    $(".tabs a").on("click", function(){
+    $(".tabs a").on("click", function () {
         var rel = $(this).attr("data-rel");
 
         $(".tabs a").removeClass("active");
@@ -48,10 +105,10 @@ $(function(){
 
     });
 
-}).keyup(function(e){
+}).keyup(function (e) {
 
-    if (e.keyCode == 27) {
-        $.a.closeDropDowns( event );
+    if (e.keyCode === 27) {
+        $.a.closeDropDowns(event);
     }
 
 });
@@ -59,17 +116,17 @@ $(function(){
 var $a = $.a = a = {
 
 
-    newsletter: function( elm ){
+    newsletter: function (elm) {
 
-        $(elm).html('<img src="'+URL+'img/search-loading.gif" alt=""> Wait...');
+        $(elm).html('<img src="' + URL + 'img/search-loading.gif" alt=""> Wait...');
 
-        $.post(URL + "/newsletter", { email:$("#newsletter-email").val() }, function( response ){
+        $.post(URL + "/newsletter", { email: $("#newsletter-email").val() }, function (response) {
 
-            if( response == "EMAIL_ADDED" ){ $(elm).html('<i class="fa fa-check-circle" style="font-size: 14px"></i>'); }
-            else if( response == "EMAIL_ERROR" ){ alert("Email Error!\nYour entered email address is wrong.\nPlease try correct email address."); }
-            else if( response == "EMAIL_EXIST" ){ alert("Email Exist!\nThis email address is already exist.\nPlease try another email address."); }
+            if (response === "EMAIL_ADDED") { $(elm).html('<i class="fa fa-check-circle" style="font-size: 14px"></i>'); }
+            else if (response === "EMAIL_ERROR") { alert("Email Error!\nYour entered email address is wrong.\nPlease try correct email address."); }
+            else if (response === "EMAIL_EXIST") { alert("Email Exist!\nThis email address is already exist.\nPlease try another email address."); }
 
-            setTimeout(function(){
+            setTimeout(function () {
                 $("#newsletter-email").val('');
                 $(elm).html('Submit');
             }, 2000);
@@ -78,20 +135,20 @@ var $a = $.a = a = {
 
     },
 
-    load_city: function( country_id, target ){
+    load_city: function (country_id, target) {
 
-        $.get(URL + "home/citylist/" + country_id, function( response ){
-            $("#"+target).html('');
-            $.each( response, function( i, item ){
-                $("#"+target).append("<option value='"+item.id+"'>"+item.name+"</option>");
+        $.get(URL + "home/citylist/" + country_id, function (response) {
+            $("#" + target).html('');
+            $.each(response, function (i, item) {
+                $("#" + target).append("<option value='" + item.id + "'>" + item.name + "</option>");
             });
         }, "json");
 
     },
 
-    closeDropDowns: function( e ){
+    closeDropDowns: function (e) {
 
-        if( !$(".drop-down-overlay").hasClass("hidden") ){
+        if (!$(".drop-down-overlay").hasClass("hidden")) {
 
             $(".drop-down-overlay").addClass("hidden");
 
@@ -99,7 +156,7 @@ var $a = $.a = a = {
             $(".contributors-drop").addClass("hidden");
             $(".practice-drop").addClass("hidden");
 
-            $("html").css({ "overflow":"auto", "height":"auto" });
+            $("html").css({ "overflow": "auto", "height": "auto" });
             $(".menu a").removeClass("active");
 
         }
@@ -108,15 +165,15 @@ var $a = $.a = a = {
 
     },
 
-    countriesDropDown: function( elm ){
+    countriesDropDown: function (elm) {
 
         var state = $(".countries-drop").hasClass("hidden");
-        if( state ){
+        if (state) {
 
-            $.a.closeDropDowns( event );
+            $.a.closeDropDowns(event);
 
             $(elm).addClass("active");
-            $("html").css({ "overflow":"hidden", "height":"100%" });
+            $("html").css({ "overflow": "hidden", "height": "100%" });
 
             $(".drop-down-overlay").removeClass("hidden");
             $(".countries-drop").removeClass("hidden");
@@ -127,40 +184,40 @@ var $a = $.a = a = {
 
     },
 
-    countriesFilter: function( str ){
+    countriesFilter: function (str) {
 
-        if( str.length == 0 ){
-            $.get( URL + 'filter/country', function( response ){
-                if( response != "" ){
+        if (str.length === 0) {
+            $.get(URL + 'filter/country', function (response) {
+                if (response != "") {
                     $(".countries-list").html('');
-                    $.each( response, function( id, item ){
-                        $(".countries-list").append("<a href='/country/"+item.id+"/"+item.slug+"'>"+item.en_US+"</a>");
+                    $.each(response, function (id, item) {
+                        $(".countries-list").append("<a href='/country/" + item.id + "/" + item.slug + "'>" + item.en_US + "</a>");
                     });
                 }
             }, "json");
         }
 
-        else if( str.length > 2 ){
-            $.get( URL + 'filter/country/' + str, function( response ){
-                if( response != "" ){
+        else if (str.length > 2) {
+            $.get(URL + 'filter/country/' + str, function (response) {
+                if (response != "") {
                     $(".countries-list").html('');
-                    $.each( response, function( id, item ){
-                        $(".countries-list").append("<a href='/country/"+item.id+"/"+item.slug+"'>"+item.en_US+"</a>");
+                    $.each(response, function (id, item) {
+                        $(".countries-list").append("<a href='/country/" + item.id + "/" + item.slug + "'>" + item.en_US + "</a>");
                     });
                 }
             }, "json");
         }
     },
 
-    practiceDropDown: function( elm ){
+    practiceDropDown: function (elm) {
 
         var state = $(".practice-drop").hasClass("hidden");
-        if( state ){
+        if (state) {
 
-            $.a.closeDropDowns( event );
+            $.a.closeDropDowns(event);
 
             $(elm).addClass("active");
-            $("html").css({ "overflow":"hidden", "height":"100%" });
+            $("html").css({ "overflow": "hidden", "height": "100%" });
 
             $(".drop-down-overlay").removeClass("hidden");
             $(".practice-drop").removeClass("hidden");
@@ -171,40 +228,40 @@ var $a = $.a = a = {
 
     },
 
-    practiceFilter: function( str ){
+    practiceFilter: function (str) {
 
-        if( str.length == 0 ){
-            $.get( URL + 'filter/practice', function( response ){
-                if( response != "" ){
+        if (str.length === 0) {
+            $.get(URL + 'filter/practice', function (response) {
+                if (response != "") {
                     $(".practice-list").html('');
-                    $.each( response, function( id, item ){
-                        $(".practice-list").append("<a href='/practice/"+item.id+"/"+item.slug+"'>"+item.title+"</a>");
+                    $.each(response, function (id, item) {
+                        $(".practice-list").append("<a href='/practice/" + item.id + "/" + item.slug + "'>" + item.title + "</a>");
                     });
                 }
             }, "json");
         }
 
-        else if( str.length > 2 ){
-            $.get( URL + 'filter/practice/' + str, function( response ){
-                if( response != "" ){
+        else if (str.length > 2) {
+            $.get(URL + 'filter/practice/' + str, function (response) {
+                if (response != "") {
                     $(".practice-list").html('');
-                    $.each( response, function( id, item ){
-                        $(".practice-list").append("<a href='/practice/"+item.id+"/"+item.slug+"'>"+item.title+"</a>");
+                    $.each(response, function (id, item) {
+                        $(".practice-list").append("<a href='/practice/" + item.id + "/" + item.slug + "'>" + item.title + "</a>");
                     });
                 }
             }, "json");
         }
     },
 
-    contributorsDropDown: function( elm ){
+    contributorsDropDown: function (elm) {
 
         var state = $(".contributors-drop").hasClass("hidden");
-        if( state ){
+        if (state) {
 
-            $.a.closeDropDowns( event );
+            $.a.closeDropDowns(event);
 
             $(elm).addClass("active");
-            $("html").css({ "overflow":"hidden", "height":"100%" });
+            $("html").css({ "overflow": "hidden", "height": "100%" });
 
             $(".drop-down-overlay").removeClass("hidden");
             $(".contributors-drop").removeClass("hidden");
@@ -215,25 +272,25 @@ var $a = $.a = a = {
 
     },
 
-    contributorsFilter: function( str ){
+    contributorsFilter: function (str) {
 
-        if( str.length == 0 ){
-            $.get( URL + 'filter/contributors', function( response ){
-                if( response != "" ){
+        if (str.length === 0) {
+            $.get(URL + 'filter/contributors', function (response) {
+                if (response != "") {
                     $(".contributors-list").html('');
-                    $.each( response, function( id, item ){
-                        $(".contributors-list").append("<a href='/contributor/"+item.id+"/"+item.slug+"'>"+item.name+"</a>");
+                    $.each(response, function (id, item) {
+                        $(".contributors-list").append("<a href='/contributor/" + item.id + "/" + item.slug + "'>" + item.name + "</a>");
                     });
                 }
             }, "json");
         }
 
-        else if( str.length > 2 ){
-            $.get( URL + 'filter/contributors/' + str, function( response ){
-                if( response != "" ){
+        else if (str.length > 2) {
+            $.get(URL + 'filter/contributors/' + str, function (response) {
+                if (response != "") {
                     $(".contributors-list").html('');
-                    $.each( response, function( id, item ){
-                        $(".contributors-list").append("<a href='/contributor/"+item.id+"/"+item.slug+"'>"+item.name+"</a>");
+                    $.each(response, function (id, item) {
+                        $(".contributors-list").append("<a href='/contributor/" + item.id + "/" + item.slug + "'>" + item.name + "</a>");
                     });
                 }
             }, "json");
@@ -242,16 +299,16 @@ var $a = $.a = a = {
 
 };
 
-function share( target ){
+function share(target) {
 
-    if( target == "facebook" ){ wpop('http://www.facebook.com/sharer/sharer.php?u=' + window.location.href, 560, 500); }
-    else if( target == "twitter" ){ wpop('http://twitter.com/intent/tweet?url=' + window.location.href, 575, 300); }
-    else if( target == "linkedin" ){ wpop('https://www.linkedin.com/shareArticle?mini=true&url=' + window.location.href, 600, 400); }
-    else if( target == "google" ){ wpop('https://plus.google.com/share?url=' + window.location.href, 400, 550); }
+    if (target === "facebook") { wpop('http://www.facebook.com/sharer/sharer.php?u=' + window.location.href, 560, 500); }
+    else if (target === "twitter") { wpop('http://twitter.com/intent/tweet?url=' + window.location.href, 575, 300); }
+    else if (target === "linkedin") { wpop('https://www.linkedin.com/shareArticle?mini=true&url=' + window.location.href, 600, 400); }
+    else if (target === "google") { wpop('https://plus.google.com/share?url=' + window.location.href, 400, 550); }
 
 }
 
-function wpop( url, w, h ){
+function wpop(url, w, h) {
 
     var SL = window.screenLeft != undefined ? window.screenLeft : screen.left;
     var ST = window.screenTop != undefined ? window.screenTop : screen.top;

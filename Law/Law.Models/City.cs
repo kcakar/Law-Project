@@ -6,9 +6,11 @@ namespace Law.Models
 {
     public class City: NameBase
     {
-        public City(string ID,string Name):base(ID,Name)
+        public City(string ID,string Name,string CountryID) :base(ID,Name)
         {
-
+            this.CountryID = CountryID;
         }
+
+        public string CountryID { get; set; }
     }
 }

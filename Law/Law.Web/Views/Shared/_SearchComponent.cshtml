@@ -1,0 +1,45 @@
+﻿@using Law.Web.Models
+@using Law.Models
+@model FilterModel
+<section class="search">
+    <div class="container">
+        <div class="search-form">
+            <form action="/Articles/">
+                <div class="pull-left">
+                    <select data-placeholder="Choose a Practice..." class="select2 practices" tabindex="2" style="width: 200px">
+                        <option></option>
+                        @foreach (PracticeArea area in Model.Practices)
+                        {
+                            <option value="@area.ID">@area.Name</option>
+                        }
+                    </select>
+                </div>
+                <div class="pull-left">
+                    <select data-placeholder="Choose a Contributor..." class="select2 contributors" tabindex="2" style="width: 200px;">
+                        <option></option>
+                    </select>
+                </div>
+                <div class="pull-left">
+                    <select data-placeholder="Choose a Country..." class="select2 countries" tabindex="2" style="width: 200px">
+                        <option></option>
+                        @foreach (Country country in Model.Countries)
+                        {
+                            <option value="@country.ID">@country.Name</option>
+                        }
+                    </select>
+                </div>
+                <div class="pull-left">
+                    <select data-placeholder="Select a City..." class="select2 cities" disabled tabindex="2" style="width: 200px">
+                        <option></option>
+                    </select>
+                </div>
+                <div class="pull-right">
+                    <div class="pull-left"><input type="text" name="q" id="q" placeholder="Keywords..."></div>
+                    <div class="pull-right"><button title="Search Now"><i class="fa fa-search"></i></button></div>
+                    <div class="clearfix"></div>
+                </div>
+                <div class="clearfix"></div>
+            </form>
+        </div>
+    </div>
+</section>

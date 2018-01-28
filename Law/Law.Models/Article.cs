@@ -23,7 +23,7 @@ namespace Law.Models
 
         }
 
-        public Article(string ID,string Title,string Body,string ContributorID,string LanguageID,string CountryID,string CityID,string AffiliateID,string PracticeAreaID)
+        public Article(string ID,string Title,string Body,string ContributorID,string LanguageID,string CountryID,string CityID,string AffiliateID,string PracticeAreaID,string BodyPreview)
         {
             this.ID = ID;
             this.Title = Title;
@@ -37,6 +37,7 @@ namespace Law.Models
             this.Tags = "";
             CreationDate = DateTime.Now;
             this.ViewCount = 0;
+            this.BodyPreview = BodyPreview;
         }
     }
 }
