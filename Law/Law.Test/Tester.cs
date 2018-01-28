@@ -61,7 +61,8 @@ namespace Law.Test
                         TestCountries.PickRandomItem().ID,
                         TestCities.PickRandomItem().ID,
                         TestAffiliates.PickRandomItem().ID,
-                        MockData.ImageURLs.PickRandomItem()
+                        MockData.ImageURLs.PickRandomItem(),
+                        MockData.Bios.PickRandomItem()
                         )
                     );
             }

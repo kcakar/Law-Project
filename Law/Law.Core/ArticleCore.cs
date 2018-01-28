@@ -21,5 +21,10 @@ namespace Law.Core
         {
             return Tester.TestArticles.FirstOrDefault(x => x.ID == id);
         }
+
+        public static List<Article> GetArticleByContributorId(string id,int amount,int skip)
+        {
+            return Tester.TestArticles.Where(x => x.ContributorID==id).Skip(skip).Take(amount).ToList();
+        }
     }
 }

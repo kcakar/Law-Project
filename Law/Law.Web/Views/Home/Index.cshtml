@@ -20,11 +20,11 @@
                     if (contributor != null)
                     {
                         <div class='item'>
-                            <a href='@Url.Action("Index", "Contributors", new { id = contributor.ID })' class='image' style='background-image: url(@contributor.ImageURL);'></a>
+                            <a href='@Url.Action("Contributor", "Contributors", new { id = contributor.ID })' class='image' style='background-image: url(@contributor.ImageURL);'></a>
                             <div class='title'>
                                 <div class='caption'><a href='@Url.Action("Article", "Articles", new { id = article.ID })'>@article.Title</a></div>
                                 <div class='tools'>
-                                    <div class='pull-left'><i class='fa fa-user-circle-o'></i> <a href='@Url.Action("Index", "Contributors", new { id = contributor.ID })'>@contributor.Name</a></div>
+                                    <div class='pull-left'><i class='fa fa-user-circle-o'></i> <a href='@Url.Action("Contributor", "Contributors", new { id = contributor.ID })'>@contributor.Name</a></div>
                                     <div class='pull-left'><i class='fa fa-calendar'></i> @article.CreationDate.ToLongDateString()</div>
                                     <div class='pull-left'><i class='fa fa-eye'></i>  @article.ViewCount</div>
                                     <div class='clearfix'></div>
@@ -146,7 +146,7 @@
                                                 <div class='author'>
                                                     <div class='pull-left'><img src='@contributor.ImageURL' alt=''></div>
                                                     <div class='pull-left'>
-                                                        <b><a href='@Url.Action("Index", "Contributors", new { id = contributor.ID })'>@contributor.Name</a></b>
+                                                        <b><a href='@Url.Action("Contributor", "Contributors", new { id = contributor.ID })'>@contributor.Name</a></b>
                                                         @if (affiliate != null)
                                                         {
                                                             <span>@affiliate.Name</span>
@@ -178,7 +178,7 @@
                         @foreach (Contributor contributor in Model.RecentContributors.OrderByDescending(x=>x.CreationDate).Take(5).ToList())
                         {
                             Affiliate affiliate = Model.Affiliates.FirstOrDefault(x => x.ID == contributor.AffiliateID);
-                            <a href='@Url.Action("Index", "Contributors", new { id = contributor.ID })'>
+                            <a href='@Url.Action("Contributor", "Contributors", new { id = contributor.ID })'>
                                 <div class='col-md-12 author'>
                                     <div class='image' style='background-image: url(@contributor.ImageURL)'></div>
                                     <div class='title'>

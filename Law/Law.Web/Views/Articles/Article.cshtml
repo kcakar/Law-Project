@@ -31,7 +31,7 @@
                                     <div class='clearfix'></div>
                                 </div>
                                 <div class="article-content">
-                                    @Html.Raw(Model.ArticleBody);
+                                    @Html.Raw(Model.ArticleBody)
                                 </div>
                                 <div class="share-block">
                                     <div class="pull-left" style="margin-right: 8px">
@@ -376,11 +376,10 @@
                                             <div class='latest-author-item'>
                                                 <div class='pull-left'>
                                                     <img src='@contributor.ImageURL' alt='@contributor.Name' style='width: 25px; height: 25px' />
-                                                    @*<a href='@Url.Action("Index", "Contributors", new { id = contributor.ID })' class='image' style='background-image: url(@contributor.ImageURL);width: 25px; height: 25px' ></a>*@
                                                 </div>
                                                 <div class='pull-left'>
                                                     <div class='title'>
-                                                        <a href='@Url.Action("Index", "Contributors", new { id = contributor.ID })'>@contributor.Name (@contributor.TotalContributions)</a>
+                                                        <a href='@Url.Action("Contributor", "Contributors", new { id = contributor.ID })'>@contributor.Name (@contributor.TotalContributions)</a>
                                                     </div>
                                                 </div>
                                                 <div class='clearfix'></div>

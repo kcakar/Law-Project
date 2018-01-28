@@ -7,6 +7,7 @@ namespace Law.Models
         public string ID { get; set; }
         public string Title { get; set; }
         public string Body { get; set; }
+        public string BodyPreview { get; set; }
         public string ContributorID { get; set; }
         public string LanguageID { get; set; }
         public string CountryID { get; set; }
