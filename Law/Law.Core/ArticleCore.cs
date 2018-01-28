@@ -16,5 +16,10 @@ namespace Law.Core
         {
             return Tester.TestArticles.OrderByDescending(x => x.ViewCount).Take(amount).ToList();
         }
+        
+        public static Article GetArticleByArticleId(string id)
+        {
+            return Tester.TestArticles.FirstOrDefault(x => x.ID == id);
+        }
     }
 }

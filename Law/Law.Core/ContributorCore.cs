@@ -12,6 +12,11 @@ namespace Law.Core
             return Tester.TestContributors.OrderByDescending(x => x.CreationDate).Take(amount).ToList();
         }
 
+        public static List<Contributor> GetLatestContributors(int amount)
+        {
+            return Tester.TestContributors.OrderByDescending(x => x.LastPostDate).Take(amount).ToList();
+        }
+
         public static List<Contributor> GetContributorsById(List<string> ids)
         {
             return Tester.TestContributors.Where(x=>ids.Contains(x.ID)).ToList();

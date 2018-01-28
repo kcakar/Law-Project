@@ -22,7 +22,7 @@
                         <div class='item'>
                             <a href='@Url.Action("Index", "Contributors", new { id = contributor.ID })' class='image' style='background-image: url(@contributor.ImageURL);'></a>
                             <div class='title'>
-                                <div class='caption'><a href='@Url.Action("Index", "Articles", new { id = article.ID })'>@article.Title</a></div>
+                                <div class='caption'><a href='@Url.Action("Article", "Articles", new { id = article.ID })'>@article.Title</a></div>
                                 <div class='tools'>
                                     <div class='pull-left'><i class='fa fa-user-circle-o'></i> <a href='@Url.Action("Index", "Contributors", new { id = contributor.ID })'>@contributor.Name</a></div>
                                     <div class='pull-left'><i class='fa fa-calendar'></i> @article.CreationDate.ToLongDateString()</div>
@@ -139,7 +139,7 @@
                                     {
                                         <div class='col-md-3'>
                                             <div class='post'>
-                                                <div class='title'><a href='@Url.Action("Index", "Articles", new { id = article.ID })'>@article.Title</a></div>
+                                                <div class='title'><a href='@Url.Action("Article", "Articles", new { id = article.ID })'>@article.Title</a></div>
                                                 <div class='text'>
                                                     @article.Body
                                                 </div>

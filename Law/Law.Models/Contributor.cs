@@ -12,7 +12,9 @@ namespace Law.Models
             this.CityID = CityID;
             this.AffiliateID = AffiliateID;
             this.ImageURL = ImageURL;
-            this.CreationDate = DateTime.Now;
+            CreationDate = DateTime.Now;
+            LastPostDate = DateTime.MinValue;
+            TotalContributions = 0;
         }
 
         public string CountryID { get; set; }
@@ -20,5 +22,8 @@ namespace Law.Models
         public string AffiliateID { get; set; }
         public string ImageURL { get; set; }
         public DateTime CreationDate{get;set;}
+        public DateTime LastPostDate { get; set; }
+        public int TotalContributions { get; set; }
+
     }
 }
