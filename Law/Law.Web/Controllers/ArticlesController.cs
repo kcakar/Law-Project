@@ -21,9 +21,9 @@ namespace Web.Controllers
         }
 
         // GET: /<controller>/
-        public IActionResult Index()
+        public IActionResult Index(string keyword,string practice,string contributor,string country, string city, string page)
         {
-            return View(new ArticleSearchViewModel(this.FilterModel));
+            return View(new ArticleSearchViewModel(this.FilterModel, keyword, practice, contributor, country, city, page));
         }
 
         public IActionResult Article(string id)

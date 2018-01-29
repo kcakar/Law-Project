@@ -9,6 +9,7 @@ namespace Law.Core
 {
     public static class Common
     {
+        public static readonly int PageSize=20;
         public static List<List<T>> ChunkBy<T>(this List<T> source, int chunkSize)
         {
             return source
@@ -26,6 +27,11 @@ namespace Law.Core
         public static List<City> GetCities()
         {
             return Tester.TestCities;
+        }
+
+        public static List<City> GetCitiesByCountry(string country)
+        {
+            return Tester.TestCities.Where(x=>x.CountryID==country).ToList();
         }
 
         public static List<Contributor> GetContributors()
