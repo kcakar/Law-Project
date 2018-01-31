@@ -6,6 +6,10 @@ namespace Law.Models
 {
     public class Contributor : NameBase
     {
+        public Contributor(string ID, string Name) : base(ID, Name)
+        {
+
+        }
         public Contributor(string ID, string Name, string CountryID="", string CityID = "", string AffiliateID = "",string ImageURL = "",string Bio="") : base(ID,Name)
         {
             this.CountryID = CountryID;

@@ -7,13 +7,13 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Law.DataAccess", "Law.DataA
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Law.Core", "Law.Core\Law.Core.csproj", "{92F01A77-9910-4AE5-8C87-5BE36F3AD2D3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Law.Models", "Law.Models\Law.Models.csproj", "{F2119CBF-904B-4023-9D64-AF0D597EB42F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Law.Models", "Law.Models\Law.Models.csproj", "{F2119CBF-904B-4023-9D64-AF0D597EB42F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Law.Test", "Law.Test\Law.Test.csproj", "{437226EB-2E4F-4465-96FC-4A1529A988EF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Law.Test", "Law.Test\Law.Test.csproj", "{437226EB-2E4F-4465-96FC-4A1529A988EF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Law.Web", "Law.Web\Law.Web.csproj", "{3CA23607-25E9-480D-9FB2-9AAD90B00FDB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Law.Web", "Law.Web\Law.Web.csproj", "{3CA23607-25E9-480D-9FB2-9AAD90B00FDB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Law.Admin", "Law.Admin\Law.Admin.csproj", "{BD24AB43-2085-4E27-88F9-A00E73968670}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Law.Admin", "Law.Admin\Law.Admin.csproj", "{BD24AB43-2085-4E27-88F9-A00E73968670}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

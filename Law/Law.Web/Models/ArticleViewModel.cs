@@ -33,10 +33,11 @@ namespace Law.Web.Models
                 LatestContributors.Add(new LatestContributorsRow(latestContributor.ID, latestContributor.Name, latestContributor.TotalContributions,latestContributor.ImageURL));
             }
 
+            Article.ViewCount = Article.ViewCount + 1;
             ID = Article.ID;
             Title = Article.Title;
             CreationDate = Article.CreationDate;
-            ViewCount = Article.ViewCount;
+            ViewCount = Article.ViewCount;//todo dbden arttır
             ArticleBody = Article.Body;
 
             Contributor contributor = ContributorCore.GetContributorsById(Article.ContributorID);

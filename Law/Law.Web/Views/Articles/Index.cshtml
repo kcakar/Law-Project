@@ -24,7 +24,7 @@
                             {
                                 <div class='col-md-4 col-sm-6'>
                                     <div class='post'>
-                                        <div class='title'><a href="@Url.Action("Article", "Articles", new { id = article.ID })">@article.Title</a></div>
+                                        <div class='title'><a href="@Url.Action("Article", "Articles", new { id = article.ID })">@(article.Title.Length > 65 ? article.Title.Substring(0, 65) + "..." : article.Title )</a></div>
                                         <div class='text'>@article.BodyPreview</div>
                                         <div class='author'>
                                             <div class='pull-left'><img src='@contributor.ImageURL' alt=''></div>

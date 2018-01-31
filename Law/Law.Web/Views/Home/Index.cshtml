@@ -20,12 +20,12 @@
                     if (contributor != null)
                     {
                         <div class='item'>
-                            <a href='@Url.Action("Contributor", "Contributors", new { id = contributor.ID })' class='image' style='background-image: url(@contributor.ImageURL);'></a>
+                            <a href='@Url.Action("Article", "Articles", new { id = article.ID })' class='image' style='background-image: url(@contributor.ImageURL);'></a>
                             <div class='title'>
-                                <div class='caption'><a href='@Url.Action("Article", "Articles", new { id = article.ID })'>@article.Title</a></div>
+                                <div class='caption'><a href='@Url.Action("Article", "Articles", new { id = article.ID })'>@(article.Title.Length > 45 ? article.Title.Substring(0, 45) + "..." : article.Title )</a></div>
                                 <div class='tools'>
                                     <div class='pull-left'><i class='fa fa-user-circle-o'></i> <a href='@Url.Action("Contributor", "Contributors", new { id = contributor.ID })'>@contributor.Name</a></div>
-                                    <div class='pull-left'><i class='fa fa-calendar'></i> @article.CreationDate.ToLongDateString()</div>
+                                    <div class='pull-left'><i class='fa fa-calendar'></i> @article.CreationDate.ToShortDateString()</div>
                                     <div class='pull-left'><i class='fa fa-eye'></i>  @article.ViewCount</div>
                                     <div class='clearfix'></div>
                                 </div>
@@ -75,21 +75,11 @@
                                     Contributor contributor = Model.RecentContributors.FirstOrDefault(x => x.ID == article.ContributorID);
                                     Affiliate affiliate = Model.Affiliates.FirstOrDefault(x => x.ID == contributor.AffiliateID);
 
-                                    if (article.Title.Length > 45)
-                                    {
-                                        article.Title = article.Title.Substring(0, 45) + "...";
-                                    }
-
-                                    if (article.Body.Length > 200)
-                                    {
-                                        article.Body = article.Body.Substring(0, 200) + "...";
-                                    }
-
                                     if (contributor != null)
                                     {
                                         <div class='col-md-3'>
                                             <div class='post'>
-                                                <div class='title'><a href='@Url.Action("Article", "Articles", new { id = article.ID })'>@article.Title</a></div>
+                                                <div class='title'><a href='@Url.Action("Article", "Articles", new { id = article.ID })'>@(article.Title.Length > 45? article.Title.Substring(0, 45) + "..." : article.Title )</a></div>
                                                 <div class='text'>
                                                     @article.BodyPreview
                                                 </div>

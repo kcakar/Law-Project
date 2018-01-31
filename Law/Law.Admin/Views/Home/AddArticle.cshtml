@@ -1,0 +1,255 @@
+﻿
+@{
+    ViewData["Title"] = "AddArticle";
+}
+
+
+<div class="right_col" role="main">
+    <div class="">
+        <div class="page-title">
+            <div class="title_left">
+                <h3>İçerik Ekleme</h3>
+            </div>
+            <div class="title_right">
+                <div class="col-md-5 col-sm-5 col-xs-12 form-group pull-right top_search">
+                    <div class="input-group">
+                        <input type="text" class="form-control" placeholder="Search for...">
+                        <span class="input-group-btn">
+                            <button class="btn btn-default" type="button">Go!</button>
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="clearfix"></div>
+        <div class="row">
+            <div class="col-md-12 col-sm-12 col-xs-12">
+                <div class="x_panel">
+                    <div class="x_content">
+                        <form class="first-section form-horizontal form-label-left" novalidate>
+                            <span class="section">Genel Bilgiler</span>
+                            <div class="item form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="name">
+                                    Yazar <span class="required">*</span>
+                                </label>
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                    <input id="contributorID" name="contributorID" class="form-control col-md-7 col-xs-12" data-validate-length-range="6" data-validate-words="2" placeholder="Makale başlığı" required="required" type="text">
+                                </div>
+                            </div>
+                            <div class="item form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="email">
+                                    İçerik Başlığı <span class="required">*</span>
+                                </label>
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                    <input id="articleTitle" name="articleTitle" type="text" required="required" class="form-control col-md-7 col-xs-12">
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="x_content">
+                        <div class="form-horizontal form-label-left" novalidate>
+                            <span class="section">İçerik Oluşturma</span>
+                            <p>Aşağıdaki tuştan makaleye paragraf ekleyebilir, aşağıdaki bloklara tıklayarak paragrafları düzenleyebilirsiniz. <br />Paragraflardaki tüm elemanlar opsiyoneldir.</p>
+                            <button type="button" class="btn btn-success addParagraph">Yeni bir paragraf ekle</button>
+                            <div class="accordion paragraphs" id="accordion" role="tablist" aria-multiselectable="true">
+                                <div class="panel paragraph paragraph-1">
+                                    <a class="panel-heading collapsed" role="tab" data-toggle="collapse" data-parent="#accordion" href="#collapse1" aria-expanded="false" aria-controls="collapseOne">
+                                        <h4 class="panel-title">1. Paragraf</h4>
+                                    </a>
+                                    <div id="collapse1" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne" aria-expanded="false" style="height: 0px;">
+                                        <div class="panel-body">
+                                            <div class="item form-group">
+                                                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="name">
+                                                    Paragraf Başlığı <span class="required">*</span>
+                                                </label>
+                                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                                    <input class="paragraphTitle form-control col-md-7 col-xs-12" data-validate-length-range="6" data-validate-words="2" name="name" placeholder="Paragraf başlığı" required="required" type="text">
+                                                </div>
+                                            </div>
+                                            <div class="item form-group">
+                                                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="name">
+                                                    Paragraf İçeriği <span class="required">*</span>
+                                                </label>
+                                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                                    <textarea class="paragraphContent form-control col-md-7 col-xs-12" required="required" name="textarea" style="min-height:400px"></textarea>
+                                                </div>
+                                            </div>
+                                            <div class="item form-group">
+                                                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="name">
+                                                    Resim <span class="required">*</span>
+                                                </label>
+                                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                                    <form action="@Url.Action("UploadImage")"
+                                                          class="dropzone"></form>
+                                                </div>
+                                            </div>
+                                            <div class="item form-group">
+                                                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="name">
+                                                    Resim Pozisyonu<span class="required">*</span>
+                                                </label>
+                                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                                    <div class="imagePosition btn-group">
+                                                        <button class="btn btn-default" type="button" data-position="left">Sol</button>
+                                                        <button class="btn btn-default" type="button" data-position="mid">Orta</button>
+                                                        <button class="btn btn-default" type="button" data-position="right">Sağ</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="ln_solid"></div>
+                            <div class="form-group">
+                                <div class="col-md-6 col-md-offset-3">
+                                    <button type="submit" class="btn btn-primary">Cancel</button>
+                                    <button id="send" type="submit" class="btn btn-success">Submit</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+@section Scripts {
+<script>
+        Dropzone.autoDiscover = false;
+
+        function createDropzone(element) {
+            $(element).dropzone(
+                {
+                    addRemoveLinks: true,
+                    maxFiles: 1,
+                    url: "@Url.Action("UploadImage")",
+                    complete: function () {
+                        var args = Array.prototype.slice.call(arguments);
+                        var response = JSON.parse(args[0].xhr.response);
+
+                        if (response.success) {
+                            console.log(response.message)
+                            console.log(this)
+                            $(this.element).attr("data-image-url", response.url)
+                        }
+                        else {
+                            console.log(response.message)
+                        }
+                    }
+                })
+        }
+
+        const paragarphs = $(".paragraphs");
+
+        $(".addParagraph").click(function () {
+            let count = $(".paragraph:visible").length + 1;
+            let templateToAdd = $(".paragraph-template").html().replace("hidden", "").replace(new RegExp("{{paragraphNumber}}", "g"), count);
+            paragarphs.append(templateToAdd);
+
+            createDropzone($(".paragraph-" + count + " .dropzone"));
+        });
+
+
+        $(function () {
+            console.log("bound")
+
+            createDropzone($(".dropzone"));
+
+            $(".imagePosition button").click(function () {
+                $(".imagePosition button").removeClass("active");
+                $(this).addClass("active");
+            })
+
+            $("#send").click(function () {
+                let articleModel = {
+                    title: "",
+                    contributorID: "",
+                    paragraphs: []
+                }
+
+                articleModel.contributorID = $("#contributorID").val();
+                articleModel.title = $("#articleTitle").val();
+
+                $(".paragraph").each(function () {
+                    let $this = $(this);
+                    let paragraph = {
+                        title: $this.find(".paragraphTitle").val(),
+                        content: $this.find(".paragraphContent").val(),
+                        imageURL: $this.find(".dropzone").attr("data-image-url"),
+                        imagePosition: $this.find("button.active").attr("data-position")
+                    }
+
+                    articleModel.paragraphs.push(paragraph);
+                });
+
+                $.ajax({
+                    type: "POST",
+                    url: "@Url.Action("AddArticlePost")",
+                    data: articleModel,
+                    success: function (result) {
+                        console.log(result)
+                    },
+                    dataType: "json"
+                });
+
+                console.table(articleModel);
+            });
+        })
+
+</script>
+
+
+    @*Templates*@
+    <div class=" paragraph-template">
+        <div class="panel paragraph hidden paragraph-{{paragraphNumber}}">
+            <a class="panel-heading collapsed" role="tab" data-toggle="collapse" data-parent="#accordion" href="#collapse{{paragraphNumber}}" aria-expanded="false" aria-controls="collapseOne">
+                <h4 class="panel-title">{{paragraphNumber}}. Paragraf</h4>
+            </a>
+            <div id="collapse{{paragraphNumber}}" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne" aria-expanded="false" style="height: 0px;">
+                <div class="panel-body">
+                    <div class="item form-group">
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="name">
+                            Paragraf Başlığı <span class="required">*</span>
+                        </label>
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+                            <input class="paragraphTitle form-control col-md-7 col-xs-12" data-validate-length-range="6" data-validate-words="2" name="name" placeholder="Paragraf başlığı" required="required" type="text">
+                        </div>
+                    </div>
+                    <div class="item form-group">
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="name">
+                            Paragraf İçeriği <span class="required">*</span>
+                        </label>
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+                            <textarea class="paragraphContent form-control col-md-7 col-xs-12" required="required" name="textarea" style="min-height:400px"></textarea>
+                        </div>
+                    </div>
+                    <div class="item form-group">
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="name">
+                            Resim <span class="required">*</span>
+                        </label>
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+                            <form action="@Url.Action("UploadImage")"
+                                  class="dropzone"></form>
+                        </div>
+                    </div>
+                    <div class="item form-group">
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="name">
+                            Resim Pozisyonu<span class="required">*</span>
+                        </label>
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+                            <div class="imagePosition btn-group">
+                                <button class="btn btn-default" type="button" data-position="left">Sol</button>
+                                <button class="btn btn-default" type="button" data-position="mid">Orta</button>
+                                <button class="btn btn-default" type="button" data-position="right">Sağ</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+}

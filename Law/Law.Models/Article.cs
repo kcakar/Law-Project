@@ -23,7 +23,7 @@ namespace Law.Models
 
         }
 
-        public Article(string ID,string Title,string Body,string ContributorID,string LanguageID,string CountryID,string CityID,string AffiliateID,string PracticeAreaID,string BodyPreview)
+        public Article(string ID,string Title,string Body,string ContributorID,string LanguageID,string CountryID,string CityID,string AffiliateID,string PracticeAreaID,string BodyPreview,string Tags="")
         {
             this.ID = ID;
             this.Title = Title;
@@ -34,7 +34,7 @@ namespace Law.Models
             this.CityID = CityID;
             this.AffiliateID = AffiliateID;
             this.PracticeAreaID = PracticeAreaID;
-            this.Tags = "";
+            this.Tags = Tags;
             CreationDate = DateTime.Now;
             this.ViewCount = 0;
             this.BodyPreview = BodyPreview;

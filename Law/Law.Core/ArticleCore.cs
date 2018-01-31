@@ -1,5 +1,6 @@
 ﻿using Law.Models;
 using Law.Test;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -63,6 +64,29 @@ namespace Law.Core
             }
 
             return PaginatedList<Article>.Create(qry,pageNumber,Common.PageSize);
+        }
+
+        public static string GenerateArticleHTML(ArticleAddEditModel model)
+        {
+            string html = "";
+
+            Contributor contributor = ContributorCore.GetContributorsById(model.contributorID);
+
+            Article article = new Article();
+            article.Title = model.title;
+            article.ContributorID = model.contributorID;
+            article.AffiliateID = contributor.AffiliateID;
+            article.CityID = contributor.CityID;
+            article.CountryID = contributor.CountryID;
+            article.CreationDate = DateTime.Now;
+            article.ID = new Guid().ToString();
+            article.BodyPreview = "";
+            article.Body = "";
+            article.LanguageID = "";
+            article.PracticeAreaID = "";
+            article.Tags = "";
+
+            return html;
         }
     }
 }

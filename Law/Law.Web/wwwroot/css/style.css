@@ -767,3 +767,9 @@ footer a {
 .select2-container--default .select2-selection--single .select2-selection__arrow {
     height: 38px;
 }
+
+h2 {
+    font-weight: 700;
+    font-size: 14px;
+    font-style:italic;
+}
