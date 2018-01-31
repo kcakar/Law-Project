@@ -82,7 +82,7 @@ namespace Law.Test
             a2.PracticeAreaID = "";
             a2.Tags = "";
             a2.Title = "Limitations on Doctors’ Advertising in Turkey: An Inconsistent Framework, Ripe for Reform";
-            a2.CreationDate = DateTime.Parse("24/10/2017");
+            //a2.CreationDate = DateTime.Parse("24/10/2017");
             a2.ViewCount = 0;
 
             TestArticles.Add(a2);
