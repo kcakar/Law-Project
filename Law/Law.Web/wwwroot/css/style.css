@@ -909,11 +909,9 @@ h2 {
     padding:0;
 }
 
-.author div:nth-child(2) {
-    padding: 0;
-}
-@media only screen and (max-width : 1200px) {
 
+@media only screen and (max-width : 1200px) {
+    
     .top .social {
         margin-top: 10px;
     }
