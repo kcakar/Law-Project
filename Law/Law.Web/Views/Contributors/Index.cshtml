@@ -1,6 +1,33 @@
+@using Law.Models
+@using Law.Web.Models
 
+@model List<Contributor>
 @{
-    ViewData["Title"] = "Turkish Law Blog - Articles";
+    ViewData["Title"] = "Turkish Law Blog - Contributors";
 }
 
-todo
+<div class="Page PracticePage">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="PageView posts contributors">
+
+                    <h1>Contributors</h1>
+                    <div class='row'>
+                        @foreach (Contributor contributor in Model)
+                        {
+                                <div class='col-md-4 col-sm-6'>
+                                    <div class='post contributor'>
+                                        <div class='title'><a href="@Url.Action("Contributor", "Contributors", new { id = contributor.ID })">@contributor.Name</a></div>
+                                        <a href="@Url.Action("Contributor", "Contributors", new { id = contributor.ID })"><img src='@contributor.ImageURL' alt=''></a>
+                                        <div class='author'>
+                                        </div>
+                                    </div>
+                                </div>
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -21,7 +21,7 @@ namespace Web.Controllers
         // GET: /<controller>/
         public IActionResult Index()
         {
-            return View();
+            return View(ContributorCore.GetMostRecentContributors(100));
         }
 
         public IActionResult Contributor(string id)
