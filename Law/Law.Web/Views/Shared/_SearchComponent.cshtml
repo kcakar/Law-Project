@@ -7,7 +7,7 @@
 
             <form asp-controller="Articles" asp-action="Index">
                 <div class="pull-left">
-                    <select name="practice" data-placeholder="Choose a Practice..." class="select2 practices" tabindex="2" style="width: 200px">
+                    <select name="practice" data-placeholder="Choose a Practice..." class="select2 practices" tabindex="2" >
                         <option></option>
                         @foreach (PracticeArea area in Model.Practices)
                         {
@@ -23,7 +23,7 @@
                     </select>
                 </div>
                 <div class="pull-left">
-                    <select name="contributor" data-placeholder="Choose a Contributor..." class="select2 contributors" tabindex="2" style="width: 200px;">
+                    <select name="contributor" data-placeholder="Choose a Contributor..." class="select2 contributors" tabindex="2" >
                         <option></option>
                         @foreach (Contributor contributor in Model.Contributors)
                         {
@@ -39,7 +39,7 @@
                     </select>
                 </div>
                 <div class="pull-left">
-                    <select name="country" data-placeholder="Choose a Country..." class="select2 countries" tabindex="2" style="width: 200px">
+                    <select name="country" data-placeholder="Choose a Country..." class="select2 countries" tabindex="2" >
                         <option></option>
                         @foreach (Country country in Model.Countries)
                         {
@@ -55,7 +55,7 @@
                     </select>
                 </div>
                 <div class="pull-left">
-                    <select name="city" data-placeholder="Select a City..." class="select2 cities" @(string.IsNullOrEmpty(Model.selectedCountry)?"disabled":"") tabindex="2" style="width: 200px">
+                    <select name="city" data-placeholder="Select a City..." class="select2 cities" @(string.IsNullOrEmpty(Model.selectedCountry)?"disabled":"") tabindex="2" >
                         <option></option>
                         @foreach (City city in Model.Cities)
                         {

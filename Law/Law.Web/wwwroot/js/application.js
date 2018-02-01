@@ -1,6 +1,16 @@
+/* Open the sidenav */
+function openNav() {
+    document.getElementById("mySidenav").style.width = "100%";
+}
+
+/* Close/hide the sidenav */
+function closeNav() {
+    document.getElementById("mySidenav").style.width = "0";
+}
+
 $(function () {
     $(".select2.contributors").select2({
-        placeholder:'Select a contributor',
+        placeholder: 'Select a contributor',
         allowClear: true,
         ajax: {
             url: '/Data/Contributors',
@@ -11,7 +21,7 @@ $(function () {
     });
 
     $(".select2.countries").select2({
-        placeholder:'Select a country',
+        placeholder: 'Select a country',
         allowClear: true
     });
 
@@ -25,8 +35,8 @@ $(function () {
         }
     });
 
-    let citySelect=$(".select2.cities").select2({
-        placeholder:'Select a city',
+    let citySelect = $(".select2.cities").select2({
+        placeholder: 'Select a city',
         allowClear: true,
         ajax: {
             url: '/Data/Cities',
@@ -43,15 +53,13 @@ $(function () {
                 return query;
             }
         },
-        
+
     });
 
     $(".select2.practices").select2({
-        placeholder:'Select a practice',
+        placeholder: 'Select a practice',
         allowClear: true
     });
-
-    console.log("kerem")
 });
 
 
@@ -61,20 +69,46 @@ $(function () {
 
     $('#slider').owlCarousel({
         loop: true,
-        items: 3,
         dots: false,
         nav: true,
         navText: ['<i class="fa fa-angle-left"></i>', '<i class="fa fa-angle-right"></i>'],
         autoplay: true,
+        responsive: {
+            0: {
+                items: 1
+            },
+            600: {
+                items: 2
+            },
+            993: {
+                items: 3
+            },
+            1200: {
+                items: 4
+            }
+        }
     });
 
     $('#authors').owlCarousel({
         loop: true,
-        items: 4,
         dots: false,
         autoplay: true,
         nav: true,
         navText: ['<i class="fa fa-angle-left"></i>', '<i class="fa fa-angle-right"></i>'],
+        responsive: {
+            0: {
+                items: 1
+            },
+            600: {
+                items: 2
+            },
+            993: {
+                items: 3
+            },
+            1200: {
+                items: 4
+            }
+        }
     });
 
     $(".drop-down-overlay").on("click", function () {
@@ -86,13 +120,9 @@ $(function () {
         theme: "inset-dark"
     });
 
-    var LH = $(".BlogViewLeft").height();
-    var RH = $(".BlogViewRight").height();
-    if (RH < LH) {
-        $(".BlogViewRight").height(LH);
-    }
 
-    $(".BlogViewRight-Wrapper").sticky({ topSpacing: 150, bottomSpacing: 300 });
+
+    checkStick();
 
     $(".tabs a").on("click", function () {
         var rel = $(this).attr("data-rel");
@@ -111,7 +141,38 @@ $(function () {
         $.a.closeDropDowns(event);
     }
 
+    });
+
+$(window).resize(function () {
+    checkStick();
 });
+
+function checkStick() {
+    var windowWidth = $(window).width();
+    if (windowWidth > 992) {
+    console.log("stick")
+        stick();
+    }
+    else {
+        console.log("unstick")
+        unstick();
+    }
+}
+
+function stick() {
+    var LH = $(".BlogViewLeft").height();
+    var RH = $(".BlogViewRight").height();
+    if (RH < LH) {
+        $(".BlogViewRight").height(LH);
+    }
+
+    $(".BlogViewRight-Wrapper").sticky({ topSpacing: 150, bottomSpacing: 300 });
+}
+
+function unstick() {
+    $(".BlogViewRight").css({ "height": "initial" });
+    $('.BlogViewRight-Wrapper').unstick();
+}
 
 var $a = $.a = a = {
 

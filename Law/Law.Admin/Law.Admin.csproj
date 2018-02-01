@@ -18,6 +18,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Law.Core\Law.Core.csproj" />
     <ProjectReference Include="..\Law.Models\Law.Models.csproj" />
   </ItemGroup>
 

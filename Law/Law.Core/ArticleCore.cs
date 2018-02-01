@@ -57,36 +57,73 @@ namespace Law.Core
                 qry = qry.Where(x => x.PracticeAreaID == practice);
             }
 
-            int pageNumber = 1;
-            if (!int.TryParse(page, out pageNumber))
+            if (!int.TryParse(page, out int pageNumber))
             {
                 pageNumber = 1;
             }
 
-            return PaginatedList<Article>.Create(qry,pageNumber,Common.PageSize);
+            return PaginatedList<Article>.Create(qry, pageNumber, Common.PageSize);
         }
 
-        public static string GenerateArticleHTML(ArticleAddEditModel model)
+        public static void AddEditArticle(ArticleAddEditModel model)
         {
-            string html = "";
-
             Contributor contributor = ContributorCore.GetContributorsById(model.contributorID);
 
-            Article article = new Article();
-            article.Title = model.title;
-            article.ContributorID = model.contributorID;
-            article.AffiliateID = contributor.AffiliateID;
-            article.CityID = contributor.CityID;
-            article.CountryID = contributor.CountryID;
-            article.CreationDate = DateTime.Now;
-            article.ID = new Guid().ToString();
-            article.BodyPreview = "";
-            article.Body = "";
-            article.LanguageID = "";
-            article.PracticeAreaID = "";
-            article.Tags = "";
+            Article article = new Article
+            {
+                Title = model.title,
+                ContributorID = model.contributorID,
+                AffiliateID = contributor.AffiliateID,
+                CityID = contributor.CityID,
+                CountryID = contributor.CountryID,
+                CreationDate = DateTime.Now,
+                ID = new Guid().ToString()
+            };
 
-            return html;
+            if (model.paragraphs.Count>0)
+            {
+                string content = model.paragraphs.First().content;
+                if(content.Length>100)
+                {
+                    article.BodyPreview = content.Substring(0, 100);
+                }
+                else
+                {
+                    article.BodyPreview = content;
+                }
+            }
+            else
+            {
+                article.BodyPreview = "";
+            }
+            article.LanguageID = "Turkish";
+            article.PracticeAreaID = model.practiceAreaID;
+            article.Tags = model.tags;
+
+            foreach(ArticleParagraphRow row in model.paragraphs)
+            {
+                ArticlePiece piece = new ArticlePiece
+                {
+                    ArticleId = article.ID,
+                    ID = Guid.NewGuid().ToString()
+                };
+                piece.ImagePosition = piece.SetImagePosition(row.imagePosition);
+                piece.ImageUrl = row.imageURL;
+                piece.Paragraph = row.content;
+                piece.Title = row.title;
+                Tester.TestArticlePieces.Add(piece);
+            }
+
+            if (model.isNew)
+            {
+                article.ID = Guid.NewGuid().ToString();
+                Tester.TestArticles.Add(article);
+            }
+            else
+            {
+                Article replace = Tester.TestArticles.FirstOrDefault(x => x.ID == model.ID);
+                replace = article;
+            }
         }
-    }
+}
 }

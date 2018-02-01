@@ -84,8 +84,8 @@
                                                     @article.BodyPreview
                                                 </div>
                                                 <div class='author'>
-                                                    <div class='pull-left'><img src='@contributor.ImageURL' alt=''></div>
-                                                    <div class='pull-left'>
+                                                    <div class='pull-left col-lg-3'><img src='@contributor.ImageURL' alt=''></div>
+                                                    <div class='pull-left col-lg-8'>
                                                         <b><a href='@Url.Action("Contributor", "Contributors", new { id = contributor.ID })'>@contributor.Name</a></b>
                                                         @if (affiliate != null)
                                                         {

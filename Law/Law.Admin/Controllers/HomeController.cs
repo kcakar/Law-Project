@@ -1,7 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Diagnostics;
-using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Law.Admin.Models;
@@ -9,6 +7,7 @@ using Law.Models;
 using Microsoft.AspNetCore.Http;
 using System.IO;
 using Microsoft.AspNetCore.Hosting;
+using Law.Core;
 
 namespace Law.Admin.Controllers
 {
@@ -28,13 +27,22 @@ namespace Law.Admin.Controllers
 
         public IActionResult AddArticle()
         {
-            return View();
+            return View(new ArticleAddEditModel());
         }
 
         [HttpPost]
         public IActionResult AddArticlePost(ArticleAddEditModel model)
         {
-            return View();
+            Result result = new Result("Makale eklendi",true,"");
+            try
+            {
+                ArticleCore.AddEditArticle(model);
+            }
+            catch(Exception ex)
+            {
+               result = new Result("Makale eklenirken bir hata oluştu", false, ex.Message);
+            }
+            return View(result);
         }
 
 
@@ -65,7 +73,7 @@ namespace Law.Admin.Controllers
             catch (Exception ex)
             {
                 Response.StatusCode = 500;
-                return Json(new {success=false, error = "Resim yüklenemedi" });
+                return Json(new {success=false, error = "Resim yüklenemedi",tech=ex.Message });
             }
 
 

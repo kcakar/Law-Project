@@ -1,8 +1,9 @@
-﻿
+﻿@using Law.Models;
 @{
     ViewData["Title"] = "AddArticle";
 }
 
+@model ArticleAddEditModel
 
 <div class="right_col" role="main">
     <div class="">
@@ -33,15 +34,43 @@
                                     Yazar <span class="required">*</span>
                                 </label>
                                 <div class="col-md-6 col-sm-6 col-xs-12">
-                                    <input id="contributorID" name="contributorID" class="form-control col-md-7 col-xs-12" data-validate-length-range="6" data-validate-words="2" placeholder="Makale başlığı" required="required" type="text">
+                                    <select name="contributor" data-placeholder="Choose a Contributor..." class="select2 contributors" tabindex="2" style="width: 200px;">
+                                        <option></option>
+                                        @if (Model.contributor != null)
+                                        {
+                                            <option selected value="@Model.contributor.ID">@Model.contributor.Name</option>
+                                        }
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="item form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="name">
+                                    Uzmanlık Alanı <span class="required">*</span>
+                                </label>
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                    <select name="practiceID" data-placeholder="Choose a Practice..." class="select2 practices" tabindex="2" style="width: 200px">
+                                        <option></option>
+                                        @if (Model.practiceArea != null)
+                                        {
+                                            <option selected value="@Model.practiceArea.ID">@Model.practiceArea.Name</option>
+                                        }
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="item form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="name">
+                                    Taglar <span class="required"><br />Aralarına virgül koyarak yazınız</span>
+                                </label>
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                    <input id="tags" name="tags" class="form-control col-md-7 col-xs-12" data-validate-length-range="6" data-validate-words="2" required="required" type="text">
                                 </div>
                             </div>
                             <div class="item form-group">
                                 <label class="control-label col-md-3 col-sm-3 col-xs-12" for="email">
-                                    İçerik Başlığı <span class="required">*</span>
+                                    Makale Başlığı <span class="required">*</span>
                                 </label>
                                 <div class="col-md-6 col-sm-6 col-xs-12">
-                                    <input id="articleTitle" name="articleTitle" type="text" required="required" class="form-control col-md-7 col-xs-12">
+                                    <input id="articleTitle" name="articleTitle" type="text" required="required" placeholder="Makale başlığı"  class="form-control col-md-7 col-xs-12">
                                 </div>
                             </div>
                         </form>
@@ -117,7 +146,7 @@
 
 
 @section Scripts {
-<script>
+    <script>
         Dropzone.autoDiscover = false;
 
         function createDropzone(element) {
@@ -167,11 +196,14 @@
                 let articleModel = {
                     title: "",
                     contributorID: "",
+                    PracticeAreaID:"",
                     paragraphs: []
                 }
 
-                articleModel.contributorID = $("#contributorID").val();
+                articleModel.contributorID = $(".contributors").val();
+                articleModel.PracticeAreaID = $(".practices").val();
                 articleModel.title = $("#articleTitle").val();
+                articleModel.tags = $("#tags").val();
 
                 $(".paragraph").each(function () {
                     let $this = $(this);
@@ -199,7 +231,7 @@
             });
         })
 
-</script>
+    </script>
 
 
     @*Templates*@
