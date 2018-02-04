@@ -2487,7 +2487,7 @@ input.parsley-error, select.parsley-error, textarea.parsley-error {
     display: none
 }
 
-.bad input, .bad select, .bad textarea {
+.bad input, .bad select, .bad textarea, .bad .select2-selection.select2-selection--single {
     border: 1px solid #CE5454;
     box-shadow: 0 0 4px -2px #CE5454;
     position: relative;
@@ -4663,3 +4663,14 @@ ul.notifications {
 .dataTables_wrapper > .row {
     overflow: auto !important
 }
+
+
+.panel.paragraph {
+    position: relative;
+}
+
+    .panel.paragraph .remove {
+        position: absolute;
+        right: 0;
+        top: 5px;
+    }

@@ -34,7 +34,7 @@
                                     Yazar <span class="required">*</span>
                                 </label>
                                 <div class="col-md-6 col-sm-6 col-xs-12">
-                                    <select name="contributor" data-placeholder="Choose a Contributor..." class="select2 contributors" tabindex="2" style="width: 200px;">
+                                    <select name="contributor" data-placeholder="Choose a Contributor..." class="select2 contributors" tabindex="2" style="width: 100%;">
                                         <option></option>
                                         @if (Model.contributor != null)
                                         {
@@ -48,7 +48,7 @@
                                     Uzmanlık Alanı <span class="required">*</span>
                                 </label>
                                 <div class="col-md-6 col-sm-6 col-xs-12">
-                                    <select name="practiceID" data-placeholder="Choose a Practice..." class="select2 practices" tabindex="2" style="width: 200px">
+                                    <select name="practiceID" data-placeholder="Choose a Practice..." class="select2 practices" tabindex="2" style="width: 100%">
                                         <option></option>
                                         @if (Model.practiceArea != null)
                                         {
@@ -62,7 +62,7 @@
                                     Taglar <span class="required"><br />Aralarına virgül koyarak yazınız</span>
                                 </label>
                                 <div class="col-md-6 col-sm-6 col-xs-12">
-                                    <input id="tags" name="tags" class="form-control col-md-7 col-xs-12" data-validate-length-range="6" data-validate-words="2" required="required" type="text">
+                                    <input id="tags" name="tags" class="form-control col-md-7 col-xs-12" data-validate-length-range="6" data-validate-words="2" required="required" type="text" value="@Model.tags">
                                 </div>
                             </div>
                             <div class="item form-group">
@@ -70,7 +70,7 @@
                                     Makale Başlığı <span class="required">*</span>
                                 </label>
                                 <div class="col-md-6 col-sm-6 col-xs-12">
-                                    <input id="articleTitle" name="articleTitle" type="text" required="required" placeholder="Makale başlığı"  class="form-control col-md-7 col-xs-12">
+                                    <input id="articleTitle" name="articleTitle" type="text" required="required" placeholder="Makale başlığı" class="form-control col-md-7 col-xs-12" value="@Model.title">
                                 </div>
                             </div>
                         </form>
@@ -78,64 +78,80 @@
                     <div class="x_content">
                         <div class="form-horizontal form-label-left" novalidate>
                             <span class="section">İçerik Oluşturma</span>
-                            <p>Aşağıdaki tuştan makaleye paragraf ekleyebilir, aşağıdaki bloklara tıklayarak paragrafları düzenleyebilirsiniz. <br />Paragraflardaki tüm elemanlar opsiyoneldir.</p>
-                            <button type="button" class="btn btn-success addParagraph">Yeni bir paragraf ekle</button>
+                            <p>Aşağıdaki tuştan makaleye parça ekleyebilir, aşağıdaki bloklara tıklayarak parçaları düzenleyebilirsiniz. <br />Parçalardaki tüm elemanlar opsiyoneldir.</p>
+                            <button type="button" class="btn btn-success addParagraph">Yeni bir parça ekle</button>
                             <div class="accordion paragraphs" id="accordion" role="tablist" aria-multiselectable="true">
-                                <div class="panel paragraph paragraph-1">
-                                    <a class="panel-heading collapsed" role="tab" data-toggle="collapse" data-parent="#accordion" href="#collapse1" aria-expanded="false" aria-controls="collapseOne">
-                                        <h4 class="panel-title">1. Paragraf</h4>
-                                    </a>
-                                    <div id="collapse1" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne" aria-expanded="false" style="height: 0px;">
-                                        <div class="panel-body">
-                                            <div class="item form-group">
-                                                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="name">
-                                                    Paragraf Başlığı <span class="required">*</span>
-                                                </label>
-                                                <div class="col-md-6 col-sm-6 col-xs-12">
-                                                    <input class="paragraphTitle form-control col-md-7 col-xs-12" data-validate-length-range="6" data-validate-words="2" name="name" placeholder="Paragraf başlığı" required="required" type="text">
+                                @foreach (ArticleParagraphRow paragraph in Model.paragraphs)
+                                {
+                                    int index = Model.paragraphs.IndexOf(paragraph) + 1;
+                                    <div class="panel paragraph paragraph-@index" data-id="@paragraph.ID">
+                                        <a class="panel-heading collapsed" role="tab" data-toggle="collapse" data-parent="#accordion" href="#collapse@(index)" aria-expanded="false" aria-controls="collapseOne">
+                                            <h4 class="panel-title">@index. Parça</h4>
+                                        </a>
+                                        <button type="button" class="btn btn-danger remove" onclick="removePiece(this)">Parçayı sil</button>
+                                        <div id="collapse@(index)" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne" aria-expanded="false" style="height: 0px;">
+                                            <div class="panel-body">
+                                                <div class="item form-group">
+                                                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="name">
+                                                        Parça Başlığı <span class="required">*</span>
+                                                    </label>
+                                                    <div class="col-md-6 col-sm-6 col-xs-12">
+                                                        <input value="@paragraph.title" class="paragraphTitle form-control col-md-7 col-xs-12" data-validate-length-range="6" data-validate-words="2" name="name" placeholder="Parça başlığı" required="required" type="text">
+                                                    </div>
                                                 </div>
-                                            </div>
-                                            <div class="item form-group">
-                                                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="name">
-                                                    Paragraf İçeriği <span class="required">*</span>
-                                                </label>
-                                                <div class="col-md-6 col-sm-6 col-xs-12">
-                                                    <textarea class="paragraphContent form-control col-md-7 col-xs-12" required="required" name="textarea" style="min-height:400px"></textarea>
+                                                <div class="item form-group">
+                                                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="name">
+                                                        Parça İçeriği <span class="required">*</span>
+                                                    </label>
+                                                    <div class="col-md-6 col-sm-6 col-xs-12">
+                                                        <div class="pContent paragraphContent@(index) form-control col-md-7 col-xs-12">@Html.Raw(paragraph.content)</div>
+                                                        @*<textarea class="paragraphContent@(index) form-control col-md-7 col-xs-12" required="required" name="textarea" style="min-height:400px">@paragraph.content</textarea>*@
+                                                    </div>
                                                 </div>
-                                            </div>
-                                            <div class="item form-group">
-                                                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="name">
-                                                    Resim <span class="required">*</span>
-                                                </label>
-                                                <div class="col-md-6 col-sm-6 col-xs-12">
-                                                    <form action="@Url.Action("UploadImage")"
-                                                          class="dropzone"></form>
+                                                <div class="item form-group">
+                                                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="name">
+                                                        Resim <span class="required">*</span>
+                                                    </label>
+                                                    <div class="col-md-6 col-sm-6 col-xs-12">
+                                                        @if (!string.IsNullOrEmpty(paragraph.imageURL))
+                                                        {
+                                                            <img src="@paragraph.imageURL" width="200" data-image-url="@paragraph.imageURL" />
+                                                        }
+                                                        else
+                                                        {
+                                                            <form action="@Url.Action("UploadImage")"
+                                                                  class="dropzone"></form>
+                                                        }
+
+                                                    </div>
                                                 </div>
-                                            </div>
-                                            <div class="item form-group">
-                                                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="name">
-                                                    Resim Pozisyonu<span class="required">*</span>
-                                                </label>
-                                                <div class="col-md-6 col-sm-6 col-xs-12">
-                                                    <div class="imagePosition btn-group">
-                                                        <button class="btn btn-default" type="button" data-position="left">Sol</button>
-                                                        <button class="btn btn-default" type="button" data-position="mid">Orta</button>
-                                                        <button class="btn btn-default" type="button" data-position="right">Sağ</button>
+                                                <div class="item form-group">
+                                                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="name">
+                                                        Resim Pozisyonu<span class="required">*</span>
+                                                    </label>
+                                                    <div class="col-md-6 col-sm-6 col-xs-12">
+                                                        <div class="imagePosition btn-group">
+                                                            <button class="btn btn-default @(paragraph.imagePosition=="left"?"active":"")" type="button" data-position="left">Sol</button>
+                                                            <button class="btn btn-default @(paragraph.imagePosition=="mid"?"active":"")" type="button" data-position="mid">Orta</button>
+                                                            <button class="btn btn-default @(paragraph.imagePosition=="right"?"active":"")" type="button" data-position="right">Sağ</button>
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
-                                </div>
+
+                                }
                             </div>
 
                             <div class="ln_solid"></div>
                             <div class="form-group">
                                 <div class="col-md-6 col-md-offset-3">
-                                    <button type="submit" class="btn btn-primary">Cancel</button>
-                                    <button id="send" type="submit" class="btn btn-success">Submit</button>
+                                    <button id="send" type="submit" class="btn btn-success">Kaydet</button>
                                 </div>
                             </div>
+
+
                         </div>
                     </div>
                 </div>
@@ -181,9 +197,65 @@
             createDropzone($(".paragraph-" + count + " .dropzone"));
         });
 
+        function removePiece(_this) {
+            let id = $(_this).closest(".paragraph").attr("data-id");
+            if (id) {
+                $.ajax({
+                    type: "POST",
+                    url: "@Url.Action("RemoveArticlePiece")",
+                    data: { id:id},
+                    success: function (result) {
+                        $.snackbar({ content: result.message });
+                        $(_this).closest(".paragraph").remove();
+                    },
+                    dataType: "json"
+                });
+            }
+            else {
+                $.snackbar({ content: "Parça silindi" });
+                $(_this).closest(".paragraph").remove()
+            }
+        }
+        function checkInput() {
+            let message = "";
+            $(".bad").removeClass("bad");
+            if (!$(".contributors").val()) {
+                message += "Lütfen bir yazar seçiniz";
+                $(".contributors").closest("div").addClass("bad");
+            }
+
+            if (!$("#articleTitle").val()) {
+                if (message.length > 0) {
+                    message += "<br>";
+                }
+                message += "Lütfen bir başlık giriniz";
+                $("#articleTitle").closest("div").addClass("bad");
+            }
+
+            if (message) {
+                $.snackbar({ content: message, htmlAllowed: true});
+                return false;
+            }
+            else {
+                return true;
+            }
+        }
 
         $(function () {
-            console.log("bound")
+
+            $(".pContent").each(function () {
+                new Quill(this, {
+                    modules: {
+                        toolbar: [
+                            ['bold', 'italic'],
+                            ['link', 'blockquote'],
+                            [{ list: 'ordered' }, { list: 'bullet' }]
+                        ]
+                    },
+                    placeholder: 'İçeriği giriniz',
+                    theme: 'snow'
+                });
+            })
 
             createDropzone($(".dropzone"));
 
@@ -192,8 +264,15 @@
                 $(this).addClass("active");
             })
 
+
             $("#send").click(function () {
+
+                if (!checkInput()) {
+                    return;
+                }
+
                 let articleModel = {
+                    ID:"@Model.ID",
                     title: "",
                     contributorID: "",
                     PracticeAreaID:"",
@@ -205,12 +284,21 @@
                 articleModel.title = $("#articleTitle").val();
                 articleModel.tags = $("#tags").val();
 
-                $(".paragraph").each(function () {
+                $(".paragraph:not(.hidden)").each(function () {
                     let $this = $(this);
+                    let imageURL = "";
+                    if ($this.find(".dropzone").length <= 0) {
+                        imageURL = $this.find("img").attr("data-image-url");
+                    }
+                    else {
+                        imageURL =$this.find(".dropzone").attr("data-image-url")
+                    }
+
                     let paragraph = {
+                        ID: $this.attr("data-id"),
                         title: $this.find(".paragraphTitle").val(),
-                        content: $this.find(".paragraphContent").val(),
-                        imageURL: $this.find(".dropzone").attr("data-image-url"),
+                        content: $this.find(".ql-editor").html(),
+                        imageURL: imageURL,
                         imagePosition: $this.find("button.active").attr("data-position")
                     }
 
@@ -222,12 +310,13 @@
                     url: "@Url.Action("AddArticlePost")",
                     data: articleModel,
                     success: function (result) {
-                        console.log(result)
+                        $.snackbar({ content:result.message });
+                        if (result.success) {
+                            window.location.href = '@Url.Action("AddArticle", "Home", new { id = Model.ID })';
+                        }
                     },
                     dataType: "json"
                 });
-
-                console.table(articleModel);
             });
         })
 
@@ -238,24 +327,26 @@
     <div class=" paragraph-template">
         <div class="panel paragraph hidden paragraph-{{paragraphNumber}}">
             <a class="panel-heading collapsed" role="tab" data-toggle="collapse" data-parent="#accordion" href="#collapse{{paragraphNumber}}" aria-expanded="false" aria-controls="collapseOne">
-                <h4 class="panel-title">{{paragraphNumber}}. Paragraf</h4>
+                <h4 class="panel-title">{{paragraphNumber}}. Parça</h4>
             </a>
+            <button type="button" class="btn btn-danger remove" onclick="removePiece(this)">Parçayı sil</button>
             <div id="collapse{{paragraphNumber}}" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne" aria-expanded="false" style="height: 0px;">
                 <div class="panel-body">
                     <div class="item form-group">
                         <label class="control-label col-md-3 col-sm-3 col-xs-12" for="name">
-                            Paragraf Başlığı <span class="required">*</span>
+                            Parça Başlığı <span class="required">*</span>
                         </label>
                         <div class="col-md-6 col-sm-6 col-xs-12">
-                            <input class="paragraphTitle form-control col-md-7 col-xs-12" data-validate-length-range="6" data-validate-words="2" name="name" placeholder="Paragraf başlığı" required="required" type="text">
+                            <input class="paragraphTitle form-control col-md-7 col-xs-12" data-validate-length-range="6" data-validate-words="2" name="name" placeholder="Parça başlığı" required="required" type="text">
                         </div>
                     </div>
                     <div class="item form-group">
                         <label class="control-label col-md-3 col-sm-3 col-xs-12" for="name">
-                            Paragraf İçeriği <span class="required">*</span>
+                            Parça İçeriği <span class="required">*</span>
                         </label>
                         <div class="col-md-6 col-sm-6 col-xs-12">
-                            <textarea class="paragraphContent form-control col-md-7 col-xs-12" required="required" name="textarea" style="min-height:400px"></textarea>
+                            <div class="pContent paragraphContent{{paragraphNumber}} form-control col-md-7 col-xs-12"></div>
+                            @*<textarea class="paragraphContent{{paragraphNumber}} form-control col-md-7 col-xs-12" required="required" name="textarea" style="min-height:400px"></textarea>*@
                         </div>
                     </div>
                     <div class="item form-group">

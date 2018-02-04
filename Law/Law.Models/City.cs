@@ -6,6 +6,7 @@ namespace Law.Models
 {
     public class City: NameBase
     {
+        public City() : base("", "") { }
         public City(string ID,string Name,string CountryID) :base(ID,Name)
         {
             this.CountryID = CountryID;

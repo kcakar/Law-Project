@@ -7,7 +7,6 @@ namespace Law.Models
         public string ID { get; set; }
         public string Title { get; set; }
         public string BodyPreview { get; set; }
-        public string Body { get; set; }
         public string ContributorID { get; set; }
         public string LanguageID { get; set; }
         public string CountryID { get; set; }
@@ -23,11 +22,10 @@ namespace Law.Models
 
         }
 
-        public Article(string ID,string Title,string Body,string ContributorID,string LanguageID,string CountryID,string CityID,string AffiliateID,string PracticeAreaID,string BodyPreview,string Tags="")
+        public Article(string ID,string Title,string ContributorID,string LanguageID,string CountryID,string CityID,string AffiliateID,string PracticeAreaID,string BodyPreview,string Tags="")
         {
             this.ID = ID;
             this.Title = Title;
-            this.Body = Body;
             this.ContributorID = ContributorID;
             this.LanguageID = LanguageID;
             this.CountryID = CountryID;

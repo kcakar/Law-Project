@@ -21,7 +21,11 @@
     <!-- bootstrap-daterangepicker -->
     <link href="~/lib/bootstrap-daterangepicker/daterangepicker.css" rel="stylesheet">
     <link href="~/lib/dropzone/dist/min/dropzone.min.css" rel="stylesheet">
+    <link href="~/css/snackbar.min.css" rel="stylesheet" />
     <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel="stylesheet" />
+    <link rel="stylesheet" type="text/css" href="https://unpkg.com/pell/dist/pell.min.css">
+    <link href="~/css/material.css" rel="stylesheet" />
+    <link href="https://cdn.quilljs.com/1.0.0/quill.snow.css" rel="stylesheet">
     <!-- Custom Theme Style -->
     <link href="~/css/custom.min.css" rel="stylesheet">
 </head>
@@ -54,7 +58,7 @@
                                     <a><i class="fa fa-home"></i>Anasayfa</a>
                                 </li>
                                 <li>
-                                    <a><i class="fa fa-edit"></i>İçerik Yönetimi</a>
+                                    <a href="@Url.Action("Articles","Home")"><i class="fa fa-edit"></i>İçerik Yönetimi</a>
                                 </li>
                                 <li>
                                     <a><i class="fa fa-users"></i>Yazar Yönetimi</a>
@@ -221,7 +225,8 @@
     <script src="~/lib/validator/validator.js"></script>
     <script src="~/lib/dropzone/dist/min/dropzone.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/js/select2.min.js"></script>
-
+    <script src="~/js/snackbar.min.js"></script>
+    <script src="https://cdn.quilljs.com/1.0.0/quill.js"></script>
     <script src="~/js/application.js"></script>
     @RenderSection("Scripts", required: false)
 </body>

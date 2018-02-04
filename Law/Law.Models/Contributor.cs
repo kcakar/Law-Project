@@ -6,6 +6,10 @@ namespace Law.Models
 {
     public class Contributor : NameBase
     {
+        public Contributor() : base("", "")
+        {
+
+        }
         public Contributor(string ID, string Name) : base(ID, Name)
         {
 

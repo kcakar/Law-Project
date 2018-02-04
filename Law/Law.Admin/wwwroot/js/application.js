@@ -1,4 +1,7 @@
 $(function () {
+
+
+
     $(".select2.contributors").select2({
         placeholder: 'Yazar seçin',
         allowClear: true,

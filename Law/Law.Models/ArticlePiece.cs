@@ -6,6 +6,7 @@ namespace Law.Models
 {
     public class ArticlePiece
     {
+        public ArticlePiece() { }
         public string ID { get; set; }
         public string ArticleId { get; set; }
         public string Title { get; set; }
@@ -25,6 +26,21 @@ namespace Law.Models
                     return ImagePosition.Right;
                 default:
                     return ImagePosition.Left;
+            }
+        }
+
+        public string GetImageString(ImagePosition ImagePosition)
+        {
+            switch (ImagePosition)
+            {
+                case ImagePosition.Left:
+                    return "left";
+                case ImagePosition.Middle:
+                    return "mid";
+                case ImagePosition.Right:
+                    return "right";
+                default:
+                    return "left";
             }
         }
     }

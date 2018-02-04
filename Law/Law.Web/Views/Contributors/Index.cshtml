@@ -19,7 +19,7 @@
                                 <div class='col-md-4 col-sm-6'>
                                     <div class='post contributor'>
                                         <div class='title'><a href="@Url.Action("Contributor", "Contributors", new { id = contributor.ID })">@contributor.Name</a></div>
-                                        <a href="@Url.Action("Contributor", "Contributors", new { id = contributor.ID })"><img src='@contributor.ImageURL' alt=''></a>
+                                        <a href="@Url.Action("Contributor", "Contributors", new { id = contributor.ID })"><img src='@contributor.ImageURL.GetImageUrl()' alt=''></a>
                                         <div class='author'>
                                         </div>
                                     </div>

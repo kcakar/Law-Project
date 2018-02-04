@@ -38,11 +38,35 @@ namespace Law.Web.Models
             Title = Article.Title;
             CreationDate = Article.CreationDate;
             ViewCount = Article.ViewCount;//todo dbden arttır
-            ArticleBody = Article.Body;
+            ArticleBody = GetArticleBody(ArticleCore.GetArticlePiecesByArticleId(Article.ID));
 
             Contributor contributor = ContributorCore.GetContributorsById(Article.ContributorID);
             ContributorName = contributor.Name;
             ContributorImage = contributor.ImageURL;
+        }
+
+        public string GetArticleBody(List<ArticlePiece> pieces)
+        {
+            string result = "";
+
+            foreach(ArticlePiece piece in pieces)
+            {
+                if(!string.IsNullOrEmpty(piece.Title))
+                {
+                    result += "<h2>"+piece.Title+"</h2>";
+                }
+
+                if (!string.IsNullOrEmpty(piece.Paragraph))
+                {
+                    result += "<p>" + piece.Paragraph + "</p>";
+                }
+                if (!string.IsNullOrEmpty(piece.ImageUrl))
+                {
+                    result += "<img src='" + piece.ImageUrl.GetImageUrl() + "'/>";
+                }
+            }
+
+            return result;
         }
     }
 }

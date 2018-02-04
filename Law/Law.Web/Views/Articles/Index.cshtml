@@ -27,7 +27,7 @@
                                         <div class='title'><a href="@Url.Action("Article", "Articles", new { id = article.ID })">@(article.Title.Length > 65 ? article.Title.Substring(0, 65) + "..." : article.Title )</a></div>
                                         <div class='text'>@article.BodyPreview</div>
                                         <div class='author'>
-                                            <div class='pull-left'><img src='@contributor.ImageURL' alt=''></div>
+                                            <div class='pull-left'><img src='@contributor.ImageURL.GetImageUrl()' alt=''></div>
                                             <div class='pull-left'><a href='@Url.Action("Contributor", "Contributors", new { id = contributor.ID })'><b>@contributor.Name</b></a><span>@affiliate.Name</span></div>
                                             <div class='clearfix'></div>
                                         </div>
@@ -41,7 +41,7 @@
                             @{
                                 List<int> range = new List<int>();
                                 int current = Model.FoundArticles.PageIndex;
-                                int delta = 5;
+                                int delta = 3;
                                 int left = current - delta;
                                 int right = current + delta + 1;
                                 int last = Model.FoundArticles.TotalPages;
@@ -61,14 +61,14 @@
                                     {
                                         if (i - l == 2)
                                         {
-                                            <li class="page-item"><a href="@Url.Action("Index", "Articles", new { page=l+1 })" class="page-link">@(l+1)</a></li>
+                                            <li class="page-item @(i==current?"active":"")"><a href="@Url.Action("Index", "Articles", new { page=l+1 })" class="page-link">@(l+1)</a></li>
                                         }
                                         else if (i - l != 1)
                                         {
                                             <li class="page-item"><a class="page-link">...</a></li>
                                         }
                                     }
-                                    @Html.Raw("<li class=\"page-item\"><a  href=\""+ @Url.Action("Index", "Articles", new { page = i }) + "\" class=\"page-link\">"+i+"</a></li>")
+                                    @Html.Raw("<li class=\"page-item " + (i == current ? "active" : "") + "\"><a  href=\"" + @Url.Action("Index", "Articles", new { page = i }) + "\" class=\"page-link\">"+i+"</a></li>")
                                     
                                     l = i;
                                 }

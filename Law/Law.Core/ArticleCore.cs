@@ -30,7 +30,7 @@ namespace Law.Core
 
         public static PaginatedList<Article> GetFilteredArticles(string keyword, string practice, string contributor, string country, string city, string page = "1")
         {
-            var qry = Tester.TestArticles.AsQueryable();
+            var qry = Tester.TestArticles.OrderByDescending(x=>x.CreationDate).AsQueryable();
 
             if (!string.IsNullOrWhiteSpace(keyword))
             {
@@ -77,13 +77,17 @@ namespace Law.Core
                 CityID = contributor.CityID,
                 CountryID = contributor.CountryID,
                 CreationDate = DateTime.Now,
-                ID = new Guid().ToString()
+                ID = model.ID
             };
 
-            if (model.paragraphs.Count>0)
+            if (model.paragraphs.Count > 0)
             {
                 string content = model.paragraphs.First().content;
-                if(content.Length>100)
+                if (content == null)
+                {
+                    content = "";
+                }
+                if (content.Length > 100)
                 {
                     article.BodyPreview = content.Substring(0, 100);
                 }
@@ -100,30 +104,61 @@ namespace Law.Core
             article.PracticeAreaID = model.practiceAreaID;
             article.Tags = model.tags;
 
-            foreach(ArticleParagraphRow row in model.paragraphs)
+            foreach (ArticleParagraphRow row in model.paragraphs)
             {
+                if(string.IsNullOrEmpty(row.ID))
+                {
+                    row.ID = Guid.NewGuid().ToString();
+                }
                 ArticlePiece piece = new ArticlePiece
                 {
                     ArticleId = article.ID,
-                    ID = Guid.NewGuid().ToString()
+                    ID = row.ID
                 };
                 piece.ImagePosition = piece.SetImagePosition(row.imagePosition);
-                piece.ImageUrl = row.imageURL;
+                if (row.imageURL == null)
+                {
+                    row.imageURL = "";
+                }
+                piece.ImageUrl = row.imageURL.Replace("~", "");
                 piece.Paragraph = row.content;
                 piece.Title = row.title;
-                Tester.TestArticlePieces.Add(piece);
+
+                if (!Tester.TestArticlePieces.Exists(x => x.ID == piece.ID))
+                {
+                    Tester.TestArticlePieces.Add(piece);
+                }
+                else
+                {
+                    //dbde update normalde
+                   Tester.TestArticlePieces.RemoveAll(x => x.ID == piece.ID);
+                   Tester.TestArticlePieces.Add(piece);
+                }
             }
 
-            if (model.isNew)
+            //ID mevcutsa güncelle, yoksa ekle
+            if (!Tester.TestArticles.Exists(x => x.ID != article.ID))
             {
-                article.ID = Guid.NewGuid().ToString();
                 Tester.TestArticles.Add(article);
             }
             else
             {
-                Article replace = Tester.TestArticles.FirstOrDefault(x => x.ID == model.ID);
-                replace = article;
+                //dbde update normalde
+                Tester.TestArticles.RemoveAll(x => x.ID == model.ID);
+                Tester.TestArticles.Add(article);
+
             }
         }
-}
+
+        public static List<ArticlePiece> GetArticlePiecesByArticleId(string id)
+        {
+            return Tester.TestArticlePieces.Where(x => x.ArticleId == id).ToList();
+        }
+
+        public static void RemoveArticlePiece(string id)
+        {
+            Tester.TestArticlePieces.RemoveAll(x => x.ID == id);
+        }
+
+    }
 }
