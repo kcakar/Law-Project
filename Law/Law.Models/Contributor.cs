@@ -35,7 +35,6 @@ namespace Law.Models
         public string CityID { get; set; }
         public string AffiliateID { get; set; }
         public string ImageURL { get; set; }
-        public DateTime CreationDate{get;set;}
         public DateTime LastPostDate { get; set; }
         public int TotalContributions { get; set; }
 

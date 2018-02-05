@@ -54,6 +54,16 @@ namespace Law.Admin.Controllers
             return View(new ContributorsViewModel(keyword, affiliate, contributor, country, city, page, CacheItems.Cities, CacheItems.Countries));
         }
 
+        public IActionResult PracticeAreas(string keyword = "", string page = "1")
+        {
+
+            return View(new PracticeAreasViewModel(keyword,page));
+        }
+
+        public IActionResult Affiliates(string keyword = "", string affiliate = "", string contributor = "", string country = "", string city = "", string page = "1")
+        {
+            return View(new AffiliatesViewModel(keyword, page));
+        }
 
         public IActionResult AddArticle(string id)
         {
@@ -139,8 +149,10 @@ namespace Law.Admin.Controllers
             var contentType = "text/xml";
             var content = Uri.EscapeDataString(Tester.GetTestJson());
             var bytes = Encoding.UTF8.GetBytes(content);
-            var result = new FileContentResult(bytes, contentType);
-            result.FileDownloadName = "myfile.txt";
+            var result = new FileContentResult(bytes, contentType)
+            {
+                FileDownloadName = "myfile.txt"
+            };
             return result;
         }
 

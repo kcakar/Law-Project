@@ -1,15 +1,15 @@
 ﻿@using Law.Models
 @{
-    ViewData["Title"] = "Contributors";
+    ViewData["Title"] = "Practice Areas";
 }
 
-@model ContributorsViewModel
+@model PracticeAreasViewModel
 
 <div class="right_col" role="main">
     <div class="">
         <div class="page-title">
             <div class="title_left">
-                <h3>Yazar Yönetimi</h3>
+                <h3>Hukuk Disiplini Yönetimi</h3>
             </div>
             <div class="title_right">
                 <div class="col-md-5 col-sm-5 col-xs-12 form-group pull-right top_search">
@@ -27,63 +27,32 @@
             <div class="col-md-12 col-sm-12 col-xs-12">
                 <div class="x_panel">
                     <div class="x_title">
-                        <a href="@Url.Action("AddContributor")" class="btn btn-success" role="button">Yeni bir yazar ekleyin</a>
+                        <a href="@Url.Action("AddPracticeArea")" class="btn btn-success" role="button">Yeni bir disiplin ekleyin</a>
                     </div>
                     <div class="x_content">
                         <div class="table-responsive">
                             <table class="table table-striped projects">
                                 <thead>
                                     <tr>
-                                        <th class="column-title">İsim </th>
-                                        <th class="column-title">Şirket </th>
-                                        <th class="column-title">Ülke </th>
-                                        <th class="column-title">Şehir </th>
+                                        <th class="column-title">Disiplin </th>
+                                        <th class="column-title">Yaratma Tarihi </th>
                                         <th class="column-title no-link last">
                                             <span class="nobr">Action</span>
                                         </th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach (Contributor contributor in Model.FoundContributors)
+                                    @foreach (PracticeArea area in Model.FoundPracticeAreas)
                                     {
-                                        Affiliate affiliate = Model.RelatedAffiliates.FirstOrDefault(x => x.ID == contributor.AffiliateID);
-                                        if (affiliate == null)
-                                        {
-                                            affiliate = new Affiliate("-1", "Şirket Bulunamadı");
-                                        }
-
-                                        Country country = Model.Countries.FirstOrDefault(x => x.ID == contributor.CountryID);
-                                        if (country == null)
-                                        {
-                                            country = new Country("-1", "Ülke Bulunamadı");
-                                        }
-
-                                        City city = Model.Cities.FirstOrDefault(x => x.ID == contributor.CityID);
-                                        if (city == null)
-                                        {
-                                            city = new City("-1", "-1", "Şehir Bulunamadı");
-                                        }
                                         <tr>
                                             <td>
-                                                <ul class="list-inline">
-                                                    <li>
-                                                        <img src="@contributor.ImageURL" class="avatar" alt="Avatar">
-                                                        <small style="line-height:35px;padding-left:5px;">@contributor.Name</small>
-                                                    </li>
-                                                </ul>
+                                                @area.Name
                                             </td>
                                             <td>
-                                                @affiliate.Name
+                                                @area.CreationDate.ToShortDateString()
                                             </td>
                                             <td>
-                                                @country.Name
-                                            </td>
-                                            <td>
-                                                @city.Name
-                                            </td>
-                                            <td>
-                                                <a href="@contributor.ID.GetWebContributorUrl()" class="btn btn-primary btn-xs"><i class="fa fa-folder"></i> View </a>
-                                                <a href="@Url.Action("AddContributor", "Home", new { id = contributor.ID })" class="btn btn-info btn-xs"><i class="fa fa-pencil"></i> Edit </a>
+                                                <a href="@Url.Action("AddPracticeArea", "Home", new { id = area.ID })" class="btn btn-info btn-xs"><i class="fa fa-pencil"></i> Edit </a>
                                                 <a href="#" class="btn btn-danger btn-xs"><i class="fa fa-trash-o"></i> Delete </a>
                                             </td>
                                         </tr>
@@ -95,13 +64,13 @@
                                 <ul class="pagination pg-darkgrey">
                                     @{
                                         List<int> range = new List<int>();
-                                        int current = Model.FoundContributors.PageIndex;
+                                        int current = Model.FoundPracticeAreas.PageIndex;
                                         int delta = 3;
                                         int left = current - delta;
                                         int right = current + delta + 1;
-                                        int last = Model.FoundContributors.TotalPages;
+                                        int last = Model.FoundPracticeAreas.TotalPages;
 
-                                        @for (int i = 1; i <= Model.FoundContributors.TotalPages; i++)
+                                        @for (int i = 1; i <= Model.FoundPracticeAreas.TotalPages; i++)
                                         {
                                             if (i == 1 || i == last || i >= left && i < right)
                                             {
@@ -116,14 +85,14 @@
                                             {
                                                 if (i - l == 2)
                                                 {
-                                                    <li class="page-item @(i==current?"active":"")"><a href="@Url.Action("Contributors", "Home", new { page=l+1 })" class="page-link">@(l + 1)</a></li>
+                                                    <li class="page-item @(i==current?"active":"")"><a href="@Url.Action("PracticeAreas", "Home", new { page=l+1 })" class="page-link">@(l + 1)</a></li>
                                                 }
                                                 else if (i - l != 1)
                                                 {
                                                     <li class="page-item"><a class="page-link">...</a></li>
                                                 }
                                             }
-                                            @Html.Raw("<li class=\"page-item " + (i == current ? "active" : "") + "\"><a  href=\"" + @Url.Action("Contributors", "Home", new { page = i }) + "\" class=\"page-link\">" + i + "</a></li>")
+                                            @Html.Raw("<li class=\"page-item " + (i == current ? "active" : "") + "\"><a  href=\"" + @Url.Action("PracticeAreas", "Home", new { page = i }) + "\" class=\"page-link\">" + i + "</a></li>")
 
                                             l = i;
                                         }
