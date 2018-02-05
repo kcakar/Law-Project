@@ -1,0 +1,72 @@
+﻿@using Law.Web.Models
+@{
+    ViewData["Title"] = "Contributor";
+}
+@model ContributorViewModel
+
+<div class="Page ProfilePage">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="PageView" style="padding:0">
+
+                    <div class="row">
+                        <div class="col-md-4 contributor-container" style="padding-right:0;">
+                            <div class='contributor-profile' style="background-color:#efe3e1">
+                                <div class="contributor-photo">
+                                    <img src="@Model.ContributorImageURL.GetImageUrl()" alt="" class="img-responsive">
+                                </div>
+                                <div class="contributor-data">
+                                    <h1 style="padding:0; margin:0">@Model.ContributorName</h1>
+                                    <div class="contributor-title">@Model.Affiliate</div>
+                                    
+                                    <h4>Education</h4>
+                                    @Html.Raw(Model.Education)
+                                    <h4>Languages</h4>
+                                    @Html.Raw(Model.Language)
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-8 contributor-detail-container" style="padding-left:0">
+                            <dv class="tabs">
+                                <a href="javascript:;" data-rel="biography" class="active">Contributor <br class="show-small" />Biography</a>
+                                <a href="javascript:;" data-rel="articles">Contributor <br class="show-small"/>Articles</a>
+                                <div class="clearfix"></div>
+                            </dv>
+                            <div class="tabs-contents">
+                                <div id="biography" class="tab-content active">
+                                    @Html.Raw(Model.ContributorBio)
+                                </div>
+                                <div id="articles" class="articles tab-content">
+                                    @foreach (ContributorArticleRow article in Model.ContributorArticles)
+                                    {
+                                        <div class='article'>
+                                            <h3><a href='@Url.Action("Article", "Articles", new { id = article.ID })'>@article.Title</a></h3>
+                                            <div class='short-content'>
+                                                @article.BodyPreview
+                                            </div>
+                                            <div class='tools'>
+                                                <div class='pull-left'><i class='fa fa-calendar'></i> @article.CreationDate.ToShortDateString()</div>
+                                                <div class='pull-left'><i class='fa fa-eye'></i>  @article.ViewCount</div>
+                                                <div class='clearfix'></div>
+                                            </div>
+                                        </div>
+
+                                    }
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+    var PH = $(".PageView").height();
+    var CH = $(".contributor-profile").height();
+    if (CH < PH) {
+        $(".contributor-profile").height(PH);
+    }
+</script>

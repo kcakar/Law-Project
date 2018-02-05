@@ -1,0 +1,82 @@
+﻿@using Law.Models
+@using Law.Web.Models
+
+@model ArticleSearchViewModel
+@{
+    ViewData["Title"] = "Turkish Law Blog - Articles";
+}
+
+<div class="Page PracticePage">
+    @Html.Partial("~/Views/Shared/_SearchComponent.cshtml", Model.FilterModel)
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="PageView posts">
+
+                    <h1>Civil Law Articles</h1>
+                    <div class='row'>
+                        @foreach (Article article in Model.FoundArticles)
+                        {
+                            Contributor contributor = Model.RelatedContributors.FirstOrDefault(x => x.ID == article.ContributorID);
+                            Affiliate affiliate = Model.RelatedAffiliates.FirstOrDefault(x => x.ID == article.AffiliateID);
+
+                            if (contributor != null && affiliate != null)
+                            {
+                                <div class='col-md-4 col-sm-6'>
+                                    <div class='post'>
+                                        <div class='title'><a href="@Url.Action("Article", "Articles", new { id = article.ID })">@(article.Title.Length > 65 ? article.Title.Substring(0, 65) + "..." : article.Title )</a></div>
+                                        <div class='text'>@article.BodyPreview</div>
+                                        <div class='author'>
+                                            <div class='pull-left'><img src='@contributor.ImageURL.GetImageUrl()' alt=''></div>
+                                            <div class='pull-left'><a href='@Url.Action("Contributor", "Contributors", new { id = contributor.ID })'><b>@contributor.Name</b></a><span>@affiliate.Name</span></div>
+                                            <div class='clearfix'></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            }
+                        }
+                    </div>
+                    <nav>
+                        <ul class="pagination pg-darkgrey">
+                            @{
+                                List<int> range = new List<int>();
+                                int current = Model.FoundArticles.PageIndex;
+                                int delta = 3;
+                                int left = current - delta;
+                                int right = current + delta + 1;
+                                int last = Model.FoundArticles.TotalPages;
+
+                                @for (int i = 1; i <= Model.FoundArticles.TotalPages; i++)
+                                {
+                                    if (i == 1 || i == last || i >= left && i < right)
+                                    {
+                                        range.Add(i);
+                                    }
+                                }
+
+                                int l = -1;
+                                foreach (int i in range)
+                                {
+                                    if(l>-1)
+                                    {
+                                        if (i - l == 2)
+                                        {
+                                            <li class="page-item @(i==current?"active":"")"><a href="@Url.Action("Index", "Articles", new { page=l+1 })" class="page-link">@(l+1)</a></li>
+                                        }
+                                        else if (i - l != 1)
+                                        {
+                                            <li class="page-item"><a class="page-link">...</a></li>
+                                        }
+                                    }
+                                    @Html.Raw("<li class=\"page-item " + (i == current ? "active" : "") + "\"><a  href=\"" + @Url.Action("Index", "Articles", new { page = i }) + "\" class=\"page-link\">"+i+"</a></li>")
+                                    
+                                    l = i;
+                                }
+                            }
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

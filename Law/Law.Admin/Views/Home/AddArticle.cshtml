@@ -195,6 +195,17 @@
             paragarphs.append(templateToAdd);
 
             createDropzone($(".paragraph-" + count + " .dropzone"));
+
+            new Quill(".paragraphContent" + count, {
+                modules: {
+                    toolbar: [
+                        ['bold', 'italic'],
+                        ['link', 'blockquote'],
+                        [{ list: 'ordered' }, { list: 'bullet' }]
+                    ]
+                },
+                theme: 'snow'
+            });
         });
 
         function removePiece(_this) {
@@ -243,7 +254,7 @@
 
         $(function () {
 
-            $(".pContent").each(function () {
+            $(".paragraph:not(.hidden)").find(".pContent").each(function () {
                 new Quill(this, {
                     modules: {
                         toolbar: [
@@ -252,7 +263,6 @@
                             [{ list: 'ordered' }, { list: 'bullet' }]
                         ]
                     },
-                    placeholder: 'İçeriği giriniz',
                     theme: 'snow'
                 });
             })
