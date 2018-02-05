@@ -25,6 +25,11 @@ $(function () {
         allowClear: true
     });
 
+    $(".select2.affiliates").select2({
+        placeholder: 'Select an affiliate',
+        allowClear: true
+    });
+
     $(".select2.countries").on("change", function () {
         if ($(this).val() == "") {
             $(".select2.cities").attr("disabled", true);

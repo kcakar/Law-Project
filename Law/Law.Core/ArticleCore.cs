@@ -8,6 +8,21 @@ namespace Law.Core
 {
     public static class ArticleCore
     {
+        public static int GetArticleCount()
+        {
+            return Tester.TestArticles.Count;
+        }
+
+        public static int GetArticleViewSum()
+        {
+            return Tester.TestArticles.Sum(x=>x.ViewCount);
+        }
+
+        public static List<Article> GetMostReadArticles(int amount)
+        {
+            return Tester.TestArticles.OrderByDescending(x => x.ViewCount).Take(amount).ToList();
+        }
+
         public static List<Article> GetMostRecentArticles(int amount)
         {
             return Tester.TestArticles.OrderByDescending(x => x.CreationDate).Take(amount).ToList();
@@ -28,13 +43,13 @@ namespace Law.Core
             return Tester.TestArticles.Where(x => x.ContributorID == id).Skip(skip).Take(amount).ToList();
         }
 
-        public static PaginatedList<Article> GetFilteredArticles(string keyword, string practice, string contributor, string country, string city, string page = "1")
+        public static PaginatedList<Article> GetFilteredArticles(string affiliate, string practice, string contributor, string country, string city, string page = "1")
         {
             var qry = Tester.TestArticles.OrderByDescending(x=>x.CreationDate).AsQueryable();
 
-            if (!string.IsNullOrWhiteSpace(keyword))
+            if (!string.IsNullOrWhiteSpace(affiliate))
             {
-                qry = qry.Where(x => x.Title.ToLower().Contains(keyword.ToLower()) || x.Tags.ToLower().Contains(keyword.ToLower()));
+                qry = qry.Where(x => x.AffiliateID==affiliate);
             }
 
             if (!string.IsNullOrWhiteSpace(contributor))

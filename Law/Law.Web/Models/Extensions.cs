@@ -9,7 +9,7 @@ namespace Law.Web.Models
     {
         public static string GetImageUrl(this string URL)
         {
-            return "http://localhost:3727/" + URL;
+            return "http://lawadminkcakar.azurewebsites.net/" + URL;
         }
     }
 }

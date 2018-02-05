@@ -8,6 +8,11 @@ namespace Law.Core
 
     public static class AffiliateCore
     {
+        public static int GetAffiliateCount()
+        {
+            return Tester.TestAffiliates.Count;
+        }
+
         public static List<Affiliate> GetAffiliatesById(List<string> ids)
         {
             return Tester.TestAffiliates.Where(x => ids.Contains(x.ID)).ToList();
@@ -17,7 +22,5 @@ namespace Law.Core
         {
             return Tester.TestAffiliates.FirstOrDefault(x => x.ID == id);
         }
-
-
     }
 }

@@ -201,8 +201,8 @@ section.slider {
     padding-top: 30px;
     padding-bottom: 30px;
     background-color: #f5f6f6;
-    padding-left:40px;
-    padding-right:40px;
+    padding-left: 40px;
+    padding-right: 40px;
 }
 
 #slider .item {
@@ -934,13 +934,13 @@ h2 {
     width: 200px !important;
 }
 
-.owl-item{
-    overflow:hidden;
-}
-
-.owl-item .item .title{
+.owl-item {
     overflow: hidden;
 }
+
+    .owl-item .item .title {
+        overflow: hidden;
+    }
 
     .owl-item .item .caption {
         height: 50px;
@@ -961,16 +961,17 @@ h2 {
     overflow: hidden
 }
 
-.author div:nth-child(1){
-    padding:0;
+.author div:nth-child(1) {
+    padding: 0;
 }
 
 
 @media only screen and (max-width : 1200px) {
-    
+
     .top .social {
         margin-top: 10px;
     }
+
     .select2-container {
         width: 150px !important;
     }
@@ -978,9 +979,10 @@ h2 {
     #slider .item .title .tools .pull-left {
         margin-right: 10px;
     }
-    #slider .item .title .tools .pull-left:nth-child(3) {
-        margin-right: 0px;
-    }
+
+        #slider .item .title .tools .pull-left:nth-child(3) {
+            margin-right: 0px;
+        }
 
     #slider .item .title {
         padding: 20px 15px 10px 15px;
@@ -1006,32 +1008,32 @@ h2 {
         height: auto;
     }
 
-    .logo-container{
-        position:absolute;
-        left:0px;
-    } 
-    
+    .logo-container {
+        position: absolute;
+        left: 0px;
+    }
+
     .newsletter-form {
         display: none;
     }
 
-    .menu-row{
-        position:relative;
-    } 
-
-    .mobile-menu{
-        position:absolute;
-        right:27px;
-        top:10px;
+    .menu-row {
+        position: relative;
     }
-    
+
+    .mobile-menu {
+        position: absolute;
+        right: 27px;
+        top: 10px;
+    }
+
     .desktop-container {
         display: none;
     }
 
     .social-container {
         float: right;
-        top:20px;
+        top: 20px;
     }
 
 
@@ -1039,8 +1041,8 @@ h2 {
         display: block;
     }
 
-    .menu.desktop{
-        display:none;
+    .menu.desktop {
+        display: none;
     }
 
     .search-form .pull-left, .search-form .pull-right {
@@ -1051,46 +1053,47 @@ h2 {
         .search-form .pull-right input {
             width: 100%;
         }
+
     .search-form button {
         width: 100%;
     }
+
     .select2-container {
         width: 100% !important;
     }
 
-    .PageView .row{
-        margin:0;
+    .PageView .row {
+        margin: 0;
     }
 
-    .contributor-container{
-        padding-left:0;
+    .contributor-container {
+        padding-left: 0;
     }
 
-    .contributor-photo img{
-        margin-left:auto;
-        margin-right:auto;
+    .contributor-photo img {
+        margin-left: auto;
+        margin-right: auto;
     }
 
-    .contributor-detail-container{
-        padding:0;
+    .contributor-detail-container {
+        padding: 0;
     }
 
-    .post-content{
-        padding-right:25px;
+    .post-content {
+        padding-right: 25px;
     }
 
-    .BlogViewRight{
-        height:initial;
+    .BlogViewRight {
+        height: initial;
     }
 
-    footer .container .row div:nth-child(2){
-        margin-top:10px;
+    footer .container .row div:nth-child(2) {
+        margin-top: 10px;
     }
 
     footer .container .row div:nth-child(3) {
         margin-top: 10px;
     }
-
 }
 
 div.adress {
@@ -1100,26 +1103,25 @@ div.adress {
 }
 
 .map iframe {
-    margin-top:10px;
+    margin-top: 10px;
     width: 100%;
 }
 
 @media only screen and (max-width : 700px) {
     .BlogView img {
-        width:100%;
+        width: 100%;
     }
-
-
 }
 
-.show-small{
-    display:none;
+.show-small {
+    display: none;
 }
 
 @media only screen and (max-width : 500px) {
-    .BlogViewLeft.post-content{
-        text-align:left;
+    .BlogViewLeft.post-content {
+        text-align: left;
     }
+
     .show-small {
         display: block;
     }
@@ -1132,4 +1134,39 @@ div.adress {
 
 .posts .post .title {
     height: initial;
+}
+
+
+.legal h1 {
+    text-align: center;
+    font-size: 48px;
+    line-height: 1.04167;
+    font-weight: 500;
+    letter-spacing: .006em;
+    font-family: "SF Pro Display","SF Pro Icons","Helvetica Neue","Helvetica","Arial",sans-serif;
+}
+
+.legal {
+    font-size: 17px;
+}
+
+    .legal li {
+        margin-bottom: 15px;
+    }
+
+    .legal .lContent {
+        max-width: 750px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+@media only screen and (max-width : 575px) {
+    .legal {
+        padding-left: 15px;
+        padding-right: 15px;
+    }
+
+        .legal h1 {
+            font-size: 35px;
+        }
 }

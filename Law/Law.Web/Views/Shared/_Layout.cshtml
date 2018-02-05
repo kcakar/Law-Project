@@ -34,15 +34,16 @@
                 <div class="row menu-row">
                     <div class="col-md-2 col-sm-1 logo-container">
                         <div class="logo">
-                            <a href="/"><img src="~/img/logo.png" alt=""></a>
+                            <a href="@Url.Action("Index","Home")"><img src="~/img/logo.png" alt=""></a>
                         </div>
                     </div>
                     <div class="col-md-6 col-sm-7 desktop-container">
                         <div class="menu desktop">
-                            <a href="/"><i class="fa fa-home"></i></a>
+                            <a href="@Url.Action("Index","Home")"><i class="fa fa-home"></i></a>
                             <a href="@Url.Action("Index","Articles")">Articles</a>
                             <a href="@Url.Action("Index","Contributors")">Contributors</a>
-                            <a href="/contact">Contact</a>
+                            <a href="@Url.Action("Contact","Information")">Contact</a>
+                            <a href="@Url.Action("AboutUs","Information")">About Us</a>
                         </div>
 
 
@@ -70,10 +71,11 @@
 
                         <div id="mySidenav" class="sidenav">
                             <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-                            <a href="/"><i class="fa fa-home"></i></a>
+                            <a href="@Url.Action("Index","Home")"><i class="fa fa-home"></i></a>
                             <a href="@Url.Action("Index","Articles")">Articles</a>
                             <a href="@Url.Action("Index","Contributors")">Contributors</a>
-                            <a href="/contact">Contact</a>
+                            <a href="@Url.Action("Contact","Information")">Contact</a>
+                            <a href="@Url.Action("AboutUs","Information")">About Us</a>
                         </div>
                     </div>
                 </div>
@@ -93,13 +95,14 @@
                 </div>
                 <div class="col-md-3">
                     <b>Legal Policy</b><br />
-                    <a href="/content/1/user-agreement-and-disclaimer">User Agreement and Disclaimer</a><br />
-                    <a href="/content/2/editorial-guidlines">Editorial Guidelines</a><br />
-                    <a href="/content/3/editorial-policy">Editorial Policy</a><br />
+                    <a href="@Url.Action("UserAgreementAndDisclaimer","Information")">User Agreement and Disclaimer</a><br />
+                    <a href="@Url.Action("EditorialGuidelines","Information")">Editorial Guidelines</a><br />
+                    <a href="@Url.Action("EditorialPolicy","Information")">Editorial Policy</a><br />
                 </div>
                 <div class="col-md-3">
                     <b>Contact</b><br />
-                    <a href="/contact">General Information</a><br />
+                    <a href="@Url.Action("Contact","Information")">General Information</a><br />
+                    <a href="@Url.Action("AboutUs","Information")">About Us</a>
                 </div>
             </div>
         </div>

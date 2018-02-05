@@ -21,7 +21,7 @@ namespace Law.Web.Controllers
                 if (!_cache.TryGetValue(CacheKeys.FilterModel, out _filterModel))
                 {
                     // Key not in cache, so get data.
-                    _filterModel = new FilterModel(Common.GetCountries(), Common.GetCities(), Common.GetPractices());
+                    _filterModel = new FilterModel(Common.GetAffiliates() ,Common.GetCountries(), Common.GetCities(), Common.GetPractices());
 
                     // Set cache options.
                     var cacheEntryOptions = new MemoryCacheEntryOptions()

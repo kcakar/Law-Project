@@ -7,7 +7,7 @@
 
             <form asp-controller="Articles" asp-action="Index">
                 <div class="pull-left">
-                    <select name="practice" data-placeholder="Choose a Practice..." class="select2 practices" tabindex="2" >
+                    <select name="practice" data-placeholder="Choose a Practice..." class="select2 practices" tabindex="1">
                         <option></option>
                         @foreach (PracticeArea area in Model.Practices)
                         {
@@ -23,7 +23,7 @@
                     </select>
                 </div>
                 <div class="pull-left">
-                    <select name="contributor" data-placeholder="Choose a Contributor..." class="select2 contributors" tabindex="2" >
+                    <select name="contributor" data-placeholder="Choose a Contributor..." class="select2 contributors" tabindex="2">
                         <option></option>
                         @foreach (Contributor contributor in Model.Contributors)
                         {
@@ -39,7 +39,7 @@
                     </select>
                 </div>
                 <div class="pull-left">
-                    <select name="country" data-placeholder="Choose a Country..." class="select2 countries" tabindex="2" >
+                    <select name="country" data-placeholder="Choose a Country..." class="select2 countries" tabindex="3">
                         <option></option>
                         @foreach (Country country in Model.Countries)
                         {
@@ -55,7 +55,23 @@
                     </select>
                 </div>
                 <div class="pull-left">
-                    <select name="city" data-placeholder="Select a City..." class="select2 cities" @(string.IsNullOrEmpty(Model.selectedCountry)?"disabled":"") tabindex="2" >
+                    <select name="affiliate" data-placeholder="Select an Affiliate..." class="select2 affiliates" tabindex="5">
+                        <option></option>
+                        @foreach (Affiliate affiliate in Model.Affiliates)
+                        {
+                            if (!string.IsNullOrEmpty(Model.selectedAffiliate) && affiliate.ID == Model.selectedAffiliate)
+                            {
+                                <option selected value="@affiliate.ID">@affiliate.Name</option>
+                            }
+                            else
+                            {
+                                <option value="@affiliate.ID">@affiliate.Name</option>
+                            }
+                        }
+                    </select>
+                </div>
+                <div class="pull-left">
+                    <select name="city" data-placeholder="Select a City..." class="select2 cities" @(string.IsNullOrEmpty(Model.selectedCountry) ? "disabled" : "") tabindex="4">
                         <option></option>
                         @foreach (City city in Model.Cities)
                         {
@@ -70,8 +86,8 @@
                         }
                     </select>
                 </div>
+
                 <div class="pull-right">
-                    <div class="pull-left"><input type="text" name="keyword" id="q" placeholder="Keywords..." value="@(!string.IsNullOrWhiteSpace(Model.selectedKeyword)?Model.selectedKeyword:"")"></div>
                     <div class="pull-right"><button title="Search Now"><i class="fa fa-search"></i></button></div>
                     <div class="clearfix"></div>
                 </div>

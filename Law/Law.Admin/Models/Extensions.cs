@@ -7,10 +7,14 @@ namespace Law.Admin.Models
 {
     public static class Extensions
     {
+        public static string siteName = "http://lawwebkcakar.azurewebsites.net";
         public static string GetWebArticleUrl(this string URL)
         {
-            return "http://localhost:3691/Articles/Article/" + URL;
+            return siteName + "/Articles/Article/" + URL;
         }
-
+        public static string GetWebContributorUrl(this string URL)
+        {
+            return siteName+"/Contributors/Contributor/" + URL;
+        }
     }
 }

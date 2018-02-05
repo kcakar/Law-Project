@@ -1,9 +1,9 @@
 ﻿@using Law.Models
 @{
-    ViewData["Title"] = "Articles";
+    ViewData["Title"] = "Contributors";
 }
 
-@model ArticlesViewModel
+@model ContributorsViewModel
 
 <div class="right_col" role="main">
     <div class="">
@@ -34,9 +34,8 @@
                             <table class="table table-striped projects">
                                 <thead>
                                     <tr>
-                                        <th class="column-title">Başlık </th>
-                                        <th class="column-title">Yazar </th>
-                                        <th class="column-title">Alan</th>
+                                        <th class="column-title">İsim </th>
+                                        <th class="column-title">Şirket </th>
                                         <th class="column-title">Ülke </th>
                                         <th class="column-title">Şehir </th>
                                         <th class="column-title no-link last">
@@ -45,37 +44,26 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach (Article article in Model.FoundArticles)
+                                    @foreach (Contributor contributor in Model.FoundContributors)
                                     {
-                                        Contributor contributor = Model.RelatedContributors.FirstOrDefault(x => x.ID == article.ContributorID);
-                                        if (contributor == null)
+                                        Affiliate affiliate = Model.RelatedAffiliates.FirstOrDefault(x => x.ID == contributor.AffiliateID);
+                                        if (affiliate == null)
                                         {
-                                            contributor = new Contributor("-1", "Yazar Bulunamadı");
+                                            affiliate = new Affiliate("-1", "Şirket Bulunamadı");
                                         }
 
-                                        PracticeArea practiceArea = Model.RelatedAreas.FirstOrDefault(x => x.ID == article.PracticeAreaID);
-                                        if (practiceArea == null)
-                                        {
-                                            practiceArea = new PracticeArea("-1", "Alan Bulunamadı");
-                                        }
-
-                                        Country country = Model.Countries.FirstOrDefault(x => x.ID == article.CountryID);
+                                        Country country = Model.Countries.FirstOrDefault(x => x.ID == contributor.CountryID);
                                         if (country == null)
                                         {
                                             country = new Country("-1", "Ülke Bulunamadı");
                                         }
 
-                                        City city = Model.Cities.FirstOrDefault(x => x.ID == article.CityID);
+                                        City city = Model.Cities.FirstOrDefault(x => x.ID == contributor.CityID);
                                         if (city == null)
                                         {
                                             city = new City("-1", "-1", "Şehir Bulunamadı");
                                         }
                                         <tr>
-                                            <td>
-                                                <a>@article.Title</a>
-                                                <br />
-                                                <small>@article.CreationDate.ToShortDateString()</small>
-                                            </td>
                                             <td>
                                                 <ul class="list-inline">
                                                     <li>
@@ -85,7 +73,7 @@
                                                 </ul>
                                             </td>
                                             <td>
-                                                @practiceArea.Name
+                                                @affiliate.Name
                                             </td>
                                             <td>
                                                 @country.Name
@@ -94,8 +82,8 @@
                                                 @city.Name
                                             </td>
                                             <td>
-                                                <a href="@article.ID.GetWebArticleUrl()" class="btn btn-primary btn-xs"><i class="fa fa-folder"></i> View </a>
-                                                <a href="@Url.Action("AddArticle", "Home", new { id = article.ID })" class="btn btn-info btn-xs"><i class="fa fa-pencil"></i> Edit </a>
+                                                <a href="@contributor.ID.GetWebContributorUrl()" class="btn btn-primary btn-xs"><i class="fa fa-folder"></i> View </a>
+                                                <a href="@Url.Action("AddContributor", "Home", new { id = contributor.ID })" class="btn btn-info btn-xs"><i class="fa fa-pencil"></i> Edit </a>
                                                 <a href="#" class="btn btn-danger btn-xs"><i class="fa fa-trash-o"></i> Delete </a>
                                             </td>
                                         </tr>
@@ -107,13 +95,13 @@
                                 <ul class="pagination pg-darkgrey">
                                     @{
                                         List<int> range = new List<int>();
-                                        int current = Model.FoundArticles.PageIndex;
+                                        int current = Model.FoundContributors.PageIndex;
                                         int delta = 3;
                                         int left = current - delta;
                                         int right = current + delta + 1;
-                                        int last = Model.FoundArticles.TotalPages;
+                                        int last = Model.FoundContributors.TotalPages;
 
-                                        @for (int i = 1; i <= Model.FoundArticles.TotalPages; i++)
+                                        @for (int i = 1; i <= Model.FoundContributors.TotalPages; i++)
                                         {
                                             if (i == 1 || i == last || i >= left && i < right)
                                             {
@@ -128,14 +116,14 @@
                                             {
                                                 if (i - l == 2)
                                                 {
-                                                    <li class="page-item @(i==current?"active":"")"><a href="@Url.Action("Articles", "Home", new { page=l+1 })" class="page-link">@(l + 1)</a></li>
+                                                    <li class="page-item @(i==current?"active":"")"><a href="@Url.Action("Contributors", "Home", new { page=l+1 })" class="page-link">@(l + 1)</a></li>
                                                 }
                                                 else if (i - l != 1)
                                                 {
                                                     <li class="page-item"><a class="page-link">...</a></li>
                                                 }
                                             }
-                                            @Html.Raw("<li class=\"page-item " + (i == current ? "active" : "")+"\"><a  href=\"" + @Url.Action("Articles", "Home", new { page = i }) + "\" class=\"page-link\">" + i + "</a></li>")
+                                            @Html.Raw("<li class=\"page-item " + (i == current ? "active" : "") + "\"><a  href=\"" + @Url.Action("Contributors", "Home", new { page = i }) + "\" class=\"page-link\">" + i + "</a></li>")
 
                                             l = i;
                                         }

@@ -17,10 +17,10 @@ namespace Law.Web.Controllers
 
         }
 
-        public IActionResult Contributors(string search = "")
+        public IActionResult Contributors(string q = "")
         {
             List<SelectRow> options = new List<SelectRow>();
-            foreach (Contributor contributor in ContributorCore.GetContributorsByName(search))
+            foreach (Contributor contributor in ContributorCore.GetContributorsByName(q))
             {
                 options.Add(new SelectRow(contributor.ID, contributor.Name));
 
@@ -28,7 +28,7 @@ namespace Law.Web.Controllers
             return Json(new { results = options});
         }
 
-        public IActionResult Cities(string search = "",string country="")
+        public IActionResult Cities(string q = "",string country="")
         {
             List<SelectRow> options = new List<SelectRow>();
 
@@ -37,7 +37,7 @@ namespace Law.Web.Controllers
                 country = "";
             }
 
-            foreach (City city in FilterModel.Cities.Where(x=>x.CountryID== country&&x.Name.ToLower().Contains(search.ToLower())))
+            foreach (City city in FilterModel.Cities.Where(x=>x.CountryID== country&&x.Name.ToLower().Contains(q.ToLower())))
             {
                 options.Add(new SelectRow(city.ID, city.Name));
             }

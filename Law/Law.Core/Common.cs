@@ -43,5 +43,10 @@ namespace Law.Core
         {
             return Tester.TestPracticeAreas;
         }
+
+        public static List<Affiliate> GetAffiliates()
+        {
+            return Tester.TestAffiliates;
+        }
     }
 }
