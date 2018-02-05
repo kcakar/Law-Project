@@ -14,7 +14,7 @@ namespace Law.Admin.Models
         public List<PracticeArea> RelatedAreas { get; set; }
         public List<City> Cities { get; set; }
         public List<Country> Countries { get; set; }
-        public string keyword { get; set; }
+        public string Keyword { get; set; }
 
 
         public ArticlesViewModel( string keyword, string practice, string contributor, string country, string city, string page,List<City> cities,List<Country> countries)
@@ -24,7 +24,7 @@ namespace Law.Admin.Models
             this.RelatedAreas =  PracticeAreaCore.GetPracticeAreasById(FoundArticles.Select(x => x.PracticeAreaID).ToList());
             this.Cities = cities;
             this.Countries = countries;
-            this.keyword = keyword;
+            this.Keyword = keyword;
         }
     }
 }

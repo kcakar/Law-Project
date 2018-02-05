@@ -28,5 +28,18 @@ namespace Law.Core
             }
             return Tester.TestPracticeAreas.Where(x => x.Name.ToLower().Contains(name.ToLower())).ToList();
         }
+
+        public static PaginatedList<PracticeArea> GetFilteredPracticeAreas(string keyword,string page = "1")
+        {
+            var qry = Tester.TestPracticeAreas.OrderByDescending(x => x.CreationDate).AsQueryable();
+
+            if (!int.TryParse(page, out int pageNumber))
+            {
+                pageNumber = 1;
+            }
+
+            return PaginatedList<PracticeArea>.Create(qry, pageNumber, Common.PageSize);
+        }
+
     }
 }
