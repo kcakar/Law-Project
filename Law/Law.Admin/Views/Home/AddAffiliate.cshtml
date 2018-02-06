@@ -1,0 +1,104 @@
+﻿@using Law.Models;
+@{
+    ViewData["Title"] = "Şirket Yönetimi";
+}
+
+@model AffiliateAddEditModel
+
+<div class="right_col" role="main">
+    <div class="">
+        <div class="page-title">
+            <div class="title_left">
+                <h3>Şirket Yönetimi</h3>
+            </div>
+            <div class="title_right">
+                <div class="col-md-5 col-sm-5 col-xs-12 form-group pull-right top_search">
+                    <div class="input-group">
+                        <input type="text" class="form-control" placeholder="Search for...">
+                        <span class="input-group-btn">
+                            <button class="btn btn-default" type="button">Go!</button>
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="clearfix"></div>
+        <div class="row">
+            <div class="col-md-12 col-sm-12 col-xs-12">
+                <div class="x_panel">
+                    <div class="x_content">
+                        <form class="first-section form-horizontal form-label-left" novalidate>
+                            <span class="section">Genel Bilgiler</span>
+                            <p>Buradan sisteme yeni bir şiket ekleyebilir veya varolan bir şirketi düzenleyebilirsiniz.</p>
+                            <div class="item form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12" >
+                                    Şirket İsmi<span class="required">*</span>
+                                </label>
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                    <input id="name" name="name" type="text" required="required" placeholder="Şirket ismi giriniz" class="form-control col-md-7 col-xs-12 name" value="@Model.Name">
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-md-6 col-md-offset-3">
+                            <button id="send" type="submit" class="btn btn-success">Şirketi kaydet</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+@section Scripts {
+    <script>
+        function checkInput() {
+            let message = "";
+            $(".bad").removeClass("bad");
+            if (!$(".name").val()) {
+                message += "Lütfen bir şirket ismi giriniz";
+                $(".name").closest("div").addClass("bad");
+            }
+
+            if (message) {
+                $.snackbar({ content: message, htmlAllowed: true});
+                return false;
+            }
+            else {
+                return true;
+            }
+        }
+
+        $(function () {
+
+            $("#send").click(function () {
+
+                if (!checkInput()) {
+                    return;
+                }
+
+                let affiliateModel = {
+                    ID:"@Model.ID",
+                    Name: "",
+                }
+
+                affiliateModel.Name = $(".name").val();
+                $.ajax({
+                    type: "POST",
+                    url: "@Url.Action("AddAffiliatePost")",
+                    data: affiliateModel,
+                    success: function (result) {
+                        $.snackbar({ content:result.message });
+                    },
+                    dataType: "json"
+                });
+            });
+        })
+
+    </script>
+
+
+
+}

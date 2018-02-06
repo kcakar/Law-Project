@@ -91,7 +91,7 @@ namespace Law.Core
                 AffiliateID = contributor.AffiliateID,
                 CityID = contributor.CityID,
                 CountryID = contributor.CountryID,
-                CreationDate = DateTime.Now,
+                CreationDate = model.CreationDate,
                 ID = model.ID
             };
 
