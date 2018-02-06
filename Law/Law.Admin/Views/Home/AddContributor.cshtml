@@ -1,0 +1,222 @@
+﻿@using Law.Models;
+@{
+    ViewData["Title"] = "Yazar Ekle";
+}
+
+@model ContributorAddEditModel
+
+<div class="right_col" role="main">
+    <div>
+        <div class="page-title">
+            <div class="title_left">
+                <h3>Yazar Ekleme</h3>
+            </div>
+            <div class="title_right">
+                <div class="col-md-5 col-sm-5 col-xs-12 form-group pull-right top_search">
+                    <div class="input-group">
+                        <input type="text" class="form-control" placeholder="Search for...">
+                        <span class="input-group-btn">
+                            <button class="btn btn-default" type="button">Go!</button>
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="clearfix"></div>
+        <div class="row">
+            <div class="col-md-12 col-sm-12 col-xs-12">
+                <div class="x_panel">
+                    <div class="x_content">
+                        <form class="first-section form-horizontal form-label-left" novalidate>
+                            <span class="section">Genel Bilgiler</span>
+                            <div class="item form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="name">
+                                    İsim <span class="required">*</span>
+                                </label>
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                    <input id="name" name="name" class="form-control col-md-7 col-xs-12" required="required" type="text" value="@Model.Name">
+                                </div>
+                            </div>
+                            <div class="item form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="name">
+                                    Ülke <span class="required">*</span>
+                                </label>
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                    <select name="country" data-placeholder="Ülke seçin" class="select2 countries" tabindex="2" style="width: 100%;">
+                                        <option></option>
+                                        @if (Model.CountryID != null)
+                                        {
+                                            <option selected value="@Model.CountryID">@Model.CountryID</option>
+                                        }
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="item form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="name">
+                                    Şirket <span class="required">*</span>
+                                </label>
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                    <select name="city" data-placeholder="Şehir seçin..." class="select2 cities" tabindex="2" style="width: 100%">
+                                        <option></option>
+                                        @if (Model.CityID != null)
+                                        {
+                                            <option selected value="@Model.CityID">@Model.CityID</option>
+                                        }
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="item form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="name">
+                                    Şirket <span class="required">*</span>
+                                </label>
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                    <select name="affiliate" data-placeholder="Şirket seçin..." class="select2 affiliates" tabindex="2" style="width: 100%">
+                                        <option></option>
+                                        @if (Model.AffiliateID != null)
+                                        {
+                                            <option selected value="@Model.AffiliateID">@Model.AffiliateID</option>
+                                        }
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="item form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="name">
+                                    Eğitim <span class="required">*</span>
+                                </label>
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                    <div class="quill education form-control col-md-7 col-xs-12">@Html.Raw(Model.Education)</div>
+                                </div>
+                            </div>
+                            <div class="item form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="name">
+                                    Biyografi <span class="required">*</span>
+                                </label>
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                    <div class="quill bio form-control col-md-7 col-xs-12">@Html.Raw(Model.Bio)</div>
+                                </div>
+                            </div>
+                            <div class="item form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="name">
+                                    Resim <span class="required">*</span>
+                                </label>
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                    @if (!string.IsNullOrEmpty(Model.ImageURL))
+                                    {
+                                        <img src="@Model.ImageURL" width="200" data-image-url="@Model.ImageURL" />
+                                    }
+                                    else
+                                    {
+                                        <form action="@Url.Action("UploadImage")"
+                                              class="dropzone"></form>
+                                    }
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+Dropzone.autoDiscover = false;
+
+function createDropzone(element) {
+    $(element).dropzone({
+        addRemoveLinks: true,
+        maxFiles: 1,
+        url: "@Url.Action("UploadImage")",
+        complete: function () {
+            var args = Array.prototype.slice.call(arguments);
+            var response = JSON.parse(args[0].xhr.response);
+
+            if (response.success) {
+                console.log(response.message)
+                console.log(this)
+                $(this.element).attr("data-image-url", response.url)
+            }
+            else {
+                console.log(response.message)
+            }
+        }
+    })
+};
+
+function checkInput() {
+    let message = "";
+    $(".bad").removeClass("bad");
+    if (!$(".contributors").val()) {
+        message += "Lütfen bir yazar seçiniz";
+        $(".contributors").closest("div").addClass("bad");
+    }
+
+    if (!$("#articleTitle").val()) {
+        if (message.length > 0) {
+            message += "<br>";
+        }
+        message += "Lütfen bir başlık giriniz";
+        $("#articleTitle").closest("div").addClass("bad");
+    }
+
+    if (message) {
+        $.snackbar({ content: message, htmlAllowed: true });
+        return false;
+    }
+    else {
+        return true;
+    }
+}
+
+$(function () {
+
+    $(".quill").each(function () {
+        new Quill(this, {
+            modules: {
+                toolbar: [
+                    ['bold', 'italic'],
+                    ['link', 'blockquote'],
+                    [{ list: 'ordered' }, { list: 'bullet' }]
+                ]
+            },
+            theme: 'snow'
+        });
+    })
+
+    createDropzone($(".dropzone"));
+
+    $("#send").click(function () {
+        if (!checkInput()) {
+            return;
+        }
+
+        let articleModel = {
+            ID: "@Model.ID",
+            title: "",
+            contributorID: "",
+            PracticeAreaID: "",
+            paragraphs: []
+        }
+
+        articleModel.contributorID = $(".contributors").val();
+        articleModel.PracticeAreaID = $(".practices").val();
+        articleModel.title = $("#articleTitle").val();
+        articleModel.tags = $("#tags").val();
+
+        $.ajax({
+            type: "POST",
+            url: "@Url.Action("AddContributorPost")",
+            data: articleModel,
+            success: function (result) {
+                $.snackbar({ content: result.message });
+                if (result.success) {
+                    window.location.href = '@Url.Action("AddContributor", "Home", new { id = Model.ID })';
+                }
+            },
+            dataType: "json"
+        });
+    });
+})
+    </script>
+}

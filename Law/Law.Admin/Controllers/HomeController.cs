@@ -148,18 +148,18 @@ namespace Law.Admin.Controllers
             return View(new ContributorsViewModel(keyword, affiliate, contributor, country, city, page, CacheItems.Cities, CacheItems.Countries));
         }
 
-        //public IActionResult AddContributor(string id)
-        //{
-        //    if (!string.IsNullOrEmpty(id))
-        //    {
-        //        Contributor contributor = ContributorCore.GetContributorsById(id);
-        //        if (contributor != null)
-        //        {
-        //            return View(new AffiliateAddEditModel(contributor));
-        //        }
-        //    }
-        //    return View(new AffiliateAddEditModel());
-        //}
+        public IActionResult AddContributor(string id)
+        {
+            if (!string.IsNullOrEmpty(id))
+            {
+                Contributor contributor = ContributorCore.GetContributorsById(id);
+                if (contributor != null)
+                {
+                    return View(new ContributorAddEditModel(contributor));
+                }
+            }
+            return View(new ContributorAddEditModel());
+        }
 
 
         public IActionResult Affiliates(string keyword = "", string affiliate = "", string contributor = "", string country = "", string city = "", string page = "1")
