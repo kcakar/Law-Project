@@ -46,21 +46,21 @@
                                         <option></option>
                                         @if (Model.CountryID != null)
                                         {
-                                            <option selected value="@Model.CountryID">@Model.CountryID</option>
+                                            <option selected value="@Model.CountryID">@Model.CountryName</option>
                                         }
                                     </select>
                                 </div>
                             </div>
                             <div class="item form-group">
                                 <label class="control-label col-md-3 col-sm-3 col-xs-12" for="name">
-                                    Şirket <span class="required">*</span>
+                                    Şehir <span class="required">*</span>
                                 </label>
                                 <div class="col-md-6 col-sm-6 col-xs-12">
                                     <select name="city" data-placeholder="Şehir seçin..." class="select2 cities" tabindex="2" style="width: 100%">
                                         <option></option>
                                         @if (Model.CityID != null)
                                         {
-                                            <option selected value="@Model.CityID">@Model.CityID</option>
+                                            <option selected value="@Model.CityID">@Model.CityName</option>
                                         }
                                     </select>
                                 </div>
@@ -74,17 +74,17 @@
                                         <option></option>
                                         @if (Model.AffiliateID != null)
                                         {
-                                            <option selected value="@Model.AffiliateID">@Model.AffiliateID</option>
+                                            <option selected value="@Model.AffiliateID">@Model.AffiliateName</option>
                                         }
                                     </select>
                                 </div>
                             </div>
                             <div class="item form-group">
                                 <label class="control-label col-md-3 col-sm-3 col-xs-12" for="name">
-                                    Eğitim <span class="required">*</span>
+                                    E-mail <span class="required">*</span>
                                 </label>
                                 <div class="col-md-6 col-sm-6 col-xs-12">
-                                    <div class="quill education form-control col-md-7 col-xs-12">@Html.Raw(Model.Education)</div>
+                                    <input id="mail" name="mail" class="form-control col-md-7 col-xs-12" required="required" type="text" value="@Model.Email">
                                 </div>
                             </div>
                             <div class="item form-group">
@@ -106,9 +106,15 @@
                                     }
                                     else
                                     {
-                                        <form action="@Url.Action("UploadImage")"
-                                              class="dropzone"></form>
+                                        <div action="@Url.Action("UploadImage")"
+                                             class="dropzone"></div>
                                     }
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <div class="col-md-6 col-md-offset-3">
+                                    <button id="send" type="submit" class="btn btn-success">Kaydet</button>
                                 </div>
                             </div>
                         </form>
@@ -147,16 +153,23 @@ function createDropzone(element) {
 function checkInput() {
     let message = "";
     $(".bad").removeClass("bad");
-    if (!$(".contributors").val()) {
-        message += "Lütfen bir yazar seçiniz";
-        $(".contributors").closest("div").addClass("bad");
+    if (!$("#name").val()) {
+        message = setMessage(message, "Lütfen bir isim giriniz");
+        $("#name").closest("div").addClass("bad");
     }
 
-    if (!$("#articleTitle").val()) {
-        if (message.length > 0) {
-            message += "<br>";
-        }
-        message += "Lütfen bir başlık giriniz";
+    if (!$(".countries").val()) {
+        message = setMessage(message, "Lütfen bir ülke seçiniz");
+        $(".countries").closest("div").addClass("bad");
+    }
+
+    if (!$(".cities").val()) {
+        message = setMessage(message, "Lütfen bir şehir seçiniz");
+        $(".cities").closest("div").addClass("bad");
+    }
+
+   if (!$("[data-image-url]").attr("data-image-url")) {
+        message = setMessage(message, "Lütfen bir resim yükleyinizz");
         $("#articleTitle").closest("div").addClass("bad");
     }
 
@@ -169,7 +182,19 @@ function checkInput() {
     }
 }
 
+function setMessage(message,content) {
+    if (message.length > 0) {
+        message += "<br>";
+    }
+    message += content;
+    return message;
+}
+
 $(function () {
+
+    $("form").submit(function (e) {
+        return false;
+    });
 
     $(".quill").each(function () {
         new Quill(this, {
@@ -183,7 +208,6 @@ $(function () {
             theme: 'snow'
         });
     })
-
     createDropzone($(".dropzone"));
 
     $("#send").click(function () {
@@ -193,16 +217,23 @@ $(function () {
 
         let articleModel = {
             ID: "@Model.ID",
-            title: "",
-            contributorID: "",
-            PracticeAreaID: "",
-            paragraphs: []
+            Name: "",
+            Bio: "",
+            Email: "",
+            CountryID: "",
+            CityID: "",
+            AffiliateID: "",
+            ImageURL: "",
         }
 
-        articleModel.contributorID = $(".contributors").val();
-        articleModel.PracticeAreaID = $(".practices").val();
-        articleModel.title = $("#articleTitle").val();
-        articleModel.tags = $("#tags").val();
+        articleModel.Name = $("#name").val();
+        articleModel.Bio = $(".ql-editor").html();
+        articleModel.Email = $("#mail").val();
+        articleModel.CountryID = $(".countries").val();
+        articleModel.CityID = $(".cities").val();
+        articleModel.AffiliateID = $(".affiliates").val();
+        articleModel.ImageURL = $("[data-image-url]").attr("data-image-url");
+
 
         $.ajax({
             type: "POST",
@@ -210,9 +241,6 @@ $(function () {
             data: articleModel,
             success: function (result) {
                 $.snackbar({ content: result.message });
-                if (result.success) {
-                    window.location.href = '@Url.Action("AddContributor", "Home", new { id = Model.ID })';
-                }
             },
             dataType: "json"
         });

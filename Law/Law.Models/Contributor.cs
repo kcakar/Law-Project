@@ -23,14 +23,12 @@ namespace Law.Models
             CreationDate = DateTime.Now;
             LastPostDate = DateTime.MinValue;
             TotalContributions = 0;
-            this.Education = "";
+            this.Email = "";
             this.Bio = Bio;
-            this.Language = "";
         }
 
         public string Bio { get; set; }
-        public string Education { get; set; }
-        public string Language { get; set; }
+        public string Email { get; set; }
         public string CountryID { get; set; }
         public string CityID { get; set; }
         public string AffiliateID { get; set; }

@@ -19,6 +19,10 @@ namespace Law.Web.Controllers
 
         public IActionResult Contributors(string q = "")
         {
+            if (string.IsNullOrEmpty(q))
+            {
+                q = "";
+            }
             List<SelectRow> options = new List<SelectRow>();
             foreach (Contributor contributor in ContributorCore.GetContributorsByName(q))
             {
@@ -35,6 +39,11 @@ namespace Law.Web.Controllers
             if(string.IsNullOrEmpty(country))
             {
                 country = "";
+            }
+
+            if (string.IsNullOrEmpty(q))
+            {
+                q = "";
             }
 
             foreach (City city in FilterModel.Cities.Where(x=>x.CountryID== country&&x.Name.ToLower().Contains(q.ToLower())))

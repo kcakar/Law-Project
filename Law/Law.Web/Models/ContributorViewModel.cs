@@ -13,8 +13,7 @@ namespace Law.Web.Models
         public string ContributorName { get; set; }
         public string ContributorImageURL { get; set; }
         public string Affiliate { get; set; }
-        public string Education { get; set; }
-        public string Language { get; set; }
+        public string Email { get; set; }
         public List<ContributorArticleRow> ContributorArticles { get; set; }
         public int TotalContributions { get; set; }
 
@@ -23,9 +22,8 @@ namespace Law.Web.Models
             this.ContributorBio = contributor.Bio;
             this.ContributorName = contributor.Name;
             this.Affiliate = AffiliateCore.GetAffiliatesById(contributor.AffiliateID).Name;
-            this.Education = contributor.Education;
-            this.Language = contributor.Language;
             this.ContributorImageURL = contributor.ImageURL;
+            this.Email = contributor.Email;
 
             this.ContributorArticles = new List<ContributorArticleRow>();
             foreach (Article contributorArticle in ArticleCore.GetArticleByContributorId(contributor.ID, 5, 0))

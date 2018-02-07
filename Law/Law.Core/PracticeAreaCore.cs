@@ -2,6 +2,7 @@
 using Law.Test;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 
@@ -45,7 +46,7 @@ namespace Law.Core
         {
             PracticeArea area = new PracticeArea
             {
-                Name = model.Name,
+                Name = model.Name.CapitaliseFirstLetters(),
                 CreationDate = model.CreationDate,
                 ID = model.ID
             };
@@ -63,5 +64,9 @@ namespace Law.Core
             }
         }
 
+        public static int RemovePracticeArea(string id)
+        {
+            return Tester.TestPracticeAreas.RemoveAll(x => x.ID == id);
+        }
     }
 }

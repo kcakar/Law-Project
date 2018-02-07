@@ -12,6 +12,16 @@ $(function () {
         }
     });
 
+    $(".select2.affiliates").select2({
+        placeholder: 'Şirket seçin',
+        allowClear: true,
+        ajax: {
+            url: '/Data/Affiliates',
+            dataType: 'json',
+            cache: true
+        }
+    });
+
     $(".select2.practices").select2({
         placeholder: 'Uzmanlık alanı seçin',
         allowClear: true,
@@ -23,8 +33,13 @@ $(function () {
     });
     
     $(".select2.countries").select2({
-        placeholder: 'Select a country',
-        allowClear: true
+        placeholder: 'Ülke seçin',
+        allowClear: true,
+        ajax: {
+            url: '/Data/Countries',
+            dataType: 'json',
+            cache: true
+        }
     });
 
     $(".select2.countries").on("change", function () {
@@ -38,7 +53,7 @@ $(function () {
     });
 
     let citySelect = $(".select2.cities").select2({
-        placeholder: 'Select a city',
+        placeholder: 'Şehir seçin',
         allowClear: true,
         ajax: {
             url: '/Data/Cities',
@@ -47,7 +62,7 @@ $(function () {
             cache: true,
             data: function (params) {
                 var query = {
-                    search: params.term,
+                    q: params.term,
                     country: $(".select2.countries").val()
                 };
 

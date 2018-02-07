@@ -165,14 +165,14 @@ header {
 }
 
 section.about-us,
-section.latest-authors {
+.latest-authors {
     background-color: #fff;
     padding: 35px 0 45px;
     padding-left: 40px;
     padding-right: 40px;
 }
 
-section.latest-posts {
+.latest-posts {
     background-color: #f5f6f6;
     padding: 30px 0 50px
 }
@@ -197,7 +197,7 @@ section h2 {
 
 /* Section: Slider */
 
-section.slider {
+.slider {
     padding-top: 30px;
     padding-bottom: 30px;
     background-color: #f5f6f6;
@@ -994,9 +994,14 @@ h2 {
 }
 
 @media only screen and (max-width : 1200px) and (min-width : 992px) {
-    .author div:nth-child(1) {
+    .posts .author div:nth-child(1) {
         margin-bottom: 10px;
         width: 100%
+    }
+
+    .posts .author div:nth-child(2) {
+        width: 100%;
+        padding: 0;
     }
 }
 
@@ -1096,7 +1101,7 @@ h2 {
     }
 }
 
-div.adress {
+.adress {
     width: 265px;
     margin: auto;
     margin-bottom: 20px;
@@ -1169,4 +1174,29 @@ div.adress {
         .legal h1 {
             font-size: 35px;
         }
+}
+
+.select2-container--default .select2-selection--single {
+    border: 1px solid rgba(113, 57, 47, 0.43137254901960786);
+}
+
+.select2-container--default .select2-results__option[aria-selected=true] {
+    background-color: rgba(113, 57, 47, 0.43137254901960786);
+}
+
+.select2-container--default .select2-results__option--highlighted[aria-selected] {
+    background-color: #602e25;
+    color: white;
+}
+
+.select2-container--default {
+    font-family: 'Rubik', sans-serif;
+}
+
+.select2-container *:focus {
+    outline: none;
+}
+
+p {
+    margin: 0 0 0;
 }

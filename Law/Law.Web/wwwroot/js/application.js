@@ -50,7 +50,7 @@ $(function () {
             cache: true,
             data: function (params) {
                 var query = {
-                    search: params.term,
+                    q: params.term,
                     country: $(".select2.countries").val()
                 }
 

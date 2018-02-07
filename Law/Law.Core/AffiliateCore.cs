@@ -1,6 +1,7 @@
 ﻿using Law.Models;
 using Law.Test;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 
 namespace Law.Core
@@ -20,8 +21,22 @@ namespace Law.Core
 
         public static Affiliate GetAffiliatesById(string id)
         {
+            if(id==null)
+            {
+                return new Affiliate();
+            }
             return Tester.TestAffiliates.FirstOrDefault(x => x.ID == id);
         }
+
+        public static List<Affiliate> GetAffiliatesByName(string name)
+        {
+            if (string.IsNullOrEmpty(name))
+            {
+                name = "";
+            }
+            return Tester.TestAffiliates.Where(x => x.Name.ToLower().Contains(name.ToLower())).ToList();
+        }
+
 
         public static PaginatedList<Affiliate> GetFilteredAffiliates(string keyword, string page = "1")
         {
@@ -39,7 +54,7 @@ namespace Law.Core
         {
             Affiliate affiliate = new Affiliate
             {
-                Name = model.Name,
+                Name = model.Name.CapitaliseFirstLetters(),
                 CreationDate = model.CreationDate,
                 ID = model.ID
             };
@@ -57,5 +72,9 @@ namespace Law.Core
             }
         }
 
+        public static int RemoveAffiliate(string id)
+        {
+            return Tester.TestAffiliates.RemoveAll(x => x.ID == id);
+        }
     }
 }

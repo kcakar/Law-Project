@@ -19,6 +19,7 @@ namespace Law.Models
             this.title = article.Title;
             this.contributorID = article.ContributorID;
             this.practiceAreaID = article.PracticeAreaID;
+            this.preview = article.BodyPreview;
             this.paragraphs = new List<ArticleParagraphRow>();
             foreach (ArticlePiece piece in articlePieces)
             {
@@ -41,6 +42,7 @@ namespace Law.Models
         public string title { get; set; }
         public string contributorID { get; set; }
         public string practiceAreaID { get; set; }
+        public string preview { get; set; }
         public List<ArticleParagraphRow> paragraphs { get; set; }
         public string tags { get; set; }
         public Contributor contributor { get; set; }

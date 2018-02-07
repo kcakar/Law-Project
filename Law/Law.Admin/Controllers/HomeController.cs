@@ -87,6 +87,8 @@ namespace Law.Admin.Controllers
         }
 
 
+
+
         public IActionResult Articles(string keyword = "", string practice = "", string contributor = "", string country = "", string city = "", string page = "1")
         {
 
@@ -112,14 +114,14 @@ namespace Law.Admin.Controllers
         [HttpPost]
         public IActionResult AddArticlePost(ArticleAddEditModel model)
         {
-            Result result = new Result("Makale eklendi", true, "");
+            Result result = new Result("Makale kaydedildi", true, "");
             try
             {
                 ArticleCore.AddEditArticle(model);
             }
             catch (Exception ex)
             {
-                result = new Result("Makale eklenirken bir hata oluştu", false, ex.Message);
+                result = new Result("Makale kaydedilirken bir hata oluştu", false, ex.Message);
             }
             return Json(result);
         }
@@ -139,6 +141,20 @@ namespace Law.Admin.Controllers
             return Json(result);
         }
 
+        public IActionResult RemoveArticle(string id, string page = "1")
+        {
+            Result result = new Result("Makale silindi", true, "");
+            try
+            {
+                ArticleCore.RemoveArticle(id);
+            }
+            catch (Exception ex)
+            {
+                result = new Result("Makale silinirken bir hata oluştu", false, ex.Message);
+            }
+            return RedirectToAction("Articles", new { id = id, page = page });
+        }
+
 
 
 
@@ -155,11 +171,43 @@ namespace Law.Admin.Controllers
                 Contributor contributor = ContributorCore.GetContributorsById(id);
                 if (contributor != null)
                 {
-                    return View(new ContributorAddEditModel(contributor));
+                    Affiliate affiliate = AffiliateCore.GetAffiliatesById(contributor.AffiliateID);
+                    return View(new ContributorAddEditModel(contributor,CacheItems.Countries,CacheItems.Cities, affiliate));
                 }
             }
             return View(new ContributorAddEditModel());
         }
+
+        [HttpPost]
+        public IActionResult AddContributorPost(ContributorAddEditModel model)
+        {
+            Result result = new Result("Yazar kaydedildi", true, "");
+            try
+            {
+                ContributorCore.AddEditContributor(model);
+            }
+            catch (Exception ex)
+            {
+                result = new Result("Yazar kaydedilirken bir hata oluştu", false, ex.Message);
+            }
+            return Json(result);
+        }
+
+        public IActionResult RemoveContributor(string id, string page = "1")
+        {
+            Result result = new Result("Yazar silindi", true, "");
+            try
+            {
+                ContributorCore.RemoveContributor(id);
+            }
+            catch (Exception ex)
+            {
+                result = new Result("Yazar silinirken bir hata oluştu", false, ex.Message);
+            }
+            return RedirectToAction("Contributors", new { id = id, page = page });
+        }
+
+
 
 
         public IActionResult Affiliates(string keyword = "", string affiliate = "", string contributor = "", string country = "", string city = "", string page = "1")
@@ -193,6 +241,20 @@ namespace Law.Admin.Controllers
                 result = new Result("Şirket kaydedilirken bir hata oluştu", false, ex.Message);
             }
             return Json(result);
+        }
+
+        public IActionResult RemoveAffiliate(string id, string page = "1")
+        {
+            Result result = new Result("Şirket silindi", true, "");
+            try
+            {
+                AffiliateCore.RemoveAffiliate(id);
+            }
+            catch (Exception ex)
+            {
+                result = new Result("Şirket silinirken bir hata oluştu", false, ex.Message);
+            }
+            return RedirectToAction("Affiliates", new { id = id, page = page });
         }
 
 
@@ -230,6 +292,20 @@ namespace Law.Admin.Controllers
                 result = new Result("Disiplin kaydedilirken bir hata oluştu", false, ex.Message);
             }
             return Json(result);
+        }
+
+        public IActionResult RemovePracticeArea(string id, string page = "1")
+        {
+            Result result = new Result("Disiplin silindi", true, "");
+            try
+            {
+                PracticeAreaCore.RemovePracticeArea(id);
+            }
+            catch (Exception ex)
+            {
+                result = new Result("Disiplin silinirken bir hata oluştu", false, ex.Message);
+            }
+            return RedirectToAction("PracticeAreas", new { id = id, page = page });
         }
     }
 }

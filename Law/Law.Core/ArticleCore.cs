@@ -2,6 +2,7 @@
 using Law.Test;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 
 namespace Law.Core
@@ -86,35 +87,15 @@ namespace Law.Core
 
             Article article = new Article
             {
-                Title = model.title,
+                Title = model.title.CapitaliseFirstLetters(),
                 ContributorID = model.contributorID,
                 AffiliateID = contributor.AffiliateID,
                 CityID = contributor.CityID,
                 CountryID = contributor.CountryID,
                 CreationDate = model.CreationDate,
-                ID = model.ID
+                ID = model.ID,
+                BodyPreview = model.preview
             };
-
-            if (model.paragraphs.Count > 0)
-            {
-                string content = model.paragraphs.First().content;
-                if (content == null)
-                {
-                    content = "";
-                }
-                if (content.Length > 100)
-                {
-                    article.BodyPreview = content.Substring(0, 100);
-                }
-                else
-                {
-                    article.BodyPreview = content;
-                }
-            }
-            else
-            {
-                article.BodyPreview = "";
-            }
             article.LanguageID = "Turkish";
             article.PracticeAreaID = model.practiceAreaID;
             article.Tags = model.tags;
@@ -175,5 +156,9 @@ namespace Law.Core
             Tester.TestArticlePieces.RemoveAll(x => x.ID == id);
         }
 
+        public static int RemoveArticle(string id)
+        {
+            return Tester.TestArticles.RemoveAll(x => x.ID == id);
+        }
     }
 }

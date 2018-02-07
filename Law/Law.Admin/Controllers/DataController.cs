@@ -18,6 +18,10 @@ namespace Law.Admin.Controllers
 
         public IActionResult Contributors(string q = "")
         {
+            if(string.IsNullOrEmpty(q))
+            {
+                q = "";
+            }
             List<SelectRow> options = new List<SelectRow>();
             foreach (Contributor contributor in ContributorCore.GetContributorsByName(q))
             {
@@ -27,8 +31,27 @@ namespace Law.Admin.Controllers
             return Json(new { results = options });
         }
 
+        public IActionResult Affiliates(string q = "")
+        {
+            if (string.IsNullOrEmpty(q))
+            {
+                q = "";
+            }
+            List<SelectRow> options = new List<SelectRow>();
+            foreach (Affiliate affiliate in AffiliateCore.GetAffiliatesByName(q))
+            {
+                options.Add(new SelectRow(affiliate.ID, affiliate.Name));
+
+            }
+            return Json(new { results = options });
+        }
+
         public IActionResult PracticeAreas(string q = "")
         {
+            if (string.IsNullOrEmpty(q))
+            {
+                q = "";
+            }
             List<SelectRow> options = new List<SelectRow>();
             foreach (PracticeArea area in PracticeAreaCore.GetPracticeAreasByName(q))
             {
@@ -38,8 +61,12 @@ namespace Law.Admin.Controllers
             return Json(new { results = options });
         }
 
-        public IActionResult Cities(string search = "", string country = "")
+        public IActionResult Cities(string q = "", string country = "")
         {
+            if (string.IsNullOrEmpty(q))
+            {
+                q = "";
+            }
             List<SelectRow> options = new List<SelectRow>();
 
             if (string.IsNullOrEmpty(country))
@@ -47,9 +74,25 @@ namespace Law.Admin.Controllers
                 country = "";
             }
 
-            foreach (City city in CacheItems.Cities.Where(x => x.CountryID == country && x.Name.ToLower().Contains(search.ToLower())))
+            foreach (City city in CacheItems.Cities.Where(x => x.CountryID == country && x.Name.ToLower().Contains(q.ToLower())))
             {
                 options.Add(new SelectRow(city.ID, city.Name));
+            }
+
+            return Json(new { results = options });
+        }
+
+        public IActionResult Countries(string q = "")
+        {
+            if (string.IsNullOrEmpty(q))
+            {
+                q = "";
+            }
+            List<SelectRow> options = new List<SelectRow>();
+
+            foreach (Country country in CacheItems.Countries.Where(x =>x.Name.ToLower().Contains(q.ToLower())))
+            {
+                options.Add(new SelectRow(country.ID, country.Name));
             }
 
             return Json(new { results = options });

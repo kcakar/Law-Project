@@ -2,6 +2,7 @@
 using Law.Test;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 
@@ -48,5 +49,13 @@ namespace Law.Core
         {
             return Tester.TestAffiliates;
         }
+
+        public static string CapitaliseFirstLetters(this string source)
+        {
+            source= source.ToLower();
+
+            return CultureInfo.CurrentCulture.TextInfo.ToTitleCase(source);
+        }
+
     }
 }

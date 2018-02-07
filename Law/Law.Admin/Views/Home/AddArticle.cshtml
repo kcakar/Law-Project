@@ -285,7 +285,8 @@
                     ID:"@Model.ID",
                     title: "",
                     contributorID: "",
-                    PracticeAreaID:"",
+                    PracticeAreaID: "",
+                    preview:"",
                     paragraphs: []
                 }
 
@@ -302,6 +303,17 @@
                     }
                     else {
                         imageURL =$this.find(".dropzone").attr("data-image-url")
+                    }
+
+                    if (articleModel.preview.length <= 0) {
+                        let text = $this.find(".ql-editor").text();
+
+                        if (text.length <= 97) {
+                            articleModel.preview = text+"...";
+                        }
+                        else {
+                            articleModel.preview = text.substring(0, 97) + "...";
+                        }
                     }
 
                     let paragraph = {

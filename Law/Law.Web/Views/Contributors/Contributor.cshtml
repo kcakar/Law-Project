@@ -19,18 +19,17 @@
                                 <div class="contributor-data">
                                     <h1 style="padding:0; margin:0">@Model.ContributorName</h1>
                                     <div class="contributor-title">@Model.Affiliate</div>
-                                    
-                                    <h4>Education</h4>
-                                    @Html.Raw(Model.Education)
-                                    <h4>Languages</h4>
-                                    @Html.Raw(Model.Language)
+
+                                    <h4>E-mail:</h4>
+                                    @Html.Raw(Model.Email)
+                                    <br />
                                 </div>
                             </div>
                         </div>
                         <div class="col-md-8 contributor-detail-container" style="padding-left:0">
                             <dv class="tabs">
-                                <a href="javascript:;" data-rel="biography" class="active">Contributor <br class="show-small" />Biography</a>
-                                <a href="javascript:;" data-rel="articles">Contributor <br class="show-small"/>Articles</a>
+                                <a href="javascript:;" data-rel="biography" class="active">Biography</a>
+                                <a href="javascript:;" data-rel="articles">Articles</a>
                                 <div class="clearfix"></div>
                             </dv>
                             <div class="tabs-contents">
