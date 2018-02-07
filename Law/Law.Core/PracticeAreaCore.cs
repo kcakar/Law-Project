@@ -41,5 +41,27 @@ namespace Law.Core
             return PaginatedList<PracticeArea>.Create(qry, pageNumber, Common.PageSize);
         }
 
+        public static void AddEditPracticeArea(PracticeAreaAddEditModel model)
+        {
+            PracticeArea area = new PracticeArea
+            {
+                Name = model.Name,
+                CreationDate = model.CreationDate,
+                ID = model.ID
+            };
+
+            //ID mevcutsa güncelle, yoksa ekle
+            if (!Tester.TestPracticeAreas.Exists(x => x.ID != area.ID))
+            {
+                Tester.TestPracticeAreas.Add(area);
+            }
+            else
+            {
+                //dbde update normalde
+                Tester.TestPracticeAreas.RemoveAll(x => x.ID == model.ID);
+                Tester.TestPracticeAreas.Add(area);
+            }
+        }
+
     }
 }

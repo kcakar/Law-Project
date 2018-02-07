@@ -34,5 +34,28 @@ namespace Law.Core
 
             return PaginatedList<Affiliate>.Create(qry, pageNumber, Common.PageSize);
         }
+
+        public static void AddEditAffiliate(AffiliateAddEditModel model)
+        {
+            Affiliate affiliate = new Affiliate
+            {
+                Name = model.Name,
+                CreationDate = model.CreationDate,
+                ID = model.ID
+            };
+
+            //ID mevcutsa güncelle, yoksa ekle
+            if (!Tester.TestAffiliates.Exists(x => x.ID != affiliate.ID))
+            {
+                Tester.TestAffiliates.Add(affiliate);
+            }
+            else
+            {
+                //dbde update normalde
+                Tester.TestAffiliates.RemoveAll(x => x.ID == model.ID);
+                Tester.TestAffiliates.Add(affiliate);
+            }
+        }
+
     }
 }

@@ -9,6 +9,7 @@ namespace Law.Models
         public ArticleAddEditModel()
         {
             this.ID = Guid.NewGuid().ToString();
+            this.CreationDate = DateTime.Now;
             this.paragraphs = new List<ArticleParagraphRow>();
         }
 
@@ -33,6 +34,7 @@ namespace Law.Models
             this.tags = article.Tags;
             this.contributor = contributor;
             this.practiceArea = practiceArea;
+            this.CreationDate = article.CreationDate;
         }
 
         public string ID { get; set; }
@@ -43,6 +45,7 @@ namespace Law.Models
         public string tags { get; set; }
         public Contributor contributor { get; set; }
         public PracticeArea practiceArea { get; set; }
+        public DateTime CreationDate { get; set; }
     }
 
     public class ArticleParagraphRow
