@@ -16,9 +16,10 @@ namespace Law.Web.Models
         public string ContributorName { get; set; }
         public string ContributorImage { get; set; }
         public string ArticleBody { get; set; }
+        public string 
         public List<LatestArticleRow> LatestArticles { get; set; }
         public List<LatestContributorsRow> LatestContributors { get; set; }
-
+        
         public ArticleViewModel(Article Article)
         {
             this.LatestArticles = new List<LatestArticleRow>();
@@ -32,7 +33,7 @@ namespace Law.Web.Models
             {
                 LatestContributors.Add(new LatestContributorsRow(latestContributor.ID, latestContributor.Name, latestContributor.TotalContributions,latestContributor.ImageURL));
             }
-
+            AffiliateName =AffiliateCore.GetAffiliatesById( Article.AffiliateID);
             Article.ViewCount = Article.ViewCount + 1;
             ID = Article.ID;
             Title = Article.Title;
