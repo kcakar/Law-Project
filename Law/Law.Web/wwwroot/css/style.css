@@ -1205,24 +1205,26 @@ p {
     margin-top: 10px;
 }
 
-.found-article{
-    height:100%;
-}
-.found-article .post{
-    min-height:228px
+.found-article {
+    height: 100%;
 }
 
-.found-article .title{
-    min-height:44px;
-}
+    .found-article .post {
+        min-height: 228px
+    }
 
-.results{
-    position:relative;
+    .found-article .title {
+        min-height: 44px;
+    }
+
+.results {
+    position: relative;
 }
 
 .author.contributors {
     width: 33%;
 }
+
     .author.contributors .image {
         height: 300px;
     }
@@ -1230,6 +1232,89 @@ p {
 
 
     .author.contributors .title {
-        height:60px;
+        height: 60px;
     }
 
+.contributor.container {
+    position: relative;
+    width: 33%;
+    float: left;
+    padding: 0;
+}
+
+.contributor .image {
+    display: block;
+    width: 100%;
+    height: auto;
+}
+
+.contributor .overlay {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 100%;
+    width: 100%;
+    opacity: 0;
+    transition: .5s ease;
+    background-color: #602e25;
+}
+
+.contributor.container:hover .overlay {
+    opacity: 0.9;
+}
+
+.contributor .text {
+    width: 100%;
+    color: white;
+    font-size: 28px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    text-align: center;
+}
+
+    .contributor .text .smaller {
+        font-size: 20px;
+    }
+
+@media only screen and (max-width: 1200px) {
+    .contributor .text {
+        font-size: 20px;
+    }
+    .contributor .text .smaller {
+        font-size: 15px;
+    }
+}
+
+@media only screen and  (max-width : 992px) {
+    .contributor .text {
+        font-size: 18px;
+    }
+    .contributor .text .smaller {
+        font-size: 12px;
+    }
+
+    .contributor.container {
+        width: 50%;
+        margin-bottom: 10px;
+    }
+}
+
+@media only screen and (max-width : 550px) {
+    .contributor .text {
+        font-size: 18px;
+    }
+
+        .contributor .text .smaller {
+            font-size: 12px;
+        }
+
+    .contributor.container {
+        width: 100%;
+        margin-bottom:10px;
+    }
+}

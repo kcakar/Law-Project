@@ -21,5 +21,5 @@ namespace Law.Web
             WebHost.CreateDefaultBuilder(args)
                 .UseStartup<Startup>()
                 .Build();
-    }
+    } 
 }

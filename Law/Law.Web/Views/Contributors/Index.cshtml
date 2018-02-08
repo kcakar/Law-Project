@@ -1,7 +1,7 @@
 ﻿@using Law.Models
 @using Law.Web.Models
 
-@model List<Contributor>
+@model ContributorsViewModel
 @{
     ViewData["Title"] = "Turkish Law Blog - Contributors";
 }
@@ -14,19 +14,21 @@
 
                     <h1>Contributors</h1>
                     <div class='row'>
-                        @foreach (Contributor contributor in Model)
+                        @foreach (Contributor contributor in Model.Contributors)
                         {
-                            <div class="col-md-12 author contributors">
-                                <div class="owl-item active">
-                                    <a href="@Url.Action("Contributor", "Contributors", new { id = contributor.ID })">
-                                        <div class="col-md-12 author">
-                                            <div class="image" style="background-image: url(@contributor.ImageURL.GetImageUrl())"></div>
-                                            <div class="title">
-                                                <b>@contributor.Name</b>
-                                            </div>
-                                        </div>
-                                    </a>
-                                </div>
+                            Affiliate affiliate = Model.RelatedAffiliates.FirstOrDefault(x => x.ID == contributor.AffiliateID);
+                            string AffiliateText = "";
+                            if (affiliate!=null)
+                            {
+                                AffiliateText = affiliate.Name;
+                            }
+                            <div class="contributor container">
+                                <a href="@Url.Action("Contributor", "Contributors", new { id = contributor.ID })">
+                                    <img src="@contributor.ImageURL.GetImageUrl()" alt="Avatar" class="image">
+                                    <div class="overlay">
+                                        <div class="text">@contributor.Name<br /><span class="smaller">@AffiliateText</span></div>
+                                    </div>
+                                </a>
                             </div>
                         }
                     </div>
