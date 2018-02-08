@@ -1,4 +1,4 @@
-@using Law.Models
+﻿@using Law.Models
 @using Law.Web.Models
 
 @model List<Contributor>
@@ -16,14 +16,18 @@
                     <div class='row'>
                         @foreach (Contributor contributor in Model)
                         {
-                                <div class='col-md-4 col-sm-6'>
-                                    <div class='post contributor'>
-                                        <div class='title'><a href="@Url.Action("Contributor", "Contributors", new { id = contributor.ID })">@contributor.Name</a></div>
-                                        <a href="@Url.Action("Contributor", "Contributors", new { id = contributor.ID })"><img src='@contributor.ImageURL.GetImageUrl()' alt=''></a>
-                                        <div class='author'>
+                            <div class="col-md-12 author contributors">
+                                <div class="owl-item active">
+                                    <a href="@Url.Action("Contributor", "Contributors", new { id = contributor.ID })">
+                                        <div class="col-md-12 author">
+                                            <div class="image" style="background-image: url(@contributor.ImageURL.GetImageUrl())"></div>
+                                            <div class="title">
+                                                <b>@contributor.Name</b>
+                                            </div>
                                         </div>
-                                    </div>
+                                    </a>
                                 </div>
+                            </div>
                         }
                     </div>
                 </div>

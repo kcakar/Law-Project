@@ -23,6 +23,22 @@
                     </select>
                 </div>
                 <div class="pull-left">
+                    <select name="affiliate" data-placeholder="Select an Affiliate..." class="select2 affiliates" tabindex="5">
+                        <option></option>
+                        @foreach (Affiliate affiliate in Model.Affiliates)
+                        {
+                            if (!string.IsNullOrEmpty(Model.selectedAffiliate) && affiliate.ID == Model.selectedAffiliate)
+                            {
+                                <option selected value="@affiliate.ID">@affiliate.Name</option>
+                            }
+                            else
+                            {
+                                <option value="@affiliate.ID">@affiliate.Name</option>
+                            }
+                        }
+                    </select>
+                </div>
+                <div class="pull-left">
                     <select name="contributor" data-placeholder="Choose a Contributor..." class="select2 contributors" tabindex="2">
                         <option></option>
                         @foreach (Contributor contributor in Model.Contributors)
@@ -54,22 +70,7 @@
                         }
                     </select>
                 </div>
-                <div class="pull-left">
-                    <select name="affiliate" data-placeholder="Select an Affiliate..." class="select2 affiliates" tabindex="5">
-                        <option></option>
-                        @foreach (Affiliate affiliate in Model.Affiliates)
-                        {
-                            if (!string.IsNullOrEmpty(Model.selectedAffiliate) && affiliate.ID == Model.selectedAffiliate)
-                            {
-                                <option selected value="@affiliate.ID">@affiliate.Name</option>
-                            }
-                            else
-                            {
-                                <option value="@affiliate.ID">@affiliate.Name</option>
-                            }
-                        }
-                    </select>
-                </div>
+
                 <div class="pull-left">
                     <select name="city" data-placeholder="Select a City..." class="select2 cities" @(string.IsNullOrEmpty(Model.selectedCountry) ? "disabled" : "") tabindex="4">
                         <option></option>
