@@ -13,6 +13,7 @@ namespace Law.Web.Models
         public string Title { get; set; }
         public DateTime CreationDate { get; set; }
         public int ViewCount { get; set; }
+        public string ContributorID { get; set; }
         public string ContributorName { get; set; }
         public string ContributorImage { get; set; }
         public string ArticleBody { get; set; }
@@ -46,6 +47,7 @@ namespace Law.Web.Models
             Contributor contributor = ContributorCore.GetContributorsById(Article.ContributorID);
             ContributorName = contributor.Name;
             ContributorImage = contributor.ImageURL;
+            ContributorID = contributor.ID;
         }
 
         public string GetArticleBody(List<ArticlePiece> pieces)
