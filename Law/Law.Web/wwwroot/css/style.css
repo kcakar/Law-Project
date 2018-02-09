@@ -1269,7 +1269,7 @@ p {
 
 .contributor.container:hover .overlay {
     opacity: 0.9;
-} 
+}
 
 .contributor .text {
     width: 100%;
@@ -1291,18 +1291,20 @@ p {
     .contributor .text {
         font-size: 20px;
     }
-    .contributor .text .smaller {
-        font-size: 15px;
-    }
+
+        .contributor .text .smaller {
+            font-size: 15px;
+        }
 }
 
-@media only screen and  (max-width : 992px) {
+@media only screen and (max-width : 992px) {
     .contributor .text {
         font-size: 18px;
     }
-    .contributor .text .smaller {
-        font-size: 12px;
-    }
+
+        .contributor .text .smaller {
+            font-size: 12px;
+        }
 
     .contributor.container {
         width: 50%;
@@ -1321,6 +1323,145 @@ p {
 
     .contributor.container {
         width: 100%;
-        margin-bottom:10px;
+        margin-bottom: 10px;
     }
+}
+
+
+.comment-container {
+    margin-bottom: 20px;
+}
+
+    .comment-container h3 {
+        font-family: "Playfair Display", serif;
+        font-size: 24px;
+        font-weight: bold;
+    }
+
+    .comment-container ul {
+        list-style: none;
+    }
+
+@media only screen and (max-width : 550px) {
+    .comment-container ul {
+        padding-left: 0px;
+    }
+}
+
+.comment-container ul li {
+    margin-top: 15px;
+}
+
+    .comment-container ul li:not(:last-of-type) {
+        border-bottom: 1px solid #ddd;
+    }
+
+    .comment-container ul li p {
+        margin: 0 0 1.4em;
+    }
+
+    .comment-container ul li strong {
+        font-size: 18px;
+        color: #666;
+        padding: 0;
+        margin: 0;
+        font-family: "Playfair Display", serif;
+    }
+
+.comment-container li .comment-author {
+    margin-bottom: 10px;
+}
+
+.comment-container .line {
+    border: 1px solid #71392f;
+    width: 80px;
+}
+
+.comment-container .comment-form textarea {
+    background: none;
+    border: solid 1px rgba(113, 57, 47, 0.45098039215686275);
+    margin-top: 10px;
+    min-height: 18.1em;
+    resize: none;
+}
+
+.comment-container input[type="text"], textarea {
+    clear: both;
+    float: left;
+    width: 100%;
+    height: 42px;
+    line-height: 42px;
+    margin: 0;
+    padding: 0 10px;
+    color: #231f20;
+    background: #fff;
+    border: 1px solid #ddd;
+    font-family: "Lato","Helvetica Neue",Helvetica,Arial,sans-serif;
+    font-size: 16px;
+    -webkit-border-radius: 0;
+    -moz-border-radius: 0;
+    border-radius: 0;
+    -webkit-appearance: none;
+}
+
+    .comment-container input[type="text"]:focus, textarea:focus {
+        outline: 0;
+    }
+
+.comment-container .comment-form button {
+    float: right;
+    margin-top: 10px;
+    position: relative;
+    overflow: hidden;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    -webkit-tap-highlight-color: transparent;
+    z-index: 1;
+    -webkit-transition: .3s ease-out;
+    transition: .3s ease-out;
+    text-decoration: none;
+    color: #fff;
+    background-color: rgb(113, 57, 47);
+    text-align: center;
+    letter-spacing: .5px;
+    -webkit-transition: .2s ease-out;
+    transition: .2s ease-out;
+    cursor: pointer;
+    font-size: 1rem;
+    outline: 0;
+    border: none;
+    border-radius: 2px;
+    display: inline-block;
+    height: 36px;
+    line-height: 36px;
+    padding: 0 2rem;
+    text-transform: uppercase;
+    vertical-align: middle;
+    -webkit-tap-highlight-color: transparent;
+    -webkit-box-shadow: 0 2px 2px 0 rgba(0,0,0,0.14), 0 1px 5px 0 rgba(0,0,0,0.12), 0 3px 1px -2px rgba(0,0,0,0.2);
+    box-shadow: 0 2px 2px 0 rgba(0,0,0,0.14), 0 1px 5px 0 rgba(0,0,0,0.12), 0 3px 1px -2px rgba(0,0,0,0.2);
+}
+
+    .comment-container .comment-form button:hover {
+        background-color: rgb(96, 46, 37);
+        -webkit-box-shadow: 0 3px 3px 0 rgba(0,0,0,0.14), 0 1px 7px 0 rgba(0,0,0,0.12), 0 3px 1px -1px rgba(0,0,0,0.2);
+        box-shadow: 0 3px 3px 0 rgba(0,0,0,0.14), 0 1px 7px 0 rgba(0,0,0,0.12), 0 3px 1px -1px rgba(0,0,0,0.2);
+        outline: 0;
+    }
+
+
+.select2-results__options::-webkit-scrollbar {
+    width: 10px;
+    background-color: #F5F5F5;
+}
+
+.select2-results__options::-webkit-scrollbar-thumb {
+    background-color: rgba(96, 46, 37, 0.8);
+}
+
+.select2-results__options::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+    background-color: #F5F5F5;
 }
