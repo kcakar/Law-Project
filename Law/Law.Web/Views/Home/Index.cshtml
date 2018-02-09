@@ -67,39 +67,33 @@
                 <h2>LATEST <b>ARTICLES</b></h2>
                 <div class="posts">
                     <div class="item">
-                        @foreach (List<Article> articleRow in Model.RecentArticles.ChunkBy(4))
+                        @foreach (Article article in Model.RecentArticles)
                         {
-                            <div class='row'>
-                                @foreach (Article article in articleRow)
-                                {
-                                    Contributor contributor = Model.RecentContributors.FirstOrDefault(x => x.ID == article.ContributorID);
-                                    Affiliate affiliate = Model.Affiliates.FirstOrDefault(x => x.ID == contributor.AffiliateID);
+                            Contributor contributor = Model.RecentContributors.FirstOrDefault(x => x.ID == article.ContributorID);
+                            Affiliate affiliate = Model.Affiliates.FirstOrDefault(x => x.ID == contributor.AffiliateID);
 
-                                    if (contributor != null)
-                                    {
-                                        <div class='col-md-3'>
-                                            <div class='post'>
-                                                <div class='title'><a href='@Url.Action("Article", "Articles", new { id = article.ID })'>@(article.Title.Length > 45? article.Title.Substring(0, 45) + "..." : article.Title )</a></div>
-                                                <div class='text'>
-                                                    @article.BodyPreview
-                                                </div>
-                                                <div class='author'>
-                                                    <div class='pull-left col-lg-3'><img src='@contributor.ImageURL.GetImageUrl()' alt=''></div>
-                                                    <div class='pull-left col-lg-8'>
-                                                        <b><a href='@Url.Action("Contributor", "Contributors", new { id = contributor.ID })'>@contributor.Name</a></b>
-                                                        @if (affiliate != null)
-                                                        {
-                                                            <span>@affiliate.Name</span>
-                                                        }
-                                                    </div>
-                                                    <div class='clearfix'></div>
-                                                </div>
-                                            </div>
+                            if (contributor != null)
+                            {
+                                <div class='col-md-3'>
+                                    <div class='post'>
+                                        <div class='title'><a href='@Url.Action("Article", "Articles", new { id = article.ID })'>@(article.Title.Length > 45 ? article.Title.Substring(0, 45) + "..." : article.Title )</a></div>
+                                        <div class='text'>
+                                            @article.BodyPreview
                                         </div>
-                                    }
-                                }
-                            </div>
-                            <br>
+                                        <div class='author'>
+                                            <div class="posts-image"><img src='@contributor.ImageURL.GetImageUrl()' alt=''></div>
+                                            <div class='posts-contributor'>
+                                                <b><a href='@Url.Action("Contributor", "Contributors", new { id = contributor.ID })'>@contributor.Name</a></b>
+                                                @if (affiliate != null)
+                                                {
+                                                    <span>@affiliate.Name</span>
+                                                }
+                                            </div>
+                                            <div class='clearfix'></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            }
                         }
                     </div>
                 </div>
