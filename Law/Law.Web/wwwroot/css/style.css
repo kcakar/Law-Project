@@ -8,6 +8,8 @@ hr {
 
 body {
     font-family: 'Rubik', sans-serif;
+    
+    /*font-family: 'Tangerine', serif;*/
     padding-top: 130px;
 }
 
@@ -413,7 +415,7 @@ section.search {
     background-color: #602e25;
     color: #fff;
     padding: 20px;
-    font-family: "Playfair Display", serif;
+    font-family: 'Rubik', sans-serif;
     font-size: 15px
 }
 
@@ -659,9 +661,14 @@ section.search {
 }
 
 .contributor-profile h1 {
-    margin-bottom: 20px
+    margin-bottom: 20px;
+    font-family: 'Playfair Display', serif;
 }
-
+.contributor-profile h4 {
+    color: #95574a;
+    font-family: 'Playfair Display', serif;
+    font-weight:500;
+}
 .contributor-biography {
     margin-top: 45px;
     margin-right: 20px;

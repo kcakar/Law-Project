@@ -12,8 +12,10 @@
         <div class="row">
             <div class="col-md-12">
                 <div class="PageView posts">
-
-                    <h1>Found Articles</h1>
+                    @if (Model.FoundArticles.ChunkBy(3).Count.Equals(0))
+                    {
+                        <h1 class="text-center">Not Found Articles</h1>
+                    }
                     @foreach (List<Article> articleRow in Model.FoundArticles.ChunkBy(3))
                     {
                         <div class='row'>
