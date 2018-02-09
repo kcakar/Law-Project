@@ -375,7 +375,6 @@ section.search {
             font-weight: 300;
             color: #888;
             margin-bottom: 15px;
-            text-align: justify;
         }
 
         .posts .post .author {
@@ -970,9 +969,53 @@ h2 {
     }
 
 
-.posts .post .title {
-    overflow: hidden
+.posts .post-container {
+    width: 25%;
+    margin-right: 20px;
 }
+
+
+.posts .post .title {
+    overflow: hidden;
+}
+
+.posts {
+    display: -ms-flex;
+    display: -webkit-flex;
+    display: flex;
+}
+
+    .posts .col-md-3 {
+        display: -ms-flex;
+        display: -webkit-flex;
+        display: flex;
+        margin-top: 20px;
+    }
+
+
+    .posts div {
+        flex: 1;
+    }
+
+        .posts div .post {
+            height: 100%;
+            vertical-align: bottom;
+        }
+
+    .posts .post .text {
+        min-height: 80px;
+    }
+
+    .posts .post .author {
+    }
+
+        .posts .post .author .posts-image {
+            float: left;
+        }
+
+        .posts .post .author .posts-image {
+            float: left;
+        }
 
 .author div:nth-child(1) {
     padding: 0;
@@ -980,6 +1023,13 @@ h2 {
 
 
 @media only screen and (max-width : 1200px) {
+    .posts div {
+        flex-wrap: wrap;
+    }
+
+    .posts .col-md-3 {
+        width: 33%;
+    }
 
     .top .social {
         margin-top: 10px;
@@ -1002,12 +1052,16 @@ h2 {
     }
 
     .posts .post .title {
-        height: 60px;
+        height: 45px;
+    }
+
+    .posts .post .text {
+        min-height: 61px;
     }
 }
 
 @media only screen and (max-width : 1200px) and (min-width : 992px) {
-    .posts .author div:nth-child(1) {
+    /*.posts .author div:nth-child(1) {
         margin-bottom: 10px;
         width: 100%
     }
@@ -1015,16 +1069,17 @@ h2 {
     .posts .author div:nth-child(2) {
         width: 100%;
         padding: 0;
-    }
+    }*/
 }
 
 
 
 @media only screen and (max-width : 992px) {
-
-    .posts .post .title {
-        height: auto;
+    .posts .col-md-3 {
+        width: 50%;
+        float: left;
     }
+
 
     .logo-container {
         position: absolute;
@@ -1114,6 +1169,15 @@ h2 {
     }
 }
 
+@media only screen and (max-width : 700px) {
+    .posts .post .title {
+        height: auto;
+    }
+    .posts .col-md-3 {
+        width: 100%;
+    }
+}
+
 .adress {
     width: 265px;
     margin: auto;
@@ -1149,11 +1213,6 @@ h2 {
 .contributors .post.contributor img {
     width: 100%;
 }
-
-.posts .post .title {
-    height: initial;
-}
-
 
 .legal h1 {
     text-align: center;
