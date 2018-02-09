@@ -18,6 +18,12 @@ header {
     top: 0;
 }
 
+
+a {
+    color: #ce9a90;
+    text-decoration: none;
+}
+
 .top-line {
     background-color: #71392f;
     height: 10px;
