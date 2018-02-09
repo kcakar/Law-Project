@@ -4674,3 +4674,6 @@ ul.notifications {
         right: 0;
         top: 5px;
     }
+.right_col{
+    min-height:100vh;
+}
