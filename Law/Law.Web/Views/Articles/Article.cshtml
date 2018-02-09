@@ -57,7 +57,7 @@
                                             <i class="fa fa-linkedin-square"></i>
                                         </a>
                                     </div>
-                                    <div class="pull-left whatsapp">
+                                    <div class="pull-left whatsapp" style="margin-right: 8px">
                                         <a href='whatsapp://send?text=@Url.Action("Article", "Articles", new { id = Model.ID })'
                                            data-action='share/whatsapp/share'>
                                             <span class="fa-stack">
@@ -66,16 +66,82 @@
                                             </span>
                                         </a>
                                     </div>
-                                    <div class="pull-right">
+                                    <div class="pull-left" style="margin-right: 8px">
                                         <a href="/article/printpage/1" target="_blank">
-                                            <i class="fa fa-print"></i> Print
+                                            <i class="fa fa-print"></i> 
                                         </a>
                                     </div>
-                                    <div class="pull-right" style="margin-right: 15px">
+                                    <div class="pull-left" >
                                         <i class="fa fa-file-pdf-o"></i>
-                                        <a href="@Url.Action("Download", "Articles", new { id = Model.ID })" target="_blank">Download as PDF</a>
+                                        <a href="@Url.Action("Download", "Articles", new { id = Model.ID })" target="_blank"></a>
                                     </div>
                                     <div class="clearfix"></div>
+                                </div>
+                                <div class="comment-container">
+                                    <h3>3 Comments</h3>
+                                    <div class="comment-list">
+                                        <ul>
+                                            <li>
+                                                <p class="comment-author">
+                                                    <strong>Keremcan Çakar</strong><br />
+                                                    <small>
+                                                        <span>Jan 30, 2017</span> 4:48 am
+                                                    </small>
+                                                </p>
+                                                <div class="comment-content">
+                                                    <p>Thank you so much for sharing this informative post on common WordPress error and its solutions. You provided a wonderful solution to fix it. </p>
+                                                    <p>It’s always exciting for me to read content from other writers and practice a little something from other websites.</p>
+                                                    <p>Keep Sharing.!</p>
+                                                </div>
+                                            </li>
+                                            <li>
+                                                <p class="comment-author">
+                                                    <strong>Keremcan Çakar</strong><br />
+                                                    <small>
+                                                        <span>Jan 30, 2017</span> 4:48 am
+                                                    </small>
+                                                </p>
+                                                <div class="comment-content">
+                                                    <p>Thank you so much for sharing this informative post on common WordPress error and its solutions. You provided a wonderful solution to fix it. </p>
+                                                    <p>It’s always exciting for me to read content from other writers and practice a little something from other websites.</p>
+                                                    <p>Keep Sharing.!</p>
+                                                </div>
+                                            </li>
+                                            <li>
+                                                <p class="comment-author">
+                                                    <strong>Keremcan Çakar</strong><br />
+                                                    <small>
+                                                        <span>Jan 30, 2017</span> 4:48 am
+                                                    </small>
+                                                </p>
+                                                <div class="comment-content">
+                                                    <p>Thank you so much for sharing this informative post on common WordPress error and its solutions. You provided a wonderful solution to fix it. </p>
+                                                    <p>It’s always exciting for me to read content from other writers and practice a little something from other websites.</p>
+                                                    <p>Keep Sharing.!</p>
+                                                </div>
+                                            </li>
+                                            <li>
+                                                <p class="comment-author">
+                                                    <strong>Keremcan Çakar</strong><br />
+                                                    <small>
+                                                        <span>Jan 30, 2017</span> 4:48 am
+                                                    </small>
+                                                </p>
+                                                <div class="comment-content">
+                                                    <p>Thank you so much for sharing this informative post on common WordPress error and its solutions. You provided a wonderful solution to fix it. </p>
+                                                    <p>It’s always exciting for me to read content from other writers and practice a little something from other websites.</p>
+                                                    <p>Keep Sharing.!</p>
+                                                </div>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <div class="comment-form">
+                                        <div class="line"></div>
+                                        <h3>Leave a Reply</h3>
+                                        <textarea class="comment"></textarea>
+                                        <button class="bttn-simple bttn-md bttn-primary">Post Comment</button>
+                                    </div>
+                                    <div class='clearfix'></div>
                                 </div>
                             </div>
                         </div>
@@ -124,4 +190,3 @@
         </div>
     </div>
 </div>
-
