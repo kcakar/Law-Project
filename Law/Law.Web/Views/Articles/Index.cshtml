@@ -11,36 +11,32 @@
     <div class="container">
         <div class="row">
             <div class="col-md-12">
-                <div class="PageView posts">
+                <div class="PageView posts article-search">
+                    @*<h1>Found Articles</h1>*@
 
-                    <h1>Found Articles</h1>
-                    @foreach (List<Article> articleRow in Model.FoundArticles.ChunkBy(3))
-                    {
-                        <div class='row'>
+                    <div class="results">
+                        @foreach (Article article in Model.FoundArticles)
+                        {
+                            Contributor contributor = Model.RelatedContributors.FirstOrDefault(x => x.ID == article.ContributorID);
+                            Affiliate affiliate = Model.RelatedAffiliates.FirstOrDefault(x => x.ID == article.AffiliateID);
 
-                            @foreach (Article article in articleRow)
+                            if (contributor != null && affiliate != null)
                             {
-                                Contributor contributor = Model.RelatedContributors.FirstOrDefault(x => x.ID == article.ContributorID);
-                                Affiliate affiliate = Model.RelatedAffiliates.FirstOrDefault(x => x.ID == article.AffiliateID);
-
-                                if (contributor != null && affiliate != null)
-                                {
-                                    <div class='col-md-4  found-article'>
-                                        <div class='post'>
-                                            <div class='title'><a href="@Url.Action("Article", "Articles", new { id = article.ID })">@(article.Title.Length > 65 ? article.Title.Substring(0, 65) + "..." : article.Title )</a></div>
-                                            <div class='text'>@article.BodyPreview</div>
-                                            <div class='author'>
-                                                <div class='pull-left'><img src='@contributor.ImageURL.GetImageUrl()' alt=''></div>
-                                                <div class='pull-left'><a href='@Url.Action("Contributor", "Contributors", new { id = contributor.ID })'><b>@contributor.Name</b></a><span>@affiliate.Name</span></div>
-                                                <div class='clearfix'></div>
-                                            </div>
+                                <div class='col-md-3  found-article'>
+                                    <div class='post'>
+                                        <div class='title'><a href="@Url.Action("Article", "Articles", new { id = article.ID })">@(article.Title.Length > 65 ? article.Title.Substring(0, 65) + "..." : article.Title )</a></div>
+                                        <div class='text'>@article.BodyPreview</div>
+                                        <div class='author'>
+                                            <div class='pull-left'><img src='@contributor.ImageURL.GetImageUrl()' alt=''></div>
+                                            <div class='pull-left'><a href='@Url.Action("Contributor", "Contributors", new { id = contributor.ID })'><b>@contributor.Name</b></a><span>@affiliate.Name</span></div>
+                                            <div class='clearfix'></div>
                                         </div>
                                     </div>
-                                }
-
+                                </div>
                             }
-                        </div>
-                    }
+
+                        }
+                    </div>
                     <nav>
                         <ul class="pagination pg-darkgrey">
                             @{
