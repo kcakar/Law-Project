@@ -6,7 +6,10 @@ namespace Law.Models
 {
     public class Affiliate:NameBase
     {
-        public Affiliate():base("","")
+        public string ImageURL { get; set; }
+        public string Description { get; set; }
+
+        public Affiliate():base(Guid.NewGuid().ToString(),"")
         {
             
         }
@@ -14,5 +17,6 @@ namespace Law.Models
         {
 
         }
+
     }
 }

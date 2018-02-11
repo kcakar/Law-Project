@@ -77,7 +77,8 @@ namespace Law.Admin.Controllers
         public IActionResult GetTestJson()
         {
             var contentType = "text/xml";
-            var content = Uri.EscapeDataString(Tester.GetTestJson());
+            var content=System.Web.HttpUtility.UrlEncode(Tester.GetTestJson());
+            //var content = Uri.EscapeDataString(Tester.GetTestJson());
             var bytes = Encoding.UTF8.GetBytes(content);
             var result = new FileContentResult(bytes, contentType)
             {
@@ -307,5 +308,57 @@ namespace Law.Admin.Controllers
             }
             return RedirectToAction("PracticeAreas", new { id = id, page = page });
         }
+
+
+
+
+
+        public IActionResult Users(string keyword = "", string page = "1")
+        {
+            return View(new UsersViewModel(keyword, page));
+        }
+
+        public IActionResult AddUser(string id)
+        {
+            if (!string.IsNullOrEmpty(id))
+            {
+                User user = UserCore.GetUsersById(id);
+                if (user != null)
+                {
+                    return View(new UserAddEditModel(user));
+                }
+            }
+            return View(new UserAddEditModel());
+        }
+
+        [HttpPost]
+        public IActionResult AddUserPost(PracticeAreaAddEditModel model)
+        {
+            Result result = new Result("Kullanıcı kaydedildi", true, "");
+            try
+            {
+                PracticeAreaCore.AddEditPracticeArea(model);
+            }
+            catch (Exception ex)
+            {
+                result = new Result("Kullanıcı kaydedilirken bir hata oluştu", false, ex.Message);
+            }
+            return Json(result);
+        }
+
+        public IActionResult RemoveUser(string id, string page = "1")
+        {
+            Result result = new Result("Kullanıcı silindi", true, "");
+            try
+            {
+                UserCore.RemoveUsers(id);
+            }
+            catch (Exception ex)
+            {
+                result = new Result("Kullanıcı silinirken bir hata oluştu", false, ex.Message);
+            }
+            return RedirectToAction("Users", new { id = id, page = page });
+        }
+
     }
 }

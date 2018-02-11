@@ -1,0 +1,33 @@
+﻿@using Law.Models
+@using Law.Web.Models
+@{
+    ViewData["Title"] = "Turkish Law Blog - Affiliates";
+}
+
+@model AffiliatesViewModel
+
+<div class="Page PracticePage">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="PageView posts contributors">
+                    <h1>Affiliates</h1>
+                    <div class='row'>
+                        @foreach (Affiliate affiliate in Model.Affiliates)
+                        {
+                            <div class="contributor container">
+                                <a href="@Url.Action("Affiliate", "Affiliates", new { id = affiliate.ID })">
+                                    <img src="@affiliate.ImageURL.GetImageUrl()" alt="Avatar" class="image">
+                                    <div class="overlay">
+                                        <div class="text">@affiliate.Name</div>
+                                    </div>
+                                </a>
+                            </div>
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

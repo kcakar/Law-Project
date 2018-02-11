@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Law.Core;
 using Law.Web.Controllers;
 using Law.Web.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Caching.Memory;
 
@@ -12,7 +13,6 @@ using Microsoft.Extensions.Caching.Memory;
 
 namespace Web.Controllers
 {
-
     public class ArticlesController : CommonController
     {
         public ArticlesController(IMemoryCache memoryCache) : base(memoryCache)

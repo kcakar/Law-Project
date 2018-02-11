@@ -1,0 +1,155 @@
+﻿
+@{
+    ViewData["Title"] = "Login";
+}
+
+<div class="wrapper">
+    <form class="login login-form">
+        <p class="title">Log in</p>
+        <input class="txtUsername" type="text" placeholder="Email" autofocus />
+        <i class="fa fa-user"></i>
+        <input class="txtPassword" type="password" placeholder="Password" />
+        <i class="fa fa-key"></i>
+        <a href="#">Forgot your password?</a><br />
+        <a href="#" class="btnRegister">You don't have an account? Register here.</a>
+        <button>
+            <i class="spinner"></i>
+            <span class="state">Log in</span>
+        </button>
+    </form>
+
+    <form class="login register">
+        <p class="title">Register</p>
+        <input class="txtUsername" type="text" placeholder="Email" autofocus />
+        <i class="fa fa-user"></i>
+        <input class="txtPassword" type="password" placeholder="Password" />
+        <i class="fa fa-key"></i>
+        <input class="txtConfirmPassword" type="password" placeholder="Confirm Password" />
+        <i class="fa fa-key"></i>
+        <input class="realName" type="text" placeholder="Full Name" autofocus />
+        <i class="fa fa-user"></i>
+        <button>
+            <i class="spinner"></i>
+            <span class="state">Register</span>
+        </button>
+    </form>
+</div>
+
+<span class="token">@Html.AntiForgeryToken()</span>
+@section Scripts{
+<script>
+    const loginURL ='@Url.Action("Login")';
+    const registerRL ='@Url.Action("Register")';
+    const indexURL='@Url.Action("Index","Home")';
+    function showRegister() {
+            $(".login").hide();
+            $(".login.register").show();
+        }
+
+    function showLogin() {
+        $(".login").hide();
+        $(".login.login-form").show();
+    }
+    $(".btnRegister").on("click", showRegister);
+
+    var working = false;
+    $('.login-form').on('submit', e=>Login(e) );
+    $('.register').on('submit', e=>Register(e) );
+
+
+    function Login(e) {
+          e.preventDefault();
+          if (working) return;
+          working = true;
+
+          var $this = $(this), $state = $this.find('button > .state');
+
+          $this.addClass('loading');
+
+          $state.html('Authenticating');
+           $.ajax({
+                    type: "POST",
+                    url: loginURL,
+                    data: {
+                        Email: $(".login-form .txtUsername").val(),
+                        Password: $(".login-form .txtPassword").val(),
+                        "__RequestVerificationToken": $("[name='__RequestVerificationToken'").val()
+                    },
+                    success: function (result) {
+                        if (result.success) {
+                            $this.addClass('ok');
+                            $state.html('Welcome back!');
+                            setTimeout(function () {
+                                $state.html('Log in');
+                                $this.removeClass('ok loading');
+                                working = false;
+                                window.location = indexURL;
+                            }, 2000);
+                        }
+                        else {
+                            var working = false;
+                        }
+                    },
+                    dataType: "json"
+                });
+        }
+
+    function Register(e) {
+        e.preventDefault();
+        if (working) return;
+        working = true;
+
+        var $this = $(this), $state = $this.find('button > .state');
+
+        $this.addClass('loading');
+
+        $state.html('Registering');
+        $.ajax({
+            type: "POST",
+            url: registerRL,
+            data: {
+                Email: $(".register .txtUsername").val(),
+                Password: $(".register .txtPassword").val(),
+                ConfirmPassword: $(".register .txtConfirmPassword").val(),
+                FullName: $(".register .realName").val(),
+                "__RequestVerificationToken": $("[name='__RequestVerificationToken'").val()
+            },
+            success: function (result) {
+                if (result.success) {
+                    $this.addClass('ok');
+                    $state.html('Registered Successfully!');
+                    setTimeout(function () {
+                        $state.html('Log in');
+                        $this.removeClass('ok loading');
+                        working = false;
+                        showLogin();
+                    }, 2000);
+                }
+                else {
+                    var working = false;
+                }
+
+            },
+            dataType: "json"
+        });
+    }
+
+</script>
+}
+
+<style>
+
+    body {
+        height: 100vh;
+        background-size: cover;
+    }
+
+    * {
+        box-sizing: border-box;
+        outline: none;
+    }
+
+    .login.register {
+        display: none;
+    }
+</style>

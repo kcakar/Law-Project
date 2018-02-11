@@ -31,15 +31,40 @@
                             <span class="section">Genel Bilgiler</span>
                             <p>Buradan sisteme yeni bir şiket ekleyebilir veya varolan bir şirketi düzenleyebilirsiniz.</p>
                             <div class="item form-group">
-                                <label class="control-label col-md-3 col-sm-3 col-xs-12" >
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12">
                                     Şirket İsmi<span class="required">*</span>
                                 </label>
                                 <div class="col-md-6 col-sm-6 col-xs-12">
                                     <input id="name" name="name" type="text" required="required" placeholder="Şirket ismi giriniz" class="form-control col-md-7 col-xs-12 name" value="@Model.Name">
                                 </div>
                             </div>
+                            <div class="item form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="name">
+                                    Şirket açıklaması <span class="required">*</span>
+                                </label>
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                    <div class="quill bio form-control col-md-7 col-xs-12">@Html.Raw(Model.Description)</div>
+                                </div>
+                            </div>
+                            <div class="item form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="name">
+                                    Resim <span class="required">*</span>
+                                </label>
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                    @if (!string.IsNullOrEmpty(Model.ImageURL))
+                                    {
+                                        <img src="@Model.ImageURL" width="200" data-image-url="@Model.ImageURL" />
+                                    }
+                                    else
+                                    {
+                                        <div action="@Url.Action("UploadImage")"
+                                             class="dropzone"></div>
+                                    }
+                                </div>
+                            </div>
                         </form>
                     </div>
+
                     <div class="form-group">
                         <div class="col-md-6 col-md-offset-3">
                             <button id="send" type="submit" class="btn btn-success">Şirketi kaydet</button>
@@ -62,6 +87,10 @@
                 $(".name").closest("div").addClass("bad");
             }
 
+            if (!$("[data-image-url]").attr("data-image-url")) {
+                message = setMessage(message, "Lütfen bir resim yükleyinizz");
+            }
+
             if (message) {
                 $.snackbar({ content: message, htmlAllowed: true});
                 return false;
@@ -71,7 +100,44 @@
             }
         }
 
+
+        function createDropzone(element) {
+            $(element).dropzone({
+                addRemoveLinks: true,
+                maxFiles: 1,
+                url: "@Url.Action("UploadImage")",
+                complete: function () {
+                    var args = Array.prototype.slice.call(arguments);
+                    var response = JSON.parse(args[0].xhr.response);
+
+                    if (response.success) {
+                        console.log(response.message)
+                        console.log(this)
+                        $(this.element).attr("data-image-url", response.url)
+                    }
+                    else {
+                        console.log(response.message)
+                    }
+                }
+            })
+        };
+
         $(function () {
+
+            $(".quill").each(function () {
+                new Quill(this, {
+                    modules: {
+                        toolbar: [
+                            ['bold', 'italic'],
+                            ['link', 'blockquote'],
+                            [{ list: 'ordered' }, { list: 'bullet' }]
+                        ]
+                    },
+                    theme: 'snow'
+                });
+            })
+
+            createDropzone($(".dropzone"));
 
             $("#send").click(function () {
 
@@ -79,12 +145,17 @@
                     return;
                 }
 
+
                 let affiliateModel = {
                     ID:"@Model.ID",
                     Name: "",
+                    ImageURL: "",
+                    Description:""
                 }
-
+                affiliateModel.ImageURL = $("[data-image-url]").attr("data-image-url");
+                affiliateModel.Description = $(".ql-editor").html();
                 affiliateModel.Name = $(".name").val();
+
                 $.ajax({
                     type: "POST",
                     url: "@Url.Action("AddAffiliatePost")",

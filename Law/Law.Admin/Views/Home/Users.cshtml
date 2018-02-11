@@ -1,0 +1,108 @@
+﻿@using Law.Models
+
+@{
+    ViewData["Title"] = "Users";
+}
+
+@model UsersViewModel
+
+<div class="right_col" role="main">
+    <div class="">
+        <div class="page-title">
+            <div class="title_left">
+                <h3>Kullanıcı Yönetimi</h3>
+            </div>
+            <div class="title_right">
+                <div class="col-md-5 col-sm-5 col-xs-12 form-group pull-right top_search">
+                    <div class="input-group">
+                        <input type="text" class="form-control" placeholder="Search for...">
+                        <span class="input-group-btn">
+                            <button class="btn btn-default" type="button">Go!</button>
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="clearfix"></div>
+        <div class="row">
+            <div class="col-md-12 col-sm-12 col-xs-12">
+                <div class="x_panel">
+                    <div class="x_content">
+                        <div class="table-responsive">
+                            <table class="table table-striped projects">
+                                <thead>
+                                    <tr>
+                                        <th class="column-title">Kullanıcı Adı </th>
+                                        <th class="column-title">E-mail </th>
+                                        <th class="column-title">Yaratma Tarihi </th>
+                                        <th class="column-title no-link last">
+                                            <span class="nobr">Action</span>
+                                        </th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (User user in Model.FoundUsers)
+                                    {
+                                        <tr>
+                                            <td>
+                                                @user.Name
+                                            </td>
+                                            <td>
+                                                @user.CreationDate.ToShortDateString()
+                                            </td>
+                                            <td>
+                                                <a href="@Url.Action("AddUser", "Home", new { id = user.ID })" class="btn btn-info btn-xs"><i class="fa fa-pencil"></i> Edit </a>
+                                                <a href="@Url.Action("RemoveUser", "Home", new { id = user.ID,page=Model.FoundUsers.PageIndex })" class="btn btn-danger btn-xs"><i class="fa fa-trash-o"></i> Delete </a>
+                                            </td>
+                                        </tr>
+                                    }
+
+                                </tbody>
+                            </table>
+                            <nav>
+                                <ul class="pagination pg-darkgrey">
+                                    @{
+                                        List<int> range = new List<int>();
+                                        int current = Model.FoundUsers.PageIndex;
+                                        int delta = 3;
+                                        int left = current - delta;
+                                        int right = current + delta + 1;
+                                        int last = Model.FoundUsers.TotalPages;
+
+                                        @for (int i = 1; i <= Model.FoundUsers.TotalPages; i++)
+                                        {
+                                            if (i == 1 || i == last || i >= left && i < right)
+                                            {
+                                                range.Add(i);
+                                            }
+                                        }
+
+                                        int l = -1;
+                                        foreach (int i in range)
+                                        {
+                                            if (l > -1)
+                                            {
+                                                if (i - l == 2)
+                                                {
+                                                    <li class="page-item @(i==current?"active":"")"><a href="@Url.Action("Users", "Home", new { page=l+1 })" class="page-link">@(l + 1)</a></li>
+                                                }
+                                                else if (i - l != 1)
+                                                {
+                                                    <li class="page-item"><a class="page-link">...</a></li>
+                                                }
+                                            }
+                                            @Html.Raw("<li class=\"page-item " + (i == current ? "active" : "") + "\"><a  href=\"" + @Url.Action("Users", "Home", new { page = i }) + "\" class=\"page-link\">" + i + "</a></li>")
+
+                                            l = i;
+                                        }
+                                    }
+                                </ul>
+                            </nav>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

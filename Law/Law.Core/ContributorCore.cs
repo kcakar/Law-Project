@@ -41,6 +41,12 @@ namespace Law.Core
             return Tester.TestContributors.Where(x => ids.Contains(x.ID)).ToList();
         }
 
+        public static List<Contributor> GetContributorsByAffiliateId(string id)
+        {
+            return Tester.TestContributors.Where(x => x.AffiliateID==id).ToList();
+        }
+
+
         public static Contributor GetContributorsById(string id)
         {
             return Tester.TestContributors.FirstOrDefault(x => x.ID == id);

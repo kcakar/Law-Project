@@ -9,6 +9,7 @@ using Law.Web.Models;
 using Microsoft.Extensions.Caching.Memory;
 using Law.Web;
 using Law.Web.Controllers;
+using Law.Core;
 
 namespace Web.Controllers
 {
@@ -36,6 +37,20 @@ namespace Web.Controllers
             return View();
         }
 
-       
+        public IActionResult Login()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult CheckLogin(string username,string password)
+        {
+            bool result = AuthenticationCore.CheckAuth(username, password);
+            if (result)
+            {
+            }
+
+            return Json(new {message="Başarılı",success= result });
+        }
     }
 }

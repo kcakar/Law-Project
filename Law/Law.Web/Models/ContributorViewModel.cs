@@ -33,6 +33,5 @@ namespace Law.Web.Models
 
             this.TotalContributions = contributor.TotalContributions;
         }
-
     }
 }

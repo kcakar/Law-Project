@@ -37,6 +37,11 @@ namespace Law.Core
             return Tester.TestAffiliates.Where(x => x.Name.ToLower().Contains(name.ToLower())).ToList();
         }
 
+        public static List<Affiliate> GetMostRecentAffiliates(int amount)
+        {
+            return Tester.TestAffiliates.OrderByDescending(x => x.CreationDate).Take(amount).ToList();
+        }
+
 
         public static PaginatedList<Affiliate> GetFilteredAffiliates(string keyword, string page = "1")
         {
@@ -56,9 +61,15 @@ namespace Law.Core
             {
                 Name = model.Name.CapitaliseFirstLetters(),
                 CreationDate = model.CreationDate,
-                ID = model.ID
+                ID = model.ID,
+                Description=model.Description
             };
 
+            if (model.ImageURL == null)
+            {
+                model.ImageURL = "";
+            }
+            affiliate.ImageURL = model.ImageURL.Replace("~", "");
             //ID mevcutsa güncelle, yoksa ekle
             if (!Tester.TestAffiliates.Exists(x => x.ID != affiliate.ID))
             {
