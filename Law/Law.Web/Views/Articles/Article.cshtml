@@ -1,5 +1,5 @@
 ﻿@using Law.Web.Models
-
+@using Microsoft.AspNetCore.Http.Extensions
 @model ArticleViewModel
 @{
     ViewData["Title"] = "Article - " + Model.Title;
@@ -68,10 +68,10 @@
                                     </div>
                                     <div class="pull-left" style="margin-right: 8px">
                                         <a href="/article/printpage/1" target="_blank">
-                                            <i class="fa fa-print"></i> 
+                                            <i class="fa fa-print"></i>
                                         </a>
                                     </div>
-                                    <div class="pull-left" >
+                                    <div class="pull-left">
                                         <i class="fa fa-file-pdf-o"></i>
                                         <a href="@Url.Action("Download", "Articles", new { id = Model.ID })" target="_blank"></a>
                                     </div>
@@ -135,11 +135,19 @@
                                             </li>
                                         </ul>
                                     </div>
+
                                     <div class="comment-form">
                                         <div class="line"></div>
                                         <h3>Leave a Reply</h3>
-                                        <textarea class="comment"></textarea>
-                                        <button class="bttn-simple bttn-md bttn-primary">Post Comment</button>
+                                        @if (User.Identity.IsAuthenticated)
+                                        {
+                                            <textarea class="comment"></textarea>
+                                            <button class="bttn-simple bttn-md bttn-primary">Post Comment</button>
+                                        }
+                                        else
+                                        {
+                                            <a href="@Url.Action("Login","Account",new { returnUrl= Context.Request.GetDisplayUrl()})">Please login to comment</a>
+                                        }
                                     </div>
                                     <div class='clearfix'></div>
                                 </div>

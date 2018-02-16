@@ -62,7 +62,7 @@
           if (working) return;
           working = true;
 
-          var $this = $(this), $state = $this.find('button > .state');
+          var $this = $('.login-form'), $state = $this.find('button > .state');
 
           $this.addClass('loading');
 
@@ -99,7 +99,7 @@
         if (working) return;
         working = true;
 
-        var $this = $(this), $state = $this.find('button > .state');
+        var $this = $('.register'), $state = $this.find('button > .state');
 
         $this.addClass('loading');
 

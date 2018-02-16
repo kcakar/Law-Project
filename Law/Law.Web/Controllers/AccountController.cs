@@ -49,9 +49,9 @@ namespace Law.Web.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Login(LoginViewModel model, string returnUrl = null)
         {
-            bool signedIn = User.Identity.IsAuthenticated;
-            await _signInManager.SignOutAsync();
-            bool signedIn2 = User.Identity.IsAuthenticated;
+            //bool signedIn = User.Identity.IsAuthenticated;
+            //await _signInManager.SignOutAsync();
+            //bool signedIn2 = User.Identity.IsAuthenticated;
             ViewData["ReturnUrl"] = returnUrl;
             if (ModelState.IsValid)
             {
@@ -105,15 +105,15 @@ namespace Law.Web.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Register(RegisterViewModel model, string returnUrl = null)
         {
-            model.Email = "keremcan@hotmail.com.tr";
-            model.FullName = "Keremcan Çakar";
-            model.Password = "22109022kK";
-            model.ConfirmPassword = "22109022kK";
-            ViewData["ReturnUrl"] = returnUrl;
+            //model.Email = "keremcan@hotmail.com.tr";
+            //model.FullName = "Keremcan Çakar";
+            //model.Password = "22109022kK";
+            //model.ConfirmPassword = "22109022kK";
+            //ViewData["ReturnUrl"] = returnUrl;
             if (ModelState.IsValid)
             {
                 var user = new ApplicationUser { UserName = model.Email, Email = model.Email };
-                user.EmailConfirmed = true;
+                user.EmailConfirmed = true;//mail atabiliyosak bunu sil
                 var result = await _userManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
