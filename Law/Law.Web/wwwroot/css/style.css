@@ -8,7 +8,7 @@ hr {
 
 body {
     font-family: 'Rubik', sans-serif;
-    
+    font-weight: 200;
     /*font-family: 'Tangerine', serif;*/
     padding-top: 130px;
 }
@@ -661,7 +661,9 @@ section.search {
 
 .contributor-profile h1 {
     margin-bottom: 20px;
-    font-family: 'Playfair Display', serif;
+    font-family: 'Rubik', sans-serif;
+    font-size: 20px;
+    font-weight: 200;
 }
 .contributor-profile h4 {
     color: #95574a;

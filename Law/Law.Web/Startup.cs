@@ -8,6 +8,7 @@ using Law.Web.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Routing;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -67,6 +68,9 @@ namespace Law.Web
 
             services.AddMemoryCache();
             services.AddMvc();
+
+            var connection = @"Server=pltosman.cj8mtntenfpy.us-east-2.rds.amazonaws.com;DataBase=LawDb;User ID=admin;Password=Admin!7654";
+            services.AddDbContext<Law.DataAccess.LawContext>(options=>options.UseSqlServer(connection));
             services.AddSession();
         }
 
@@ -88,12 +92,12 @@ namespace Law.Web
             app.UseAuthentication();
             app.UseSession();
 
-            app.UseMvc(routes =>
-            {
-                routes.MapRoute(
-                    name: "default",
-                    template: "{controller=Home}/{action=Index}/{id?}");
-            });
+            app.UseMvc(ConfigureRoutes);
+        }
+
+        private void ConfigureRoutes(IRouteBuilder routeBuilder)
+        {
+           routeBuilder.MapRoute("default","{controller=Home}/{action=Index}/{id?}");
         }
     }
 }
