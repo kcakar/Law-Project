@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Law.DataAccess
 {
-    public class LawContext : DbContext<ApplicationUser>
+    public class LawContext : IdentityDbContext<ApplicationUser>
     {
         public LawContext(DbContextOptions<LawContext> options) : base(options)
         {
