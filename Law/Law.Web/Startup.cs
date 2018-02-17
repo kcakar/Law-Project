@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Law.DataAccess;
 using Law.Web.Models;
 using Law.Web.Services;
@@ -27,10 +24,6 @@ namespace Law.Web
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            //services.AddDbContext<ApplicationDbContext>(options =>
-            //    options.UseInMemoryDatabase(Guid.NewGuid().ToString()));
-
-            //var connection = @"Server=pltosman.cj8mtntenfpy.us-east-2.rds.amazonaws.com;DataBase=LawDb;User ID=admin;Password=Admin!7654";
             services.AddDbContext<LawContext>(options => options.UseSqlServer(Configuration["DbConnection"]));
             services.AddSession();
 

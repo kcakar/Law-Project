@@ -1,8 +1,8 @@
 ﻿using Law.Models;
 using Law.Web.Models;
-using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
+using System.Threading.Tasks;
 
 namespace Law.DataAccess
 {
@@ -35,5 +35,14 @@ namespace Law.DataAccess
             modelBuilder.Entity<NameBase>().ToTable("NameBase");
         }
 
+        //public async Task<int> GetRowCountAsync<T>(DbSet<T> entries) where T : class
+        //{
+        //    return await entries.CountAsync();
+        //}
+
+        //public async Task<T> GetItemAsync<T>(DbSet<T> entries,string ID) where T : NameBase
+        //{
+        //    return await entries.SingleOrDefaultAsync(x=>x.ID==ID);
+        //}
     }
 }

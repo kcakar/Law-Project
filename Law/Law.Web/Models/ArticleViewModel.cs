@@ -25,7 +25,7 @@ namespace Law.Web.Models
         
         public ArticleViewModel(Article Article)
         {
-            this.Comments = new List<Comment>();
+            this.Comments = CommentCore.GetCommentByArticleId(Article.ID);
             this.LatestArticles = new List<LatestArticleRow>();
             foreach(Article article in ArticleCore.GetMostRecentArticles(5))
             {

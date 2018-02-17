@@ -80,11 +80,11 @@
                                 <div class="comment-container">
                                     @if (Model.Comments.Count <= 0)
                                     {
-                                        <h3>Be first to comment!</h3>
+                                        <h3 class="comment-count-container">Be first to comment!</h3>
                                     }
                                     else
                                     {
-                                        <h3>@Model.Comments.Count Comments</h3>
+                                        <h3 class="comment-count-container"><span class="comment-count">@Model.Comments.Count</span> Comments</h3>
                                     }
                                     <div class="comment-list">
                                         <ul>
@@ -94,7 +94,7 @@
                                                     <p class="comment-author">
                                                         <strong>@comment.Username</strong><br />
                                                         <small>
-                                                            <span>@comment.CreationTime.ToShortTimeString()</span>
+                                                            <span>@comment.CreationTime.ToLongDateString()</span>
                                                         </small>
                                                     </p>
                                                     <div class="comment-content">
@@ -171,7 +171,7 @@
 
 @section Scripts{
 <script>
-        var commentUrl ='@Url.Action("AddComment", "Articles")';
+        var commentUrl ='@Url.Action("AddCommentAsync", "Articles")';
         var articleId='@Model.ID';
         $(function() {
             $(".btnComment").on("click", function(){
@@ -196,9 +196,16 @@
 
         function AddComment(comment,date) {
             var comment = '<li><p class="comment-author"><strong>' + comment.username + '</strong><br /><small><span>' + date + '</span></small></p><div class="comment-content">' + comment.body + '</div></li>';
-            $(".comment-list").append(comment);
+            $(".comment-list ul").append(comment);
 
+            var commentCount = $(".comment-list ul li").length;
+            var commentText = "comments";
+            if (commentCount == 1) {
+                commentText = "comment";
+            }
 
+            $(".comment-count-container").html('<span class="comment-count">' + $(".comment-list ul li").length + '</span> ' + commentText);
+            $(".txtComment").val("")
         }
 </script>
 }

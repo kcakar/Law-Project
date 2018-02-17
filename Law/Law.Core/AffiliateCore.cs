@@ -1,4 +1,5 @@
-﻿using Law.Models;
+﻿using Law.DataAccess;
+using Law.Models;
 using Law.Test;
 using System.Collections.Generic;
 using System.Globalization;
@@ -9,6 +10,8 @@ namespace Law.Core
 
     public static class AffiliateCore
     {
+        private static readonly LawContext _context;
+
         public static int GetAffiliateCount()
         {
             return Tester.TestAffiliates.Count;
@@ -21,7 +24,7 @@ namespace Law.Core
 
         public static Affiliate GetAffiliatesById(string id)
         {
-            if(id==null)
+            if (id == null)
             {
                 return new Affiliate();
             }
@@ -62,7 +65,7 @@ namespace Law.Core
                 Name = model.Name.CapitaliseFirstLetters(),
                 CreationDate = model.CreationDate,
                 ID = model.ID,
-                Description=model.Description
+                Description = model.Description
             };
 
             if (model.ImageURL == null)

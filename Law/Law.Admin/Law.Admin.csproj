@@ -25,6 +25,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Law.Core\Law.Core.csproj" />
+    <ProjectReference Include="..\Law.DataAccess\Law.DataAccess.csproj" />
     <ProjectReference Include="..\Law.Models\Law.Models.csproj" />
   </ItemGroup>
 
