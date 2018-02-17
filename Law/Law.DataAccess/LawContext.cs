@@ -1,14 +1,13 @@
 ﻿using Law.Models;
+using Law.Web.Models;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace Law.DataAccess
 {
-    public class LawContext : DbContext
+    public class LawContext : DbContext<ApplicationUser>
     {
-
         public LawContext(DbContextOptions<LawContext> options) : base(options)
         {
            
@@ -22,12 +21,10 @@ namespace Law.DataAccess
         public DbSet<Country> Countries { get; set; }
         public DbSet<NameBase> NameBases { get; set; }  
         public DbSet<PracticeArea> PracticeAreas { get; set; }
-        public DbSet<User> Users { get; set; }
-
-
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            base.OnModelCreating(modelBuilder);
             modelBuilder.Entity<Affiliate>().ToTable("Affiliate");
             modelBuilder.Entity<Article>().ToTable("Article");
             modelBuilder.Entity<ArticlePiece>().ToTable("ArticlePiece");
@@ -36,7 +33,6 @@ namespace Law.DataAccess
             modelBuilder.Entity<Country>().ToTable("Country");
             modelBuilder.Entity<PracticeArea>().ToTable("PracticeArea");
             modelBuilder.Entity<NameBase>().ToTable("NameBase");
-            modelBuilder.Entity<User>().ToTable("User");
         }
 
     }
