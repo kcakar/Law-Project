@@ -69,8 +69,8 @@ namespace Law.Web
             services.AddMemoryCache();
             services.AddMvc();
 
-            var connection = @"Server=pltosman.cj8mtntenfpy.us-east-2.rds.amazonaws.com;DataBase=LawDb;User ID=admin;Password=Admin!7654";
-            services.AddDbContext<Law.DataAccess.LawContext>(options=>options.UseSqlServer(connection));
+            //var connection = @"Server=pltosman.cj8mtntenfpy.us-east-2.rds.amazonaws.com;DataBase=LawDb;User ID=admin;Password=Admin!7654";
+            services.AddDbContext<Law.DataAccess.LawContext>(options=>options.UseSqlServer(Configuration["DbConnection"]));
             services.AddSession();
         }
 

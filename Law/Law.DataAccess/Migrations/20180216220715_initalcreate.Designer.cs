@@ -13,9 +13,10 @@ using System;
 namespace Law.DataAccess.Migrations
 {
     [DbContext(typeof(LawContext))]
-    partial class LawContextModelSnapshot : ModelSnapshot
+    [Migration("20180216220715_initalcreate")]
+    partial class initalcreate
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
