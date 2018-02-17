@@ -27,8 +27,11 @@ namespace Law.Web
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddDbContext<ApplicationDbContext>(options =>
-                options.UseInMemoryDatabase(Guid.NewGuid().ToString()));
+            //services.AddDbContext<ApplicationDbContext>(options =>
+            //    options.UseInMemoryDatabase(Guid.NewGuid().ToString()));
+
+            var connection = @"Server=pltosman.cj8mtntenfpy.us-east-2.rds.amazonaws.com;DataBase=LawDb;User ID=admin;Password=Admin!7654";
+            services.AddDbContext<Law.DataAccess.LawContext>(options => options.UseSqlServer(connection));
 
             services.AddIdentity<ApplicationUser, IdentityRole>()
             .AddEntityFrameworkStores<ApplicationDbContext>()
@@ -64,13 +67,8 @@ namespace Law.Web
                 options.SlidingExpiration = true;
             });
             services.AddTransient<IEmailSender, EmailSender>();
-
-
             services.AddMemoryCache();
             services.AddMvc();
-
-            var connection = @"Server=pltosman.cj8mtntenfpy.us-east-2.rds.amazonaws.com;DataBase=LawDb;User ID=admin;Password=Admin!7654";
-            services.AddDbContext<Law.DataAccess.LawContext>(options=>options.UseSqlServer(connection));
             services.AddSession();
         }
 
