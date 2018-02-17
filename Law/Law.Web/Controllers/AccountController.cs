@@ -60,7 +60,11 @@ namespace Law.Web.Controllers
                 var result = await _signInManager.PasswordSignInAsync(model.Email, model.Password, model.RememberMe, lockoutOnFailure: false);
                 if (result.Succeeded)
                 {
-                    return RedirectToLocal(returnUrl);
+                    if(string.IsNullOrEmpty(returnUrl))
+                    {
+                        returnUrl = Url.Action("Index", "Home");
+                    }
+                    return Json(new { success = true,redirect=returnUrl, message = "Logged in successfully. Redirecting..." });
                 }
                 if (result.IsLockedOut)
                 {
@@ -69,28 +73,13 @@ namespace Law.Web.Controllers
                 else
                 {
                     ModelState.AddModelError(string.Empty, "Invalid login attempt.");
-                    return View(model);
+                    return Json(new { success = false, message = "Invalid login attempt." });
+
                 }
             }
 
             // If we got this far, something failed, redisplay form
-            return View(model);
-        }
-
-        [HttpGet]
-        [AllowAnonymous]
-        public async Task<IActionResult> LoginWithRecoveryCode(string returnUrl = null)
-        {
-            // Ensure the user has gone through the username & password screen first
-            var user = await _signInManager.GetTwoFactorAuthenticationUserAsync();
-            if (user == null)
-            {
-                throw new ApplicationException($"Unable to load two-factor authentication user.");
-            }
-
-            ViewData["ReturnUrl"] = returnUrl;
-
-            return View();
+            return Json(new { success=false,message="An error occured with login." });
         }
 
         [HttpGet]
@@ -110,9 +99,10 @@ namespace Law.Web.Controllers
             //model.Password = "22109022kK";
             //model.ConfirmPassword = "22109022kK";
             //ViewData["ReturnUrl"] = returnUrl;
+            string message = "";
             if (ModelState.IsValid)
             {
-                var user = new ApplicationUser { UserName = model.Email, Email = model.Email };
+                var user = new ApplicationUser { UserName = model.Email, Email = model.Email ,FullName=model.FullName};
                 user.EmailConfirmed = true;//mail atabiliyosak bunu sil
                 var result = await _userManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
@@ -125,19 +115,21 @@ namespace Law.Web.Controllers
                     if(string.IsNullOrEmpty(returnUrl))
                     {
                         bool signedIn=User.Identity.IsAuthenticated;
-                        returnUrl = Url.Action("Index", "Home");
+                        returnUrl = returnUrl;
                     }
-                    return RedirectToLocal(returnUrl);
+                    return Json(new { success = true, redirect = returnUrl, message = "Registration succesful. Redirecting to login screen..." });
+                }
+                foreach(IdentityError error in result.Errors)
+                {
+                    message += error.Description+" </br>";
                 }
                 AddErrors(result);
             }
 
             // If we got this far, something failed, redisplay form
-            return View(model);
+            return Json(new { success = false, redirect = returnUrl, message = message });
         }
 
-        [HttpPost]
-        [ValidateAntiForgeryToken]
         public async Task<IActionResult> Logout()
         {
             await _signInManager.SignOutAsync();

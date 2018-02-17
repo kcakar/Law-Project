@@ -73,9 +73,11 @@
                     data: {
                         Email: $(".login-form .txtUsername").val(),
                         Password: $(".login-form .txtPassword").val(),
-                        "__RequestVerificationToken": $("[name='__RequestVerificationToken'").val()
+                        "__RequestVerificationToken": $("[name='__RequestVerificationToken'").val(),
+                        returnUrl: '@ViewData["ReturnUrl"]'
                     },
                     success: function (result) {
+                        $.snackbar({ content: result.message });
                         if (result.success) {
                             $this.addClass('ok');
                             $state.html('Welcome back!');
@@ -83,11 +85,13 @@
                                 $state.html('Log in');
                                 $this.removeClass('ok loading');
                                 working = false;
-                                window.location = indexURL;
+                                window.location = result.redirect;
                             }, 2000);
                         }
                         else {
-                            var working = false;
+                            $state.html('Login');
+                            $this.removeClass('loading');
+                            working = false;
                         }
                     },
                     dataType: "json"
@@ -115,6 +119,7 @@
                 "__RequestVerificationToken": $("[name='__RequestVerificationToken'").val()
             },
             success: function (result) {
+                $.snackbar({ content: result.message });
                 if (result.success) {
                     $this.addClass('ok');
                     $state.html('Registered Successfully!');
@@ -122,11 +127,13 @@
                         $state.html('Log in');
                         $this.removeClass('ok loading');
                         working = false;
-                        showLogin();
+                        window.location.reload();
                     }, 2000);
                 }
                 else {
-                    var working = false;
+                    $state.html('Register');
+                    $this.removeClass('loading');
+                    working = false;
                 }
 
             },

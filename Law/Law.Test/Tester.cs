@@ -11,6 +11,7 @@ namespace Law.Test
         public static Random random = new Random();
         public static List<Article> TestArticles = new List<Article>();
         public static List<User> TestUsers = new List<User>();
+        public static List<Comment> TestComments = new List<Comment>();
         public static List<ArticlePiece> TestArticlePieces = new List<ArticlePiece>();
         public static List<City> TestCities = new List<City>();
         public static List<Country> TestCountries = new List<Country>();

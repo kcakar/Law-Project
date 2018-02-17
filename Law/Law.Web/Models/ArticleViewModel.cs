@@ -21,9 +21,11 @@ namespace Law.Web.Models
    
         public List<LatestArticleRow> LatestArticles { get; set; }
         public List<LatestContributorsRow> LatestContributors { get; set; }
+        public List<Comment> Comments { get; set; }
         
         public ArticleViewModel(Article Article)
         {
+            this.Comments = new List<Comment>();
             this.LatestArticles = new List<LatestArticleRow>();
             foreach(Article article in ArticleCore.GetMostRecentArticles(5))
             {
@@ -37,6 +39,8 @@ namespace Law.Web.Models
             }
             this.Affiliate = new Affiliate();
             this.Affiliate = AffiliateCore.GetAffiliatesById(Article.AffiliateID);
+
+            
             Article.ViewCount = Article.ViewCount + 1;
             ID = Article.ID;
             Title = Article.Title;

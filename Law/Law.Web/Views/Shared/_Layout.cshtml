@@ -23,6 +23,7 @@
     <link href="~/css/owl.theme.default.min.css" rel="stylesheet" />
     <link href="~/css/jquery.mCustomScrollbar.min.css" rel="stylesheet" />
     <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel="stylesheet" />
+    <link href="~/css/snackbar.min.css" rel="stylesheet" />
     <link href="~/css/style.css" rel="stylesheet" />
 </head>
 <body>
@@ -52,7 +53,14 @@
                     <div class="col-md-4 col-sm-2 social-container">
                         <div class="pull-right newsletter-form">
                             <button class="subscribe-button">Subscribe</button>
-                            <a class="login-button" href="@Url.Action("Login","Account")">Login</a>
+                            @if (!User.Identity.IsAuthenticated)
+                            {
+                                <a class="login-button" href="@Url.Action("Login","Account")">Login</a>
+                            }
+                            else
+                            {
+                                <a class="login-button" href="@Url.Action("Logout","Account")">Logout</a>
+                            }
                         </div>
                         <div class="pull-right social">
                             <a href=""><i class="fa fa-facebook"></i></a>
@@ -116,6 +124,7 @@
     <script src="~/js/jquery.mCustomScrollbar.min.js"></script>
     <script src="~/js/jquery.sticky.js"></script>
     <script src="~/js/jquery.cookie.js"></script>
+    <script src="~/js/snackbar.min.js"></script>
     <script>var URL = "//www.turkishlawblog.tk/";</script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/js/select2.min.js"></script>
     <script src="~/js/application.js"></script>

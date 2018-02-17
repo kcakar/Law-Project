@@ -1,10 +1,10 @@
 ﻿@using Law.Web.Models
+@using Law.Models
 @using Microsoft.AspNetCore.Http.Extensions
 @model ArticleViewModel
 @{
     ViewData["Title"] = "Article - " + Model.Title;
 }
-
 <div class="Page">
     <div class="container">
         <div class="row">
@@ -78,75 +78,44 @@
                                     <div class="clearfix"></div>
                                 </div>
                                 <div class="comment-container">
-                                    <h3>3 Comments</h3>
+                                    @if (Model.Comments.Count <= 0)
+                                    {
+                                        <h3>Be first to comment!</h3>
+                                    }
+                                    else
+                                    {
+                                        <h3>@Model.Comments.Count Comments</h3>
+                                    }
                                     <div class="comment-list">
                                         <ul>
-                                            <li>
-                                                <p class="comment-author">
-                                                    <strong>Keremcan Çakar</strong><br />
-                                                    <small>
-                                                        <span>Jan 30, 2017</span> 4:48 am
-                                                    </small>
-                                                </p>
-                                                <div class="comment-content">
-                                                    <p>Thank you so much for sharing this informative post on common WordPress error and its solutions. You provided a wonderful solution to fix it. </p>
-                                                    <p>It’s always exciting for me to read content from other writers and practice a little something from other websites.</p>
-                                                    <p>Keep Sharing.!</p>
-                                                </div>
-                                            </li>
-                                            <li>
-                                                <p class="comment-author">
-                                                    <strong>Keremcan Çakar</strong><br />
-                                                    <small>
-                                                        <span>Jan 30, 2017</span> 4:48 am
-                                                    </small>
-                                                </p>
-                                                <div class="comment-content">
-                                                    <p>Thank you so much for sharing this informative post on common WordPress error and its solutions. You provided a wonderful solution to fix it. </p>
-                                                    <p>It’s always exciting for me to read content from other writers and practice a little something from other websites.</p>
-                                                    <p>Keep Sharing.!</p>
-                                                </div>
-                                            </li>
-                                            <li>
-                                                <p class="comment-author">
-                                                    <strong>Keremcan Çakar</strong><br />
-                                                    <small>
-                                                        <span>Jan 30, 2017</span> 4:48 am
-                                                    </small>
-                                                </p>
-                                                <div class="comment-content">
-                                                    <p>Thank you so much for sharing this informative post on common WordPress error and its solutions. You provided a wonderful solution to fix it. </p>
-                                                    <p>It’s always exciting for me to read content from other writers and practice a little something from other websites.</p>
-                                                    <p>Keep Sharing.!</p>
-                                                </div>
-                                            </li>
-                                            <li>
-                                                <p class="comment-author">
-                                                    <strong>Keremcan Çakar</strong><br />
-                                                    <small>
-                                                        <span>Jan 30, 2017</span> 4:48 am
-                                                    </small>
-                                                </p>
-                                                <div class="comment-content">
-                                                    <p>Thank you so much for sharing this informative post on common WordPress error and its solutions. You provided a wonderful solution to fix it. </p>
-                                                    <p>It’s always exciting for me to read content from other writers and practice a little something from other websites.</p>
-                                                    <p>Keep Sharing.!</p>
-                                                </div>
-                                            </li>
+                                            @foreach (Comment comment in Model.Comments)
+                                            {
+                                                <li>
+                                                    <p class="comment-author">
+                                                        <strong>@comment.Username</strong><br />
+                                                        <small>
+                                                            <span>@comment.CreationTime.ToShortTimeString()</span>
+                                                        </small>
+                                                    </p>
+                                                    <div class="comment-content">
+                                                        @comment.Body
+                                                    </div>
+                                                </li>
+                                            }
                                         </ul>
                                     </div>
 
                                     <div class="comment-form">
                                         <div class="line"></div>
-                                        <h3>Leave a Reply</h3>
+                                        <h3>Leave a comment</h3>
                                         @if (User.Identity.IsAuthenticated)
                                         {
-                                            <textarea class="comment"></textarea>
-                                            <button class="bttn-simple bttn-md bttn-primary">Post Comment</button>
+                                            <textarea class="comment txtComment"></textarea>
+                                            <button class="bttn-simple bttn-md bttn-primary btnComment">Post Comment</button>
                                         }
                                         else
                                         {
-                                            <a href="@Url.Action("Login","Account",new { returnUrl= Context.Request.GetDisplayUrl()})">Please login to comment</a>
+                                            <a href="@Url.Action("Login","Account",new { returnUrl= Context.Request.GetDisplayUrl()})">Please login or register to comment</a>
                                         }
                                     </div>
                                     <div class='clearfix'></div>
@@ -198,3 +167,38 @@
         </div>
     </div>
 </div>
+
+
+@section Scripts{
+<script>
+        var commentUrl ='@Url.Action("AddComment", "Articles")';
+        var articleId='@Model.ID';
+        $(function() {
+            $(".btnComment").on("click", function(){
+                $.ajax({
+                        type: "POST",
+                        url: commentUrl,
+                        data: {
+                            body: $(".txtComment").val(),
+                            articleId: articleId,
+                        },
+                        success: function (result) {
+                            $.snackbar({ content: result.message });
+                            if (result.success) {
+                                AddComment(result.model,result.date);
+                            }
+                        },
+                        dataType: "json"
+                    });
+            })
+        })
+
+
+        function AddComment(comment,date) {
+            var comment = '<li><p class="comment-author"><strong>' + comment.username + '</strong><br /><small><span>' + date + '</span></small></p><div class="comment-content">' + comment.body + '</div></li>';
+            $(".comment-list").append(comment);
+
+
+        }
+</script>
+}
