@@ -7,6 +7,7 @@ using Law.Models;
 using Law.Web.Controllers;
 using Law.Web.Models;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Caching.Memory;
 
@@ -16,8 +17,11 @@ namespace Web.Controllers
 {
     public class ArticlesController : CommonController
     {
-        public ArticlesController(IMemoryCache memoryCache) : base(memoryCache)
+        private readonly UserManager<ApplicationUser> _userManager;
+
+        public ArticlesController(UserManager<ApplicationUser> userManager, IMemoryCache memoryCache) : base(memoryCache)
         {
+            _userManager = userManager;
 
         }
 
@@ -35,13 +39,14 @@ namespace Web.Controllers
 
         [Authorize]
         [HttpPost]
-        public IActionResult AddComment(string body, string articleId)
+        public async Task<IActionResult> AddCommentAsync(string body, string articleId)
         {
             Comment result = null;
             string message = "";
             if (User.Identity.IsAuthenticated)
             {
-                result = CommentCore.AddComment(body, articleId, User.Identity.Name);
+                var user = await _userManager.GetUserAsync(User);
+                result = CommentCore.AddComment(body, articleId, user.FullName);
                 if (result != null)
                 {
                     message = "Comment is added.";
@@ -56,7 +61,7 @@ namespace Web.Controllers
                 message = "You need to login to comment.";
             }
 
-            return Json(new { success = result != null, message, model = result,date=result.CreationTime.ToShortDateString() });
+            return Json(new { success = result != null, message, model = result,date=result.CreationTime.ToLongDateString() });
         }
 
 

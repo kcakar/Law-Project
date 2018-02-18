@@ -1,5 +1,6 @@
 ﻿using Law.Models;
 using Law.Test;
+using Law.Web.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,7 +15,7 @@ namespace Law.Core
         }
 
 
-        public static Comment AddComment(string body,string username,string articleId)
+        public static Comment AddComment(string body,string articleId, string username)
         {
             try
             {
