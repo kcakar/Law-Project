@@ -13,7 +13,7 @@ using System;
 namespace Law.DataAccess.Migrations
 {
     [DbContext(typeof(LawContext))]
-    [Migration("20180217184507_initalcreate")]
+    [Migration("20180217201613_initalcreate")]
     partial class initalcreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -108,6 +108,8 @@ namespace Law.DataAccess.Migrations
                         .HasMaxLength(256);
 
                     b.Property<bool>("EmailConfirmed");
+
+                    b.Property<string>("FullName");
 
                     b.Property<bool>("LockoutEnabled");
 
