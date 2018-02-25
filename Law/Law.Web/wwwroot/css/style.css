@@ -48,7 +48,7 @@ a {
             position: relative;
             display: inline-block;
             padding: 8px 12px 10px 12px;
-            font-family: 'Playfair Display', serif;
+            font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;;
             font-size: 17px;
             font-weight: 300;
             border-radius: 4px 4px 0 0;
@@ -174,9 +174,7 @@ a {
 section.about-us,
 .latest-authors {
     background-color: #fff;
-    padding: 35px 0 45px;
-    padding-left: 40px;
-    padding-right: 40px;
+    padding: 35px 0 0 0;
 }
 
 .latest-posts {
@@ -282,8 +280,10 @@ section h2 b {
 /* Section: Search */
 
 section.search {
-    max-width:943px;
-    margin-bottom:20px;
+    max-width: 943px;
+    margin-bottom: 20px;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .search-form .pull-left {
@@ -292,7 +292,6 @@ section.search {
 }
 
 .search-form {
-    background-color: #efe3e1;
     padding: 18px;
     border-radius: 4px;
 }
@@ -346,7 +345,7 @@ section.search {
         outline: none;
         font-size: 13px;
         font-weight: 200;
-        background-color: #95574b;
+        background-color: rgba(3, 168, 124, 0.7294117647058823);
         color: #fff;
     }
 
@@ -456,7 +455,6 @@ section.search {
 }
 
 .BlogViewRight {
-    background-color: #efe3e1;
     border-radius: 0 3px 3px 0;
     padding: 25px;
     overflow: hidden;
@@ -551,7 +549,7 @@ section.search {
     margin: 0 0 15px 0;
     font-family: "Playfair Display", serif;
     font-size: 24px;
-    color: #95574a;
+    color: rgba(0, 0, 0, 0.8588235294117647);
 }
 
 .search-box .form-control {
@@ -603,8 +601,6 @@ section.search {
 
 .PageView {
     background-color: #fff;
-    padding: 30px;
-    border-radius: 4px;
     margin-bottom: 40px;
 }
 
@@ -637,7 +633,7 @@ section.search {
     display: inline-block;
     float: left;
     width: 50%;
-    background-color: #a0817b;
+    background-color: #555;
     margin: 0;
     box-sizing: border-box;
     text-align: center;
@@ -645,10 +641,12 @@ section.search {
     font-family: "Playfair Display", serif;
     font-size: 20px;
     color: #fff;
+    text-decoration:none;
 }
 
     .ProfilePage .tabs a.active {
-        background-color: #95574a;
+        background-color: rgba(0, 0, 0, 0.8588235294117647);
+        text-decoration: none;
     }
 
 .contributor-profile .contributor-data {
@@ -663,9 +661,10 @@ section.search {
 }
 
 .contributor-profile h4 {
-    color: #95574a;
-    font-family: 'Playfair Display', serif;
+    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;;
     font-weight: 500;
+    margin:10px 0 0 0;
+    padding:0;
 }
 
 .contributor-biography {
@@ -685,7 +684,7 @@ section.search {
         content: "\f0d7";
         font-family: "FontAwesome";
         font-size: 30px;
-        color: #95574a;
+        color: rgba(0, 0, 0, 0.8588235294117647);
         position: absolute;
         left: calc( 50% - 15px );
         bottom: -23px;
@@ -744,22 +743,24 @@ footer {
     border-top: 1px solid #cdc6c4;
     padding-top: 40px;
     padding-bottom: 40px;
-    font-family: 'Playfair Display', serif;
+    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
     font-size: 17px;
     font-weight: 300;
 }
 
 .footer-logo {
-    background: #602e25;
     text-align: center;
     padding: 40px;
     box-sizing: border-box;
+}
+.footer-logo img{
+    filter:invert(100%);
 }
 
 footer b {
     display: inline-block;
     margin-bottom: 10px;
-    color: #bf877a
+    color: rgba(0,0,0,.5)
 }
 
 footer a {
@@ -968,7 +969,6 @@ footer a {
 
 .posts .post-container {
     width: 25%;
-    margin-right: 20px;
 }
 
 
@@ -1265,15 +1265,15 @@ footer a {
 }
 
 .select2-container--default .select2-selection--single {
-    border: 1px solid rgba(113, 57, 47, 0.43137254901960786);
+    border: 1px solid rgba(3, 168, 124, 0.57);
 }
 
 .select2-container--default .select2-results__option[aria-selected=true] {
-    background-color: rgba(113, 57, 47, 0.43137254901960786);
+    background-color: rgba(3, 168, 124, 0.57);
 }
 
 .select2-container--default .select2-results__option--highlighted[aria-selected] {
-    background-color: #602e25;
+    background-color: rgba(3, 168, 124, 0.77);
     color: white;
 }
 
@@ -1346,7 +1346,7 @@ p {
     width: 100%;
     opacity: 0;
     transition: .5s ease;
-    background-color: #602e25;
+    background-color: #232323;
 }
 
 .contributor.container:hover .overlay {
@@ -1540,18 +1540,18 @@ p {
 }
 
 .select2-results__options::-webkit-scrollbar-thumb {
-    background-color: rgba(96, 46, 37, 0.8);
+    background-color: #037f5e;
 }
 
 .select2-results__options::-webkit-scrollbar-track {
-    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+    -webkit-box-shadow: inset 0 0 6px #3dbc9a;
     background-color: #F5F5F5;
 }
 
 
 .article-search .results {
     width: 100%;
-    margin:0 auto;
+    margin: 0 auto;
 }
 
 
@@ -1730,7 +1730,7 @@ header {
     header .header-top {
         display: flex;
         justify-content: space-between;
-        padding: 10px 8px 0 0;
+        padding: 10px 0 0 0;
         height: 50px;
         position: relative;
     }
@@ -1846,7 +1846,7 @@ main {
         }
 
         main .posts .post-container {
-            width: calc(50% - 39px);
+            width: calc(50% - 5px);
             border: 1px solid rgba(0,0,0,.1);
             border-radius: 2px;
             padding: 16px;
@@ -1858,13 +1858,12 @@ main {
             transition: border-color 0.2s;
             align-content: space-between;
         }
+            main .posts .post-container:nth-child(2n+1) {
+                margin-right: 10px;
+            }
 
             main .posts .post-container:hover {
                 border-color: rgba(0,0,0,.5);
-            }
-
-            main .posts .post-container:not(.posts-header):nth-child(2n) {
-                margin-right: 10px;
             }
 
             main .posts .post-container > div {
@@ -1969,18 +1968,14 @@ main {
         margin-right: 0px;
     }
 
-        main .posts .post-container:not(.posts-header):nth-child(2n) {
-            margin-right: 0px;
-        }
-
         main .posts .post-container .post-owner {
             margin-top: 20px;
         }
 }
 
 @media screen and (max-width: 500px) {
-    header nav{
-        display:none;
+    header nav {
+        display: none;
     }
 
     header .header-top .header-mid {
@@ -1988,7 +1983,6 @@ main {
     }
 }
 
-.contributor-photo{
-    border:1px solid gray;
+.contributor-photo {
+    border: 1px solid gray;
 }
-
