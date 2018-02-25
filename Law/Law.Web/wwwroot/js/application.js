@@ -10,7 +10,7 @@ function closeNav() {
 
 $(function () {
     $(".select2.contributors").select2({
-        placeholder: 'Select a contributor',
+        placeholder: 'Contributors',
         allowClear: true,
         ajax: {
             url: '/Data/Contributors',
@@ -21,12 +21,12 @@ $(function () {
     });
 
     $(".select2.countries").select2({
-        placeholder: 'Select a country',
+        placeholder: 'Countries',
         allowClear: true
     });
 
     $(".select2.affiliates").select2({
-        placeholder: 'Select an affiliate',
+        placeholder: 'Affiliates',
         allowClear: true
     });
 
@@ -41,7 +41,7 @@ $(function () {
     });
 
     let citySelect = $(".select2.cities").select2({
-        placeholder: 'Select a city',
+        placeholder: 'Cities',
         allowClear: true,
         ajax: {
             url: '/Data/Cities',
@@ -62,7 +62,7 @@ $(function () {
     });
 
     $(".select2.practices").select2({
-        placeholder: 'Select a practice',
+        placeholder: 'Practices',
         allowClear: true
     });
 });

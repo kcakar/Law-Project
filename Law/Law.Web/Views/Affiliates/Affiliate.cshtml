@@ -8,52 +8,46 @@
 
 
 <div class="Page ProfilePage">
-    <div class="container">
+    <div class="PageView" style="padding:0">
+
         <div class="row">
-            <div class="col-md-12">
-                <div class="PageView" style="padding:0">
-
-                    <div class="row">
-                        <div class="col-md-4 contributor-container" style="padding-right:0;">
-                            <div class='contributor-profile' style="background-color:#efe3e1">
-                                <div class="contributor-photo">
-                                    <img src="@Model.Affiliate.ImageURL.GetImageUrl()" alt="" class="img-responsive">
-                                </div>
-                                <div class="contributor-data">
-                                    <h1 style="padding:0; margin:0">@Model.Affiliate.Name</h1>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-8 contributor-detail-container" style="padding-left:0">
-                            <dv class="tabs">
-                                <a href="javascript:;" data-rel="biography" class="active">About</a>
-                                <a href="javascript:;" data-rel="articles">Contributors</a>
-                                <div class="clearfix"></div>
-                            </dv>
-                            <div class="tabs-contents">
-                                <div id="biography" class="tab-content active">
-                                    @Html.Raw(Model.Affiliate.Description)
-                                </div>
-                                <div id="articles" class="articles tab-content">
-                                    @foreach (Contributor contributor in Model.Contributors)
-                                    {
-                                        <div class="contributor container">
-                                            <a href="@Url.Action("Contributor", "Contributors", new { id = contributor.ID })">
-                                                <img src="@contributor.ImageURL.GetImageUrl()" alt="Avatar" class="image">
-                                                <div class="overlay">
-                                                    <div class="text">@contributor.Name<br /></div>
-                                                </div>
-                                            </a>
-                                        </div>
-                                    }
-                                </div>
-                            </div>
-                        </div>
+            <div class="col-md-4 contributor-container" style="padding-right:0;">
+                <div class='contributor-profile' style="background-color:#efe3e1">
+                    <div class="contributor-photo">
+                        <img src="@Model.Affiliate.ImageURL.GetImageUrl()" alt="" class="img-responsive">
                     </div>
-
+                    <div class="contributor-data">
+                        <h1 style="padding:0; margin:0">@Model.Affiliate.Name</h1>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-8 contributor-detail-container" style="padding-left:0">
+                <dv class="tabs">
+                    <a href="javascript:;" data-rel="biography" class="active">About</a>
+                    <a href="javascript:;" data-rel="articles">Contributors</a>
+                    <div class="clearfix"></div>
+                </dv>
+                <div class="tabs-contents">
+                    <div id="biography" class="tab-content active">
+                        @Html.Raw(Model.Affiliate.Description)
+                    </div>
+                    <div id="articles" class="articles tab-content">
+                        @foreach (Contributor contributor in Model.Contributors)
+                        {
+                            <div class="contributor container">
+                                <a href="@Url.Action("Contributor", "Contributors", new { id = contributor.ID })">
+                                    <img src="@contributor.ImageURL.GetImageUrl()" alt="Avatar" class="image">
+                                    <div class="overlay">
+                                        <div class="text">@contributor.Name<br /></div>
+                                    </div>
+                                </a>
+                            </div>
+                        }
+                    </div>
                 </div>
             </div>
         </div>
+
     </div>
 </div>
 <script type="text/javascript">
