@@ -50,16 +50,16 @@
         </div>
         <nav>
             <ul>
-                <li class="active">
-                    <a href="@Url.Action("Index","Articles")">ARTICLES</a>
+                <li class="@(@Context.Request.Path.ToString().ToLower()=="/articles" ? "active":"")">
+                    <a href="@Url.Action("Index","Articles")">ARTICLES </a>
                 </li>
                 @*<li>
                     <a href="@Url.Action("Index","Affiliates")">AFFILIATES</a>
                 </li>*@
-                <li>
+                <li class="@(@Context.Request.Path.ToString().ToLower()=="/contributors" ? "active":"")">
                     <a href="@Url.Action("Index","Contributors")">CONTRIBUTORS</a>
                 </li>
-                <li>
+                <li class="@(@Context.Request.Path.ToString().ToLower()=="/ınformation/aboutus" ? "active":"")">
                     <a href="@Url.Action("AboutUs","Information")">ABOUT US</a>
                 </li>
             </ul>
@@ -76,7 +76,7 @@
                 <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
                 <a href="@Url.Action("Index","Home")"><i class="fa fa-home"></i></a>
                 <a href="@Url.Action("Index","Articles")">Articles</a>
-                <a href="@Url.Action("Index","Affiliates")">Affiliates</a>
+                @*<a href="@Url.Action("Index","Affiliates")">Affiliates</a>*@
                 <a href="@Url.Action("Index","Contributors")">Contributors</a>
                 <a href="@Url.Action("AboutUs","Information")">About Us</a>
                 @if (!User.Identity.IsAuthenticated)
