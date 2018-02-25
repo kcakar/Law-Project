@@ -16,7 +16,7 @@
                         <h2>Contributors</h2>
                     </div>
 
-                    <div class='row'>
+                    <div>
                         @foreach (Contributor contributor in Model.Contributors)
                         {
                             Affiliate affiliate = Model.RelatedAffiliates.FirstOrDefault(x => x.ID == contributor.AffiliateID);

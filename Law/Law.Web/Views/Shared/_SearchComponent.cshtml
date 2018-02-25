@@ -6,7 +6,7 @@
 
             <form asp-controller="Articles" asp-action="Index">
                 <div class="pull-left">
-                    <select name="practice" data-placeholder="Choose a Practice..." class="select2 practices" tabindex="1">
+                    <select name="practice" data-placeholder="Practices..." class="select2 practices" tabindex="1">
                         <option></option>
                         @foreach (PracticeArea area in Model.Practices)
                         {
@@ -22,7 +22,7 @@
                     </select>
                 </div>
                 <div class="pull-left">
-                    <select name="affiliate" data-placeholder="Select an Affiliate..." class="select2 affiliates" tabindex="5">
+                    <select name="affiliate" data-placeholder="Affiliates" class="select2 affiliates" tabindex="5">
                         <option></option>
                         @foreach (Affiliate affiliate in Model.Affiliates)
                         {
@@ -38,7 +38,7 @@
                     </select>
                 </div>
                 <div class="pull-left">
-                    <select name="contributor" data-placeholder="Choose a Contributor..." class="select2 contributors" tabindex="2">
+                    <select name="contributor" data-placeholder="Contributors" class="select2 contributors" tabindex="2">
                         <option></option>
                         @foreach (Contributor contributor in Model.Contributors)
                         {
@@ -54,7 +54,7 @@
                     </select>
                 </div>
                 <div class="pull-left">
-                    <select name="country" data-placeholder="Choose a Country..." class="select2 countries" tabindex="3">
+                    <select name="country" data-placeholder="Countries" class="select2 countries" tabindex="3">
                         <option></option>
                         @foreach (Country country in Model.Countries)
                         {
@@ -71,7 +71,7 @@
                 </div>
 
                 <div class="pull-left">
-                    <select name="city" data-placeholder="Select a City..." class="select2 cities" @(string.IsNullOrEmpty(Model.selectedCountry) ? "disabled" : "") tabindex="4">
+                    <select name="city" data-placeholder="Cities" class="select2 cities" @(string.IsNullOrEmpty(Model.selectedCountry) ? "disabled" : "") tabindex="4">
                         <option></option>
                         @foreach (City city in Model.Cities)
                         {
