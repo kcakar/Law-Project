@@ -35,17 +35,17 @@
             </div>
             <div class="header-right">
                 <!-- <a href="#"><i class="fa fa-facebook"></i></a>
-            <a href="#"><i class="fa fa-twitter"></i></a>
-            <a href="#"><i class="fa fa-linkedin"></i></a> -->
+                <a href="#"><i class="fa fa-twitter"></i></a>
+                <a href="#"><i class="fa fa-linkedin"></i></a> -->
                 <a href="#" class="top-btn">Subscribe</a>
                 @if (!User.Identity.IsAuthenticated)
-            {
-                <a class="top-btn" href="@Url.Action("Login","Account")">Login</a>
-        }
-        else
-        {
-            <a class="top-btn" href="@Url.Action("Logout","Account")">Logout</a>
-    }
+                {
+                    <a class="top-btn" href="@Url.Action("Login","Account")">Login</a>
+                }
+                else
+                {
+                    <a class="top-btn" href="@Url.Action("Logout","Account")">Logout</a>
+                }
             </div>
         </div>
         <nav>
@@ -79,6 +79,14 @@
                 <a href="@Url.Action("Index","Affiliates")">Affiliates</a>
                 <a href="@Url.Action("Index","Contributors")">Contributors</a>
                 <a href="@Url.Action("AboutUs","Information")">About Us</a>
+                @if (!User.Identity.IsAuthenticated)
+                {
+                    <a href="@Url.Action("Login","Account")">Login</a>
+                }
+                else
+                {
+                    <a href="@Url.Action("Logout","Account")">Logout</a>
+                }
             </div>
         </div>
     </header>
