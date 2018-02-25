@@ -8,123 +8,95 @@
 }
 
 
-<section class="slider">
-
-    <div class="container">
-        <div class="row" style="padding: 0 5px">
-            <div id="slider" class="owl-carousel">
-
-                @foreach (Article article in Model.PopularArticles)
-                {
-                    Contributor contributor = Model.RecentContributors.FirstOrDefault(x => x.ID == article.ContributorID);
-                    if (contributor != null)
-                    {
-                        <div class='item'>
-                            <a href='@Url.Action("Article", "Articles", new { id = article.ID })' class='image' style='background-image: url(@contributor.ImageURL.GetImageUrl());'></a>
-                            <div class='title'>
-                                <div class='caption'><a href='@Url.Action("Article", "Articles", new { id = article.ID })'>@(article.Title.Length > 45 ? article.Title.Substring(0, 45) + "..." : article.Title )</a></div>
-                                <div class='tools'>
-                                    <div class='pull-left'><i class='fa fa-user-circle-o'></i> <a href='@Url.Action("Contributor", "Contributors", new { id = contributor.ID })'>@contributor.Name</a></div>
-                                    <div class='pull-left'><i class='fa fa-calendar'></i> @article.CreationDate.ToShortDateString()</div>
-                                    <div class='pull-left'><i class='fa fa-eye'></i>  @article.ViewCount</div>
-                                    <div class='clearfix'></div>
-                                </div>
-                            </div>
-                        </div>
-                    }
-                }
-
-            </div>
-        </div>
-    </div>
-
+<section class="posts new">
     @Html.Partial("~/Views/Shared/_SearchComponent.cshtml", Model.FilterModel)
-</section>
-
-<section class="about-us">
-    <div class="container">
-        <div class="row">
-            <div class="col-md-12">
-                <h2>ABOUT <b>TURKISH LAW BLOG</b></h2>
-                <b>Who are We?</b>
-                <p>
-                    Turkish Law Blog (TLB) is a publication of LEXAWORD providing information and news on Turkish Law. We have gathered together leading experts from law firms, arbitration institutions, and academia to report on the latest developments. They in turn have enlisted professional colleagues of diverse backgrounds to offer both established and new voices into the mix. The result is a fresh, high-quality, and timely examination of the world of international arbitration.
-                </p>
-                <b>What Is Our Focus?</b>
-                <p>We are a new kind of media. Our focus is to become a go to English language platform for Turkish legal society with contributions from recognized experts. Our format is new to the Turkish legal sector. The result is a serious, high-quality, professional blog about Turkish law presented in a timely, fresh way.</p>
-                <b>What is Your Role?</b>
-                <p>Of course we welcome you as a faithful reader, The blog format provides an opportunity for everyone to participate, but we welcome comments must respect our <a href="@Url.Action("EditorialPolicy","Information")">Editorial Policy</a>. We also will be inviting guest bloggers to contribute from time to time.</p>
-
-            </div>
-        </div>
+    <div class="posts-header">
+        <h2>For you</h2>
     </div>
-</section>
 
-<section class="latest-posts">
-    <div class="container">
-        <div class="row">
-            <div class="col-md-12">
-                <h2>LATEST <b>ARTICLES</b></h2>
-                <div class="posts latest-articles-container">
-                    <div class="item latest-articles">
-                        @foreach (Article article in Model.RecentArticles)
-                        {
-                            Contributor contributor = Model.RecentContributors.FirstOrDefault(x => x.ID == article.ContributorID);
-                            Affiliate affiliate = Model.Affiliates.FirstOrDefault(x => x.ID == contributor.AffiliateID);
-
-                            if (contributor != null)
-                            {
-                                <div class='col-md-3 post-item'>
-                                    <div class='post'>
-                                        <div class='title'><a href='@Url.Action("Article", "Articles", new { id = article.ID })'>@(article.Title.Length > 45 ? article.Title.Substring(0, 45) + "..." : article.Title )</a></div>
-                                        <div class='text'>
-                                            @article.BodyPreview
-                                        </div>
-                                        <div class='author'>
-                                            <div class="posts-image"><img src='@contributor.ImageURL.GetImageUrl()' alt=''></div>
-                                            <div class='posts-contributor'>
-                                                <b><a href='@Url.Action("Contributor", "Contributors", new { id = contributor.ID })'>@contributor.Name</a></b>
-                                                @if (affiliate != null)
-                                                {
-                                                    <span>@affiliate.Name</span>
-                                                }
-                                            </div>
-                                            <div class='clearfix'></div>
-                                        </div>
-                                    </div>
-                                </div>
-                            }
-                        }
+    @foreach (Article article in Model.PopularArticles)
+    {
+        Contributor contributor = Model.RecentContributors.FirstOrDefault(x => x.ID == article.ContributorID);
+        if (contributor != null)
+        {
+            <div class="post-container">
+                <div class="post-top">
+                    <div class="post-header">
+                        <a href="@Url.Action("Article", "Articles", new { id = article.ID })">
+                            <h3>@article.Title</h3>
+                        </a>
+                    </div>
+                    <div class="post-description">
+                        <a href="@Url.Action("Article", "Articles", new { id = article.ID })">
+                            <h4>I made the call in December 2017 that I would challenge myself to read 50 books in 2018.</h4>
+                        </a>
+                    </div>
+                </div>
+                <div class="post-owner">
+                    <div class="owner-image">
+                        <a href="@Url.Action("Contributor", "Contributors", new { id = contributor.ID })">
+                            <img src="@contributor.ImageURL.GetImageUrl()" />
+                        </a>
+                    </div>
+                    <div class="owner-info">
+                        <div class="owner-name">
+                            <a href="@Url.Action("Contributor", "Contributors", new { id = contributor.ID })">@contributor.Name</a>
+                        </div>
+                        <div class="affiliate">
+                            <span>
+                                Nye Law & Consultancy
+                            </span>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-    </div>
+        }
+    }
 </section>
 
-<section class="latest-authors">
-    <div class="container">
-        <div class="row">
-            <div class="col-md-12">
-                <h2>LATEST <b>CONTRIBUTORS</b></h2>
-                <div class="row">
-                    <div id="authors" class="owl-carousel">
-                        @foreach (Contributor contributor in Model.RecentContributors.OrderByDescending(x => x.CreationDate).Take(5).ToList())
-                        {
-                            Affiliate affiliate = Model.Affiliates.FirstOrDefault(x => x.ID == contributor.AffiliateID);
-                            <a href='@Url.Action("Contributor", "Contributors", new { id = contributor.ID })'>
-                                <div class='col-md-12 author'>
-                                    <div class='image' style='background-image: url(@contributor.ImageURL.GetImageUrl())'></div>
-                                    <div class='title'>
-                                        <b>@contributor.Name</b>
-                                        <span>@affiliate.Name</span>
-                                    </div>
-                                </div>
-                            </a>
-                        }
+<section class="posts">
+    <div class="posts-header">
+        <h2>Latest articles</h2>
+    </div>
+    @foreach (Article article in Model.RecentArticles)
+    {
+        Contributor contributor = Model.RecentContributors.FirstOrDefault(x => x.ID == article.ContributorID);
+        Affiliate affiliate = Model.Affiliates.FirstOrDefault(x => x.ID == contributor.AffiliateID);
+
+        if (contributor != null)
+        {
+            <div class="post-container">
+                <div class="post-top">
+                    <div class="post-header">
+                        <a href="@Url.Action("Article", "Articles", new { id = article.ID })">
+                            <h3>@article.Title</h3>
+                        </a>
+                    </div>
+                    <div class="post-description">
+                        <a href="@Url.Action("Article", "Articles", new { id = article.ID })">
+                            <h4>I made the call in December 2017 that I would challenge myself to read 50 books in 2018.</h4>
+                        </a>
+                    </div>
+                </div>
+                <div class="post-owner">
+                    <div class="owner-image">
+                        <a href="@Url.Action("Contributor", "Contributors", new { id = contributor.ID })">
+                            <img src="@contributor.ImageURL.GetImageUrl()" />
+                        </a>
+                    </div>
+                    <div class="owner-info">
+                        <div class="owner-name">
+                            <a href="@Url.Action("Contributor", "Contributors", new { id = contributor.ID })">@contributor.Name</a>
+                        </div>
+                        <div class="affiliate">
+                            <span>
+                                Nye Law & Consultancy
+                            </span>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-    </div>
+        }
+    }
 </section>
+
