@@ -1998,6 +1998,7 @@ main {
 
     .search-form form > .pull-left {
         flex-grow: 1;
+        flex-basis: 0
     }
 
     .search-form form > .pull-right {
