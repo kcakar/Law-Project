@@ -8,10 +8,7 @@
 
 <div class="Page PracticePage">
     @Html.Partial("~/Views/Shared/_SearchComponent.cshtml", Model.FilterModel)
-    <div class="container">
-        <div class="row">
-            <div class="col-md-12">
-                <div class="PageView posts article-search">
+                <div class=" posts article-search">
                     @*<h1>Found Articles</h1>*@
 
                     <div class="results">
@@ -22,14 +19,34 @@
 
                             if (contributor != null && affiliate != null)
                             {
-                                <div class='col-md-3  found-article'>
-                                    <div class='post'>
-                                        <div class='title'><a href="@Url.Action("Article", "Articles", new { id = article.ID })">@(article.Title.Length > 65 ? article.Title.Substring(0, 65) + "..." : article.Title )</a></div>
-                                        <div class='text'>@article.BodyPreview</div>
-                                        <div class='author'>
-                                            <div class='pull-left'><img src='@contributor.ImageURL.GetImageUrl()' alt=''></div>
-                                            <div class='pull-left'><a href='@Url.Action("Contributor", "Contributors", new { id = contributor.ID })'><b>@contributor.Name</b></a><span>@affiliate.Name</span></div>
-                                            <div class='clearfix'></div>
+                                <div class="post-container">
+                                    <div class="post-top">
+                                        <div class="post-header">
+                                            <a href="@Url.Action("Article", "Articles", new { id = article.ID })">
+                                                <h3>@article.Title</h3>
+                                            </a>
+                                        </div>
+                                        <div class="post-description">
+                                            <a href="@Url.Action("Article", "Articles", new { id = article.ID })">
+                                                <h4>I made the call in December 2017 that I would challenge myself to read 50 books in 2018.</h4>
+                                            </a>
+                                        </div>
+                                    </div>
+                                    <div class="post-owner">
+                                        <div class="owner-image">
+                                            <a href="@Url.Action("Contributor", "Contributors", new { id = contributor.ID })">
+                                                <img src="@contributor.ImageURL.GetImageUrl()" />
+                                            </a>
+                                        </div>
+                                        <div class="owner-info">
+                                            <div class="owner-name">
+                                                <a href="@Url.Action("Contributor", "Contributors", new { id = contributor.ID })">@contributor.Name</a>
+                                            </div>
+                                            <div class="affiliate">
+                                                <span>
+                                                    Nye Law & Consultancy
+                                                </span>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -77,7 +94,4 @@
                         </ul>
                     </nav>
                 </div>
-            </div>
-        </div>
-    </div>
 </div>

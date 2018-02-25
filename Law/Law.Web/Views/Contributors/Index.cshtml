@@ -12,15 +12,16 @@
             <div class="col-md-12">
                 <div class="PageView posts contributors">
 
-                    <h1>Contributors</h1>
-                   
+                    <div class="posts-header">
+                        <h2>Contributors</h2>
+                    </div>
 
                     <div class='row'>
                         @foreach (Contributor contributor in Model.Contributors)
                         {
                             Affiliate affiliate = Model.RelatedAffiliates.FirstOrDefault(x => x.ID == contributor.AffiliateID);
                             string AffiliateText = "";
-                            if (affiliate!=null)
+                            if (affiliate != null)
                             {
                                 AffiliateText = affiliate.Name;
                             }
