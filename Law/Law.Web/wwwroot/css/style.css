@@ -185,7 +185,7 @@ section.about-us p {
     color: #888;
     font-weight: 200;
     text-align: justify;
-    line-height: 2
+    line-height: 1.5
 }
 
 section h2 b {
@@ -2002,5 +2002,61 @@ main {
     .search-form form {
         display: block;
         width: 100%;
+    }
+}
+
+section.about-us{
+    padding:0 20px 0 20px;
+}
+
+section.about-us h2{
+    font-size:20px;
+    font-style:italic;
+    letter-spacing:-0.5px;
+}
+    section.about-us .text-center h2{
+        font-size: 25px;
+        font-style:initial;
+    }
+
+    header .header-top .header-left
+    {
+        display:flex;
+        width:80px;
+    }
+
+
+
+header .header-top .header-left .fa {
+    font-size: 25px;
+}
+
+        header .header-top .header-left a {
+            width: 30px;
+            text-align: center;
+            transition: color 0.5s;
+            align-self: flex-end;
+        }
+
+        header .header-top .header-left a:hover {
+            color:black;
+        }
+
+@media screen and (max-width: 500px) {
+    header .header-top .header-left {
+        position:absolute;
+        right:10px;
+    }
+
+        header .header-top .header-left .fa {
+            font-size: 20px;
+        }
+
+        header .header-top .header-left a {
+            width: 20px;
+        }
+
+    header .header-top .header-left {
+        width: 60px;
     }
 }
