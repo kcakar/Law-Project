@@ -62,7 +62,7 @@ namespace Law.Core
         {
             Affiliate affiliate = new Affiliate
             {
-                Name = model.Name.CapitaliseFirstLetters(),
+                Name = model.Name,
                 CreationDate = model.CreationDate,
                 ID = model.ID,
                 Description = model.Description
