@@ -45,4 +45,12 @@ namespace Law.DataAccess
         //    return await entries.SingleOrDefaultAsync(x=>x.ID==ID);
         //}
     }
+
+    public class CreatorDatabase : CreateDatabaseIfNotExists<LawContext>
+    {
+       // seed metodunu nasil kullaniyoruz. ??? 
+
+
+    }
+
 }

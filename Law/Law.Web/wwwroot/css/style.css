@@ -17,6 +17,7 @@ header {
     position: fixed;
     z-index: 100;
     top: 0;
+    border-bottom: 1px solid #cdc6c4;
 }
 
 
@@ -284,6 +285,7 @@ section.search {
 
 .search-form {
     border-radius: 4px;
+    margin-top:-20px;
 }
 
     .search-form .pull-left i {
@@ -730,11 +732,12 @@ section.search {
 footer {
     background: #fff;
     border-top: 1px solid #cdc6c4;
-    padding-top: 40px;
-    padding-bottom: 40px;
+    padding-top: 20px;
+    padding-bottom: 20px;
     font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
     font-size: 17px;
     font-weight: 300;
+    background-color: #ecf0f1;
 }
 
 .footer-logo {
@@ -1705,9 +1708,11 @@ a, a:hover {
 }
 
 header {
-    max-width: 1000px;
+    /*max-width: 1000px;*/
     margin: 0 auto;
+    padding-bottom: 20px;
     position: relative;
+    background-color: #ecf0f1;
 }
 
 
@@ -1735,6 +1740,7 @@ header {
 
         header .header-top .header-right {
             display: flex;
+            margin-right:330px;
         }
 
             header .header-top .header-right a {
