@@ -46,11 +46,11 @@ namespace Law.DataAccess
         //}
     }
 
-    public class CreatorDatabase : CreateDatabaseIfNotExists<LawContext>
-    {
-       // seed metodunu nasil kullaniyoruz. ??? 
+    //public class CreatorDatabase : CreateDatabaseIfNotExists<LawContext>
+    //{
+    //   // seed metodunu nasil kullaniyoruz. ??? 
 
 
-    }
+    //}
 
 }
