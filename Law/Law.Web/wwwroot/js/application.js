@@ -9,6 +9,13 @@ function closeNav() {
 }
 
 $(function () {
+
+    $(window).scroll(function (event) {
+        var scroll = $(window).scrollTop();
+        console.log(scroll)
+
+    });
+
     $(".select2.contributors").select2({
         placeholder: 'Contributors',
         allowClear: true,

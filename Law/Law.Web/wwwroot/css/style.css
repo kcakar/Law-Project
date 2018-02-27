@@ -14,7 +14,6 @@ body {
 
 header {
     width: 100%;
-    position: fixed;
     z-index: 100;
     top: 0;
     border-bottom: 1px solid #cdc6c4;
@@ -1722,8 +1721,8 @@ header {
     /*max-width: 1000px;*/
     margin: 0 auto;
     padding-bottom: 20px;
-    position: fixed;
-    background-color: rgba(236, 240, 241, 0.9686274509803922);
+    background-color: rgb(236, 240, 241);
+    position:relative;
 }
 
 
@@ -1821,14 +1820,9 @@ main {
     max-width: 1000px;
     width: 100%;
     margin: 0 auto;
-    margin-top:130px;
     min-height: calc(100vh - 281px);
 }
-@media screen and (max-width: 500px) {
-    main {
-        margin-top: 100px;
-    }
-}
+
 
     main .posts {
         padding-top: 30px;
