@@ -1718,6 +1718,8 @@ header {
 
     header .header-top {
         display: flex;
+        max-width:1000px;
+        margin:0 auto;
         justify-content: space-between;
         padding: 10px 0 0 0;
         height: 50px;
@@ -1740,7 +1742,6 @@ header {
 
         header .header-top .header-right {
             display: flex;
-            margin-right:330px;
         }
 
             header .header-top .header-right a {
@@ -2025,11 +2026,11 @@ section.about-us h2{
         font-style:initial;
     }
 
-    header .header-top .header-left
-    {
-        display:flex;
-        width:80px;
-    }
+header .header-top .header-left {
+    display: flex;
+    width: 80px;
+    margin-left: -5px;
+}
 
 
 
