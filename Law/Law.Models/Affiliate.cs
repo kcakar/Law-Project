@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Text;
 
 namespace Law.Models
 {
+    [Table("Affiliate")]
     public class Affiliate:NameBase
     {
         public string ImageURL { get; set; }

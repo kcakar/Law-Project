@@ -1,9 +1,13 @@
 ﻿using System;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Law.Models
 {
+    [Table("Article")]
     public class Article
     {
+        [Key, DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public string ID { get; set; }
         public string Title { get; set; }
         public string BodyPreview { get; set; }

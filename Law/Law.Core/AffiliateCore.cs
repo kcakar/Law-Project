@@ -73,6 +73,8 @@ namespace Law.Core
                 model.ImageURL = "";
             }
             affiliate.ImageURL = model.ImageURL.Replace("~", "");
+
+            //_context.Affiliates.Add(affiliate);
             //ID mevcutsa güncelle, yoksa ekle
             if (!Tester.TestAffiliates.Exists(x => x.ID != affiliate.ID))
             {
