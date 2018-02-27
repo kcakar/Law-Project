@@ -13,12 +13,14 @@
 
                     <div class="results">
                         @foreach (Article article in Model.FoundArticles)
-                        {
-                            Contributor contributor = Model.RelatedContributors.FirstOrDefault(x => x.ID == article.ContributorID);
-                            Affiliate affiliate = Model.RelatedAffiliates.FirstOrDefault(x => x.ID == article.AffiliateID);
+                                    {
+                                        Contributor contributor = Model.RelatedContributors.FirstOrDefault(x => x.ID == article.ContributorID);
+                                        Affiliate affiliate = Model.RelatedAffiliates.FirstOrDefault(x => x.ID == article.AffiliateID);
 
-                            if (contributor != null && affiliate != null)
-                            {
+                                        string affiliateName = affiliate != null ? affiliate.Name : "";
+
+                                        if (contributor != null)
+                                        {
                                 <div class="post-container">
                                     <div class="post-top">
                                         <div class="post-header">
@@ -44,7 +46,7 @@
                                             </div>
                                             <div class="affiliate">
                                                 <span>
-                                                    @AffiliateCore.GetAffiliatesById(contributor.AffiliateID).Name
+                                                    @affiliateName
                                                 </span>
                                             </div>
                                         </div>
