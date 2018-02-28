@@ -10,7 +10,6 @@ namespace Law.Core
 
     public class AffiliateCore : CoreBase
     {
-        private static readonly LawContext _context;
 
         public static int GetAffiliateCount()
         {
