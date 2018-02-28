@@ -25,6 +25,8 @@ namespace Law.Web
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddDbContext<LawContext>(options => options.UseSqlServer(Configuration["DbConnection"]));
+           
+            
             services.AddSession();
 
             services.AddIdentity<ApplicationUser, IdentityRole>()

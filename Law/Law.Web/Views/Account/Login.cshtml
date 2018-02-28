@@ -73,7 +73,7 @@
                     data: {
                         Email: $(".login-form .txtUsername").val(),
                         Password: $(".login-form .txtPassword").val(),
-                        "__RequestVerificationToken": $("[name='__RequestVerificationToken'").val(),
+                        "__RequestVerificationToken": $("[name='__RequestVerificationToken']").val(),
                         returnUrl: '@ViewData["ReturnUrl"]'
                     },
                     success: function (result) {

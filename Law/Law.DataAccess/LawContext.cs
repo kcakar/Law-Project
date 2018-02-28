@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Law.DataAccess
 {
-    public class LawContext : IdentityDbContext<ApplicationUser>
+    public class LawContext : IdentityDbContext<ApplicationUser> 
     {
         public LawContext(DbContextOptions<LawContext> options) : base(options)
         {
@@ -21,11 +21,13 @@ namespace Law.DataAccess
         public virtual DbSet<Country> Countries { get; set; }
         public virtual DbSet<NameBase> NameBases { get; set; }  
         public virtual DbSet<PracticeArea> PracticeAreas { get; set; }
+        public virtual DbSet<Comment> Comments { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
             modelBuilder.Entity<Affiliate>().ToTable("Affiliate");
+            modelBuilder.Entity<Comment>().ToTable("Comment");
             modelBuilder.Entity<Article>().ToTable("Article");
             modelBuilder.Entity<ArticlePiece>().ToTable("ArticlePiece");
             modelBuilder.Entity<City>().ToTable("City");
