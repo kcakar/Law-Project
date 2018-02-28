@@ -94,7 +94,7 @@
                                                     <p class="comment-author">
                                                         <strong>@comment.Username</strong><br />
                                                         <small>
-                                                            <span>@comment.CreationTime.ToLongDateString()</span>
+                                                            <span>@(((DateTime)comment.CreationTime).ToLongDateString())</span>
                                                         </small>
                                                     </p>
                                                     <div class="comment-content">
