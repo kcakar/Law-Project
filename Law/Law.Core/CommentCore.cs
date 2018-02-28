@@ -1,10 +1,11 @@
 ﻿using Law.DataAccess;
 using Law.Models;
 using Law.Test;
-using Law.Web.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+
 
 namespace Law.Core
 {

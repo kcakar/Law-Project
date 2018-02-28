@@ -61,7 +61,9 @@ namespace Web.Controllers
                 message = "You need to login to comment.";
             }
 
-            return Json(new { success = result != null, message, model = result,date=result.CreationTime.ToLongDateString() });
+            
+
+            return Json(new { success = result != null, message, model = result,date= ((DateTime)result.CreationTime).ToLongDateString() });
         }
 
 
