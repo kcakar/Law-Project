@@ -5,14 +5,12 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
-
+using Microsoft.EntityFrameworkCore;
 
 namespace Law.Core
 {
-    public class CommentCore
+    public class CommentCore: CoreBase
     {
-        private static readonly LawContext _context;
-
         public static List<Comment> GetCommentByArticleId(string id)
         {
             return Tester.TestComments.Where(x => x.ArticleId == id).ToList();
@@ -23,6 +21,7 @@ namespace Law.Core
         {
             try
             {
+                
                 Comment comment = new Comment
                 {
                     ID = Guid.NewGuid().ToString(),

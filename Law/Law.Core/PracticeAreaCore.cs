@@ -8,7 +8,7 @@ using System.Text;
 
 namespace Law.Core
 {
-    public class PracticeAreaCore
+    public class PracticeAreaCore : CoreBase
     {
 
         public static List<PracticeArea> GetPracticeAreasById(List<string> ids)

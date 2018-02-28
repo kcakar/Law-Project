@@ -8,7 +8,7 @@ using System.Linq;
 namespace Law.Core
 {
 
-    public static class AffiliateCore
+    public class AffiliateCore : CoreBase
     {
         private static readonly LawContext _context;
 

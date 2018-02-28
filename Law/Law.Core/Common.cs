@@ -8,17 +8,9 @@ using System.Text;
 
 namespace Law.Core
 {
-    public static class Common
+    public class Common : CoreBase
     {
         public static readonly int PageSize=20;
-        public static List<List<T>> ChunkBy<T>(this List<T> source, int chunkSize)
-        {
-            return source
-                .Select((x, i) => new { Index = i, Value = x })
-                .GroupBy(x => x.Index / chunkSize)
-                .Select(x => x.Select(v => v.Value).ToList())
-                .ToList();
-        }
 
         public static List<Country> GetCountries()
         {
@@ -50,11 +42,26 @@ namespace Law.Core
             return Tester.TestAffiliates;
         }
 
+
+
+    }
+
+    public static class Extensions
+    {
         public static string CapitaliseFirstLetters(this string source)
         {
-            source= source.ToLower();
+            source = source.ToLower();
 
             return CultureInfo.CurrentCulture.TextInfo.ToTitleCase(source);
+        }
+
+        public static List<List<T>> ChunkBy<T>(this List<T> source, int chunkSize)
+        {
+            return source
+                .Select((x, i) => new { Index = i, Value = x })
+                .GroupBy(x => x.Index / chunkSize)
+                .Select(x => x.Select(v => v.Value).ToList())
+                .ToList();
         }
 
     }

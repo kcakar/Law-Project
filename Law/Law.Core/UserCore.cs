@@ -4,7 +4,7 @@ using System.Linq;
 
 namespace Law.Core
 {
-    public class UserCore
+    public class UserCore : CoreBase
     {
         public static PaginatedList<User> GetFilteredUsers(string keyword, string page = "1")
         {

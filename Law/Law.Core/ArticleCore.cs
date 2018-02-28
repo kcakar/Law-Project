@@ -7,7 +7,7 @@ using System.Linq;
 
 namespace Law.Core
 {
-    public static class ArticleCore
+    public class ArticleCore : CoreBase
     {
         public static int GetArticleCount()
         {

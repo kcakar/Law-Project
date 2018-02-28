@@ -3,7 +3,7 @@ using System.Linq;
 
 namespace Law.Core
 {
-    public class AuthenticationCore
+    public class AuthenticationCore : CoreBase
     {
         public static bool CheckAuth(string username, string password)
         {

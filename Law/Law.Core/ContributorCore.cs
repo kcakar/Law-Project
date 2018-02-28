@@ -7,7 +7,7 @@ using System.Linq;
 
 namespace Law.Core
 {
-    public static class ContributorCore
+    public class ContributorCore : CoreBase
     {
         public static int GetContributorCount()
         {
