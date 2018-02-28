@@ -226,7 +226,7 @@ section h2 b {
     }
 
         #slider .item .title .caption a {
-            font-family: "Playfair Display", serif;
+            font-family: ""Helvetica Neue",Helvetica,Arial,sans-serif", serif;
             font-size: 18px;
             color: #fff !important;
         }
@@ -434,7 +434,6 @@ section.search {
 /* Pages : Blog View */
 
 .BlogView {
-    margin-bottom: 40px;
     background-color: #fff;
     border-radius: 3px;
 }
@@ -518,7 +517,7 @@ section.search {
     .post-content h1 {
         margin: 0 0 15px 0;
         padding: 0;
-        font-family: "Playfair Display", serif;
+        font-family: ""Helvetica Neue",Helvetica,Arial,sans-serif", serif;
         font-size: 24px;
     }
 
@@ -537,7 +536,7 @@ section.search {
 .search-box h3 {
     padding: 0;
     margin: 0 0 15px 0;
-    font-family: "Playfair Display", serif;
+    font-family: ""Helvetica Neue",Helvetica,Arial,sans-serif", serif;
     font-size: 24px;
     color: rgba(0, 0, 0, 0.8588235294117647);
 }
@@ -597,7 +596,7 @@ section.search {
     .PageView h1 {
         margin: 0 0 25px 0;
         padding: 0;
-        font-family: "Playfair Display", serif;
+        font-family: ""Helvetica Neue",Helvetica,Arial,sans-serif", serif;
         font-size: 24px;
     }
 
@@ -628,7 +627,7 @@ section.search {
     box-sizing: border-box;
     text-align: center;
     padding: 15px 0 20px 0;
-    font-family: "Playfair Display", serif;
+    font-family: ""Helvetica Neue",Helvetica,Arial,sans-serif", serif;
     font-size: 20px;
     color: #fff;
     text-decoration:none;
@@ -693,7 +692,7 @@ section.search {
     }
 
 .articles-title {
-    font-family: "Playfair Display", serif;
+    font-family: ""Helvetica Neue",Helvetica,Arial,sans-serif", serif;
     font-size: 24px;
     color: #95574a;
     margin-bottom: 20px;
@@ -1402,7 +1401,7 @@ p {
 }
 
     .comment-container h3 {
-        font-family: "Playfair Display", serif;
+        font-family: ""Helvetica Neue",Helvetica,Arial,sans-serif", serif;
         font-size: 24px;
         font-weight: bold;
     }
@@ -1434,7 +1433,7 @@ p {
         color: #666;
         padding: 0;
         margin: 0;
-        font-family: "Playfair Display", serif;
+        font-family: ""Helvetica Neue",Helvetica,Arial,sans-serif", serif;
     }
 
 .comment-container li .comment-author {
@@ -1853,7 +1852,7 @@ main {
             border: 1px solid rgba(0,0,0,.1);
             border-radius: 2px;
             padding: 16px;
-            height: 260px;
+            height: 270px;
             display: flex;
             flex-direction: column;
             float: left;
@@ -1885,13 +1884,14 @@ main {
                 flex-grow: 1;
             }
 
-            main .posts .post-container .post-header a h3 {
-                font-size: 17px;
-                font-weight: 600;
-                color: rgba(0,0,0,.84);
-                fill: rgba(0,0,0,.84);
-                letter-spacing: -0.55px;
-            }
+        main .posts .post-container .post-header a h3 {
+            font-size: 17px;
+            font-weight: 600;
+            color: rgba(0,0,0,.84);
+            fill: rgba(0,0,0,.84);
+            letter-spacing: -0.55px;
+            line-height: 20.2px;
+        }
 
         main .posts h4, main .posts h3, main .posts a {
             margin: 0;
@@ -1972,7 +1972,7 @@ main {
     }
 
     main .posts .post-container {
-        height: 300px;
+        height: 315px;
     }
 }
 
@@ -2082,4 +2082,16 @@ header .header-top .header-left .fa {
     header .header-top .header-left {
         width: 60px;
     }
+}
+
+
+.BlogView h2{
+    line-height: 30px;
+    font-size:19px;
+}
+
+.BlogView h1{
+    font-size: 25px;
+    text-align:left;
+    line-height:28px;
 }

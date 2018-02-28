@@ -6,159 +6,155 @@
     ViewData["Title"] = "Article - " + Model.Title;
 }
 <div class="Page">
-    <div class="container">
-        <div class="row">
-            <div class="col-md-12">
-                <div class="BlogView">
-                    <div class="row results">
-                        <div class="col-md-8">
-                            <div class="BlogViewLeft post-content">
-                                <h1>@Model.Title</h1>
-                                <div class='post-tools'>
-                                    <div class='pull-left' style='margin-right: 20px;'>
-                                        <div class="pull-left">
-                                            <img src="@Model.ContributorImage.GetImageUrl()" alt="" class="avatar">
-                                        </div>
-                                        <div class="pull-left" style="padding-top: 4px; padding-left: 10px"><a href="@Url.Action("Contributor","Contributors", new {id = Model.ContributorID })">@Model.ContributorName</a> -    <a href="@Url.Action("Affiliate","Affiliates", new {id = Model.Affiliate.ID })">@Model.Affiliate.Name</a> </div>
-                                        <div class="clearfix"></div>
-                                    </div>
-                                    <div class='pull-left' style='margin-right: 20px; padding-top: 4px;'>
-                                        <i class='fa fa-calendar'></i> @Model.CreationDate.ToShortDateString()
-                                    </div>
-                                    <div class='pull-left' style="padding-top: 4px;">
-                                        <i class='fa fa-eye'></i>  @Model.ViewCount
-                                    </div>
-                                    <div class='clearfix'></div>
+    <div class="">
+        <div class="BlogView">
+            <div class="row results">
+                <div class="col-md-8">
+                    <div class="BlogViewLeft post-content">
+                        <h1>@Model.Title</h1>
+                        <div class='post-tools'>
+                            <div class='pull-left' style='margin-right: 20px;'>
+                                <div class="pull-left">
+                                    <img src="@Model.ContributorImage.GetImageUrl()" alt="" class="avatar">
                                 </div>
-                                <div class="article-content">
-                                    @Html.Raw(Model.ArticleBody)
-                                </div>
-                                <div class="share-block">
-                                    <div class="pull-left" style="margin-right: 8px">
-                                        <a href='mailto:?subject=@Model.Title&body=@Url.Action("Article", "Articles", new { id = Model.ID })'>
-                                            <span class="fa-stack">
-                                                <i class="fa fa-square"></i>
-                                                <i class="fa fa-at"></i>
-                                            </span>
-                                        </a>
-                                    </div>
-                                    <div class="pull-left" style="margin-right: 8px">
-                                        <a href=''>
-                                            <i class="fa fa-facebook-square"></i>
-                                        </a>
-                                    </div>
-                                    <div class="pull-left" style="margin-right: 8px">
-                                        <a href=''>
-                                            <i class="fa fa-twitter-square"></i>
-                                        </a>
-                                    </div>
-                                    <div class="pull-left" style="margin-right: 8px">
-                                        <a href=''>
-                                            <i class="fa fa-linkedin-square"></i>
-                                        </a>
-                                    </div>
-                                    <div class="pull-left whatsapp" style="margin-right: 8px">
-                                        <a href='whatsapp://send?text=@Url.Action("Article", "Articles", new { id = Model.ID })'
-                                           data-action='share/whatsapp/share'>
-                                            <span class="fa-stack">
-                                                <i class="fa fa-square"></i>
-                                                <i class="fa fa-whatsapp"></i>
-                                            </span>
-                                        </a>
-                                    </div>
-                                    <div class="pull-left" style="margin-right: 8px">
-                                        <a href="/article/printpage/1" target="_blank">
-                                            <i class="fa fa-print"></i>
-                                        </a>
-                                    </div>
-                                    <div class="pull-left">
-                                        <i class="fa fa-file-pdf-o"></i>
-                                        <a href="@Url.Action("Download", "Articles", new { id = Model.ID })" target="_blank"></a>
-                                    </div>
-                                    <div class="clearfix"></div>
-                                </div>
-                                <div class="comment-container">
-                                    @if (Model.Comments.Count <= 0)
-                                    {
-                                        <h3 class="comment-count-container">Be first to comment!</h3>
-                                    }
-                                    else
-                                    {
-                                        <h3 class="comment-count-container"><span class="comment-count">@Model.Comments.Count</span> Comments</h3>
-                                    }
-                                    <div class="comment-list">
-                                        <ul>
-                                            @foreach (Comment comment in Model.Comments)
-                                            {
-                                                <li>
-                                                    <p class="comment-author">
-                                                        <strong>@comment.Username</strong><br />
-                                                        <small>
-                                                            <span>@(((DateTime)comment.CreationTime).ToLongDateString())</span>
-                                                        </small>
-                                                    </p>
-                                                    <div class="comment-content">
-                                                        @comment.Body
-                                                    </div>
-                                                </li>
-                                            }
-                                        </ul>
-                                    </div>
-
-                                    <div class="comment-form">
-                                        <div class="line"></div>
-                                        <h3>Leave a comment</h3>
-                                        @if (User.Identity.IsAuthenticated)
-                                        {
-                                            <textarea class="comment txtComment"></textarea>
-                                            <button class="bttn-simple bttn-md bttn-primary btnComment">Post Comment</button>
-                                        }
-                                        else
-                                        {
-                                            <a href="@Url.Action("Login","Account",new { returnUrl= Context.Request.GetDisplayUrl()})">Please login or register to comment</a>
-                                        }
-                                    </div>
-                                    <div class='clearfix'></div>
-                                </div>
+                                <div class="pull-left" style="padding-top: 4px; padding-left: 10px"><a href="@Url.Action("Contributor","Contributors", new {id = Model.ContributorID })">@Model.ContributorName</a> -    <a href="@Url.Action("Affiliate","Affiliates", new {id = Model.Affiliate.ID })">@Model.Affiliate.Name</a> </div>
+                                <div class="clearfix"></div>
                             </div>
+                            <div class='pull-left' style='margin-right: 20px; padding-top: 4px;'>
+                                <i class='fa fa-calendar'></i> @Model.CreationDate.ToShortDateString()
+                            </div>
+                            <div class='pull-left' style="padding-top: 4px;">
+                                <i class='fa fa-eye'></i>  @Model.ViewCount
+                            </div>
+                            <div class='clearfix'></div>
                         </div>
-                        <div class="col-md-4">
-                            <div class="BlogViewRight">
-                                <div class="BlogViewRight-Wrapper">
-                                    <div class="search-box">
-                                        <h3>Latest Articles</h3>
-                                        @foreach (LatestArticleRow article in Model.LatestArticles)
-                                        {
-                                            <div class='latest-post-item'>
-                                                <div class='title'>
-                                                    <a href='@Url.Action("Article", "Articles", new { id = article.ID })'>@article.Title</a>
-                                                </div>
-                                                <div class='ago'>
-                                                    <i class='fa fa-clock-o'></i>
-                                                    <b>@article.DateString</b> Ago
-                                                </div>
+                        <div class="article-content">
+                            @Html.Raw(Model.ArticleBody)
+                        </div>
+                        <div class="share-block">
+                            <div class="pull-left" style="margin-right: 8px">
+                                <a href='mailto:?subject=@Model.Title&body=@Url.Action("Article", "Articles", new { id = Model.ID })'>
+                                    <span class="fa-stack">
+                                        <i class="fa fa-square"></i>
+                                        <i class="fa fa-at"></i>
+                                    </span>
+                                </a>
+                            </div>
+                            <div class="pull-left" style="margin-right: 8px">
+                                <a href=''>
+                                    <i class="fa fa-facebook-square"></i>
+                                </a>
+                            </div>
+                            <div class="pull-left" style="margin-right: 8px">
+                                <a href=''>
+                                    <i class="fa fa-twitter-square"></i>
+                                </a>
+                            </div>
+                            <div class="pull-left" style="margin-right: 8px">
+                                <a href=''>
+                                    <i class="fa fa-linkedin-square"></i>
+                                </a>
+                            </div>
+                            <div class="pull-left whatsapp" style="margin-right: 8px">
+                                <a href='whatsapp://send?text=@Url.Action("Article", "Articles", new { id = Model.ID })'
+                                   data-action='share/whatsapp/share'>
+                                    <span class="fa-stack">
+                                        <i class="fa fa-square"></i>
+                                        <i class="fa fa-whatsapp"></i>
+                                    </span>
+                                </a>
+                            </div>
+                            <div class="pull-left" style="margin-right: 8px">
+                                <a href="/article/printpage/1" target="_blank">
+                                    <i class="fa fa-print"></i>
+                                </a>
+                            </div>
+                            <div class="pull-left">
+                                <i class="fa fa-file-pdf-o"></i>
+                                <a href="@Url.Action("Download", "Articles", new { id = Model.ID })" target="_blank"></a>
+                            </div>
+                            <div class="clearfix"></div>
+                        </div>
+                        <div class="comment-container">
+                            @if (Model.Comments.Count <= 0)
+                            {
+                                <h3 class="comment-count-container">Be first to comment!</h3>
+                            }
+                            else
+                            {
+                                <h3 class="comment-count-container"><span class="comment-count">@Model.Comments.Count</span> Comments</h3>
+                            }
+                            <div class="comment-list">
+                                <ul>
+                                    @foreach (Comment comment in Model.Comments)
+                                    {
+                                        <li>
+                                            <p class="comment-author">
+                                                <strong>@comment.Username</strong><br />
+                                                <small>
+                                                    <span>@(((DateTime)comment.CreationTime).ToLongDateString())</span>
+                                                </small>
+                                            </p>
+                                            <div class="comment-content">
+                                                @comment.Body
                                             </div>
-                                        }
+                                        </li>
+                                    }
+                                </ul>
+                            </div>
+
+                            <div class="comment-form">
+                                <div class="line"></div>
+                                <h3>Leave a comment</h3>
+                                @if (User.Identity.IsAuthenticated)
+                                {
+                                    <textarea class="comment txtComment"></textarea>
+                                    <button class="bttn-simple bttn-md bttn-primary btnComment">Post Comment</button>
+                                }
+                                else
+                                {
+                                    <a href="@Url.Action("Login","Account",new { returnUrl= Context.Request.GetDisplayUrl()})">Please login or register to comment</a>
+                                }
+                            </div>
+                            <div class='clearfix'></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="BlogViewRight">
+                        <div class="BlogViewRight-Wrapper">
+                            <div class="search-box">
+                                <h3>Latest Articles</h3>
+                                @foreach (LatestArticleRow article in Model.LatestArticles)
+                                {
+                                    <div class='latest-post-item'>
+                                        <div class='title'>
+                                            <a href='@Url.Action("Article", "Articles", new { id = article.ID })'>@article.Title</a>
+                                        </div>
+                                        <div class='ago'>
+                                            <i class='fa fa-clock-o'></i>
+                                            <b>@article.DateString</b> Ago
+                                        </div>
                                     </div>
-                                    <hr>
-                                    <div class="search-box">
-                                        <h3>Latest Contributors</h3>
-                                        @foreach (LatestContributorsRow contributor in Model.LatestContributors)
-                                        {
-                                            <div class='latest-author-item'>
-                                                <div class='pull-left'>
-                                                    <img src='@contributor.ImageURL.GetImageUrl()' alt='@contributor.Name' style='width: 25px; height: 25px' />
-                                                </div>
-                                                <div class='pull-left'>
-                                                    <div class='title'>
-                                                        <a href='@Url.Action("Contributor", "Contributors", new { id = contributor.ID })'>@contributor.Name (@contributor.TotalContributions)</a>
-                                                    </div>
-                                                </div>
-                                                <div class='clearfix'></div>
+                                }
+                            </div>
+                            <hr>
+                            <div class="search-box">
+                                <h3>Latest Contributors</h3>
+                                @foreach (LatestContributorsRow contributor in Model.LatestContributors)
+                                {
+                                    <div class='latest-author-item'>
+                                        <div class='pull-left'>
+                                            <img src='@contributor.ImageURL.GetImageUrl()' alt='@contributor.Name' style='width: 25px; height: 25px' />
+                                        </div>
+                                        <div class='pull-left'>
+                                            <div class='title'>
+                                                <a href='@Url.Action("Contributor", "Contributors", new { id = contributor.ID })'>@contributor.Name (@contributor.TotalContributions)</a>
                                             </div>
-                                        }
+                                        </div>
+                                        <div class='clearfix'></div>
                                     </div>
-                                </div>
+                                }
                             </div>
                         </div>
                     </div>
@@ -170,7 +166,7 @@
 
 
 @section Scripts{
-<script>
+    <script>
         var commentUrl ='@Url.Action("AddCommentAsync", "Articles")';
         var articleId='@Model.ID';
         $(function() {
@@ -207,5 +203,5 @@
             $(".comment-count-container").html('<span class="comment-count">' + $(".comment-list ul li").length + '</span> ' + commentText);
             $(".txtComment").val("")
         }
-</script>
+    </script>
 }
